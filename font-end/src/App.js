@@ -13,7 +13,7 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact path="/" component={Home} extend/>
-        <Route exact path="/login" component={Login} extend/>
+        <Route exact path="/signin" component={Login} extend/>
         <Route exact path="/signup" component={SignUp} extend/>
         <Route component={PageNotFound} extend/>
       </Switch>

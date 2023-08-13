@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/page/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
@@ -17,6 +17,10 @@ module.exports = {
         input_bg: "#454545",
         primary: "#e50914",
         primary_text: "#ffffff"
+      },
+      fontSize: {
+        paragraph: '1rem',
+        paragraph_2: '0.8rem',
       },
       opacity: {
         default: '.60',

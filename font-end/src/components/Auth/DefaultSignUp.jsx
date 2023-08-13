@@ -3,21 +3,35 @@ import Logo from "../../assets/Netflix_Logo.png";
 import { IoIosArrowForward } from "react-icons/io";
 
 export default function DefaultSignUp() {
+  const handleBackToHome = () => {
+    window.location.href = "/";
+  };
+  const handleGoToSignIn = () => {
+    window.location.href = "/signin";
+  };
   return (
     <div
-      className="h-screen text-white"
+      className="h-screen text-white bg-cover bg-center"
       style={{
         backgroundImage: `url(https://assets.nflxext.com/ffe/siteui/vlv3/6c884f48-f7d8-4a59-9d25-b7c138813aee/67b108c1-7b39-4844-8a33-37120ace927a/LK-en-20230807-popsignuptwoweeks-perspective_alpha_website_large.jpg)`,
       }}
     >
-      <div className="bg-black/[.60] w-full h-screen">
-        <div className="flex justify-center items-center w-full px-2">
+      <div className="bg-black/[.80] w-full h-screen">
+        <div className="flex justify-center items-center w-full px-2 pt-2">
           <div className="flex w-full max-w-default justifu-center items-center">
             <div className="w-2/4">
-              <img src={Logo} alt="logo" className="w-logo" />
+              <img
+                onClick={handleBackToHome}
+                src={Logo}
+                alt="logo"
+                className="w-logo hover:cursor-pointer"
+              />
             </div>
             <div className="w-2/4 flex justify-end">
-              <button className="bg-primary p-2 px-4 h-fit capitalize font-semibold rounded-lg">
+              <button
+                onClick={handleGoToSignIn}
+                className="bg-primary p-2 px-4 h-fit capitalize font-semibold rounded-lg"
+              >
                 sign in
               </button>
             </div>
@@ -27,7 +41,7 @@ export default function DefaultSignUp() {
         <div className="flex justify-center h-[80%] items-center">
           <div className="space-y-4">
             <div className="text-center capitalize opacity-default space-y-4">
-              <h1 className="lg:text-[3.5rem] md:text-[2rem] sm:text-[1.5rem] font-semibold">
+              <h1 className="lg:text-[3.5rem] md:text-[2rem] sm:text-[2rem] font-semibold sm:px-8 text-white">
                 Unlimited movies, TV shows, and more
               </h1>
               <h1 className="lg:text-[1.4rem]">
