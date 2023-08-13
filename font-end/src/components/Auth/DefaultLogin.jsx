@@ -47,7 +47,7 @@ export default function DefaultLogin() {
     >
       <div className="bg-black/[.80] w-full h-screen">
         <div className="flex justify-center items-center w-full px-2 pt-2">
-          <div className="flex w-full max-w-default justifu-center items-center">
+          <div className="flex w-full justifu-center items-center">
             <div className="w-full">
               <img
                 onClick={handleBackToHome}
@@ -107,7 +107,7 @@ export default function DefaultLogin() {
                   </label>
                 </div>
                 <div className="w-2/4 flex justify-end">
-                  <p className="capitalize opacity-default hover:underline text-paragraph">
+                  <p className="capitalize opacity-default hover:underline text-paragraph hover:cursor-pointer">
                     need help
                   </p>
                 </div>

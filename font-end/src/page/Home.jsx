@@ -1,10 +1,10 @@
 import React from "react";
-import DefaultSignUp from "../components/Auth/DefaultSignUp";
+import Dashboard from "../components/Dashboard";
 
 function App() {
   return (
     <div className="text-white">
-        <DefaultSignUp/>
+        <Dashboard/>
     </div>
   );
 }
