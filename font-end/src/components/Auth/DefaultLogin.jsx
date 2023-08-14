@@ -67,7 +67,7 @@ export default function DefaultLogin() {
                 type="email"
                 id="email"
                 placeholder="Email or phone number"
-                className="p-3 rounded-lg bg-input_bg placeholder-white/[.40] w-full"
+                className="p-3 rounded-lg bg-input_bg placeholder-white/[.40] w-full focus:outline-none"
                 value={email}
                 onChange={handleEmailChange}
               />
@@ -77,7 +77,7 @@ export default function DefaultLogin() {
                   type={showPassword ? "text" : "password"}
                   id="password"
                   placeholder="Password"
-                  className="bg-transparent placeholder-white/[.40] w-full"
+                  className="bg-transparent placeholder-white/[.40] w-full focus:outline-none"
                   value={password}
                   onChange={handlePasswordChange}
                 />

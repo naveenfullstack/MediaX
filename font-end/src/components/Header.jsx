@@ -76,7 +76,7 @@ export default function Header() {
               <AiOutlineSearch className="cursor-pointer text-xl" />
               <input
                 type="text"
-                className="p-2 focus:ring focus:ring-blue-300 bg-transparent h-fit custom-input"
+                className="p-2 bg-transparent h-fit focus:outline-none"
                 placeholder="Search..."
               />
               <AiOutlineClose
@@ -95,7 +95,7 @@ export default function Header() {
             onClick={() => setIsOpen(!isOpen)}
           />
           {isOpen && (
-            <ul className="absolute top-8 w-[12rem] right-0 rounded shadow bg-input_bg">
+            <ul className="absolute top-8 w-[12rem] right-0 rounded shadow bg-input_bg z-10">
               {options.map((index) => (
                 <li
                   key={index.id}
