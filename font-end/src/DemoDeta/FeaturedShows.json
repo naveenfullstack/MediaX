@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name" : "Avengers End Game",
+    "year" : "2018",
+    "is_movie" : true,
+    "is_tv_show" : false,
+    "is_featured" : true,
+    "thumbnail": "https://static.wikia.nocookie.net/netflix/images/e/e3/Wednesday_with_date.jpg/revision/latest?cb=20221202120721",
+    "banner_img": "https://i.redd.it/8qalygitcxl21.png",
+    "banner_font": "sans",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus totam ratione eaque dolor at, eos odio sed sit nulla nostrum repellendus, nihil quo fugiat doloremque libero culpa, debitis inventore tenetur?"
+  },
+  {
+    "id": 1,
+    "name" : "Avengers End Game",
+    "year" : "2018",
+    "is_movie" : true,
+    "is_tv_show" : false,
+    "is_featured" : true,
+    "thumbnail": "https://static.wikia.nocookie.net/netflix/images/e/e3/Wednesday_with_date.jpg/revision/latest?cb=20221202120721",
+    "banner_img": "https://i.redd.it/8qalygitcxl21.png",
+    "banner_font": "sans",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus totam ratione eaque dolor at, eos odio sed sit nulla nostrum repellendus, nihil quo fugiat doloremque libero culpa, debitis inventore tenetur?"
+  }
+]

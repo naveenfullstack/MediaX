@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Logo from "../../assets/Netflix_Logo.png";
+import Logo from "../../assets/MediaX Logo.svg";
 
 export default function DefaultLogin() {
   const [email, setEmail] = useState("");

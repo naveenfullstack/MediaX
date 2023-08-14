@@ -14,8 +14,8 @@ module.exports = {
         xl: "1440px",
       },
       colors: {
-        input_bg: "#454545",
         primary: "#e50914",
+        input_bg: "#454545",
         primary_text: "#ffffff"
       },
       fontSize: {
@@ -39,7 +39,10 @@ module.exports = {
       },
       maxWidth: {
         default: '1366px',
-      }
+      },
+      space : {
+        default : '1rem'
+      },
     },
   },
   plugins: [],

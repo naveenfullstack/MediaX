@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../assets/Netflix_Logo.png";
+import Logo from "../../assets/MediaX Logo.svg";
 import { IoIosArrowForward } from "react-icons/io";
 
 export default function DefaultSignUp() {

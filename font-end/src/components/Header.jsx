@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Logo from "../assets/Netflix_Logo.png";
+import Logo from "../assets/MediaX Logo.svg";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import "../App.css"
@@ -42,12 +42,9 @@ export default function Header() {
 
   return (
     <div className="flex items-center px-4">
-      <div className="flex items-center space-x-6 w-9/12">
+      <div className="flex items-center space-x-default w-9/12">
         <img src={Logo} alt="logo" className="w-logo" />
         <div className="capitalize flex space-x-8">
-          <h1 className="text-white/[.60] hover:text-white hover:cursor-pointer">
-            home
-          </h1>
           <h1 className="text-white/[.60] hover:text-white hover:cursor-pointer">
             tv shows
           </h1>
