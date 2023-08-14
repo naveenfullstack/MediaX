@@ -4,4 +4,10 @@
 
 body {
   background-color: black;
+  outline: none;
+}
+
+.custom-input:focus {
+  outline: none !important;
+  box-shadow: none;
 }

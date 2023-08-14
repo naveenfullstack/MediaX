@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Logo from "../assets/Netflix_Logo.png";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
+import "../App.css"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,7 +76,7 @@ export default function Header() {
               <AiOutlineSearch className="cursor-pointer text-xl" />
               <input
                 type="text"
-                className="p-2 focus:ring focus:ring-blue-300 bg-transparent h-fit focus:outline-none"
+                className="p-2 focus:ring focus:ring-blue-300 bg-transparent h-fit custom-input"
                 placeholder="Search..."
               />
               <AiOutlineClose
