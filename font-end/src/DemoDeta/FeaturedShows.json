@@ -1,25 +1,119 @@
 [
   {
     "id": 1,
-    "name" : "Avengers End Game",
-    "year" : "2018",
-    "imdb" : "6.7",
-    "imdb_url"  : "https://www.imdb.com/title/tt4154796/?ref_=nv_sr_srsg_0_tt_6_nm_2_q_aven",
-    "is_movie" : true,
-    "is_tv_show" : false,
-    "is_featured" : true,
+    "name": "Avengers End Game",
+    "year": "2018",
+    "imdb": "6.7",
+    "imdb_url": "https://www.imdb.com/title/tt4154796/?ref_=nv_sr_srsg_0_tt_6_nm_2_q_aven",
+    "is_movie": true,
+    "is_tv_show": false,
+    "is_featured": true,
+    "is_populer": true,
+    "cast": [
+      {
+        "actor_id": 1,
+        "image" : "",
+        "name" : "Christian Bale"
+      },
+      {
+        "actor_id": 2,
+        "image" : "",
+        "name" : "Aaron Eckhart"
+      },
+      {
+        "actor_id": 3,
+        "image" : "",
+        "name" : "Maggie Gyllenhaal"
+      },
+      {
+        "actor_id": 4,
+        "image" : "",
+        "name" : "Morgan Freeman"
+      },
+      {
+        "actor_id": 5,
+        "image" : "",
+        "name" : "Ron Dean"
+      },
+      {
+        "actor_id": 6,
+        "image" : "",
+        "name" : "Chin Han"
+      },
+      {
+        "actor_id": 7,
+        "image" : "",
+        "name" : "Eric Roberts"
+      },
+      {
+        "actor_id": 8,
+        "image" : "",
+        "name" : "Anthony Michael Hall"
+      },
+      {
+        "actor_id": 9,
+        "image" : "",
+        "name" : "Colin McFarlane"
+      },
+      {
+        "actor_id": 10,
+        "image" : "",
+        "name" : "Heath Ledger"
+      },
+      {
+        "actor_id": 11,
+        "image" : "",
+        "name" : "Michael Caine"
+      },
+      {
+        "actor_id": 12,
+        "image" : "",
+        "name" : "Gary Oldman"
+      },
+      {
+        "actor_id": 13,
+        "image" : "",
+        "name" : "Monique Gabriela Curnen"
+      },
+      {
+        "actor_id": 14,
+        "image" : "",
+        "name" : "Cillian Murphy"
+      },
+      {
+        "actor_id": 15,
+        "image" : "",
+        "name" : "Nestor Carbonell"
+      },
+      {
+        "actor_id": 16,
+        "image" : "",
+        "name" : "Ritchie Coster"
+      },
+      {
+        "actor_id": 17,
+        "image" : "",
+        "name" : "eith Szarabajka"
+      },
+      {
+        "actor_id": 18,
+        "image" : "",
+        "name" : "Joshua Harto"
+      }
+    ],
     "thumbnail": "https://static.wikia.nocookie.net/netflix/images/e/e3/Wednesday_with_date.jpg/revision/latest?cb=20221202120721",
+    "cover_img" : "",
     "banner_img": "https://i.redd.it/8qalygitcxl21.png",
     "banner_font": "sans",
     "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus totam ratione eaque dolor at, eos odio sed sit nulla nostrum repellendus, nihil quo fugiat doloremque libero culpa, debitis inventore tenetur?"
   },
   {
     "id": 1,
-    "name" : "Avengers End Game",
-    "year" : "2018",
-    "is_movie" : true,
-    "is_tv_show" : false,
-    "is_featured" : true,
+    "name": "Avengers End Game",
+    "year": "2018",
+    "is_movie": true,
+    "is_tv_show": false,
+    "is_featured": true,
     "thumbnail": "https://static.wikia.nocookie.net/netflix/images/e/e3/Wednesday_with_date.jpg/revision/latest?cb=20221202120721",
     "banner_img": "https://i.redd.it/8qalygitcxl21.png",
     "banner_font": "sans",
