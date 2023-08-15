@@ -16,7 +16,8 @@ module.exports = {
       colors: {
         primary: "#e50914",
         input_bg: "#454545",
-        primary_text: "#ffffff"
+        primary_text: "#ffffff",
+        paragraph : "acacac"
       },
       fontSize: {
         paragraph: '1rem',
@@ -42,6 +43,9 @@ module.exports = {
       },
       space : {
         default : '1rem'
+      },
+      fontFamily: {
+        title: ['Alata', 'sans-serif'],
       },
     },
   },

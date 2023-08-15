@@ -3,6 +3,8 @@
     "id": 1,
     "name" : "Avengers End Game",
     "year" : "2018",
+    "imdb" : "6.7",
+    "imdb_url"  : "https://www.imdb.com/title/tt4154796/?ref_=nv_sr_srsg_0_tt_6_nm_2_q_aven",
     "is_movie" : true,
     "is_tv_show" : false,
     "is_featured" : true,

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Logo from "../assets/MediaX Logo.svg";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
-import "../App.css"
+import "../App.css";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
