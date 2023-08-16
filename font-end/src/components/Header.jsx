@@ -41,7 +41,7 @@ export default function Header() {
   };
 
   return (
-    <div className="flex items-center px-4">
+    <div className="items-center px-4 sm:hidden lg:flex md:hidden">
       <div className="flex items-center space-x-default w-9/12">
         <img src={Logo} alt="logo" className="w-logo" />
         <div className="capitalize flex space-x-8">
