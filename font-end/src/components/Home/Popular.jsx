@@ -7,20 +7,39 @@ import "swiper/css/navigation";
 import "../Css/FeaturedItems.scss";
 import { Autoplay } from "swiper/modules";
 import api from "../../Apis";
+import { MdOutlineAddCircle } from "react-icons/md"
 
 export default function Popular() {
   const [clients, setClients] = useState([]);
   const [loading, setLoading] = useState(true);
-//  const PickRandom1stSlider = Math.floor(Math.random() * clients.length);
+  const [randomNumbers, setRandomNumbers] = useState([]);
+  const generateRandomNumber = () => {
+    const min = 80;
+    const max = 100;
+    return Math.floor(Math.random() * (max - min) + min);
+  };
+
+  const breakpoints = {
+    mobile: 320,
+    tablet: 640,
+    desktop: 1024,
+  };
+
+  const slidesPerView = {
+    mobile: 2,
+    tablet: 4,
+    desktop: 5,
+  };
 
   useEffect(() => {
     axios
-      .get(api.Popular, {
-      })
+      .get(api.Popular, {})
       .then((response) => {
         setClients(response.data.results);
+        setRandomNumbers(
+          response.data.results.map(() => generateRandomNumber())
+        );
         setLoading(false);
-        console.log(response)
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -28,47 +47,104 @@ export default function Popular() {
       });
   }, []);
 
+  const currentBreakpoint = Object.keys(breakpoints).find(
+    (breakpoint) => window.innerWidth <= breakpoints[breakpoint]
+  );
+
+  const currentSlidesPerView =
+    slidesPerView[currentBreakpoint] || slidesPerView.desktop;
+
   return (
     <div>
       {loading ? (
-        <div className="w-full space-y-default">
-          <h1 className="capitalize font-semibold lg:text-[1.5rem] px-20">
-            popular on MediaX
-          </h1>
-          <div className="w-full lg:pl-20 sm:px-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {Array.from({ length: 5 }).map((_, index) => (
-              <div key={index} className="shadow-md animate-pulse">
-                <div className="bg-input_bg h-[13rem]"></div>
-              </div>
-            ))}
+        <div className="w-full">
+          <div className="w-full space-y-default sm:hidden md:hidden lg:block">
+            <h1 className="capitalize font-semibold lg:text-[1.5rem] px-item_lg_left">
+              popular on MediaX
+            </h1>
+            <div className="w-full lg:pl-item_lg_left md:pl-item_md_left sm:px-item_sm_left grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <div key={index} className="shadow-md animate-pulse">
+                  <div className="bg-input_bg h-[13rem]"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="w-full space-y-default sm:block md:block lg:hidden">
+            <h1 className="capitalize font-semibold md:text-[1.5rem] sm:text-[1.3rem] lg:px-item_lg_left sm:px-item_sm_left sm:pt-item_sm_left">
+              popular on MediaX
+            </h1>
+            <div className="w-full lg:pl-item_lg_left md:pl-item_md_left sm:pl-item_sm_left md:pl-item_lg_left sm:px-item_sm_left grid sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {Array.from({ length: 3 }).map((_, index) => (
+                <div key={index} className="shadow-md animate-pulse">
+                  <div className="bg-input_bg h-[13rem]"></div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       ) : (
-        <div className="pl-20 space-y-default">
-          <h1 className="capitalize font-semibold lg:text-[1.5rem]">
-            popular on MediaX 
+        <div className="lg:pl-item_lg_left md:pl-item_md_left sm:pl-item_sm_left space-y-default sm:pt-2">
+          <h1 className="capitalize font-semibold lg:text-[1.5rem] md:text-[1.5rem] sm:text-[1.3rem]">
+            popular on MediaX
           </h1>
           <Swiper
             spaceBetween={10}
-            slidesPerView={5}
+            slidesPerView={currentSlidesPerView}
             centeredSlides={true}
             loop={true}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-            }}
+            // autoplay={{
+            //   delay: 3000,
+            //   disableOnInteraction: false,
+            // }}
             modules={[Autoplay]}
             className="mySwiper"
+            breakpoints={{
+              [breakpoints.mobile]: {
+                slidesPerView: slidesPerView.mobile,
+              },
+              [breakpoints.tablet]: {
+                slidesPerView: slidesPerView.tablet,
+              },
+              [breakpoints.desktop]: {
+                slidesPerView: slidesPerView.desktop,
+              },
+            }}
           >
-            {clients.map((index) => (
+            {clients.map((index, slideIndex) => (
               <SwiperSlide key={index.id}>
                 <div
-                  className="lg:h-[13rem] md:h-[25rem] sm:h-[20rem] w-full bg-cover bg-bottom"
+                  className="xl:h-item_xl lg:h-item_lg md:h-item_md sm:h-item_sm w-full bg-cover bg-bottom"
                   style={{
                     backgroundImage: `url(https://image.tmdb.org/t/p/original/${index.poster_path})`,
                   }}
                 >
-                  <div className="w-full text-start lg:px-20 md:px-20 sm:px-6 h-full flex items-center"></div>
+                  <div className="w-full h-full text-start pl-item_sm_left pr-2 h-full flex items-center hover:bg-black/[.75] transition hover:delay-75 duration-100 ease-in-out">
+                    <div className="block w-full h-full opacity-0 hover:opacity-100 transition hover:delay-100 duration-100 ease-in-out">
+                      <div className="h-3/6 flex justify-end">
+                        {/* <h1 className="w-full">{index.original_title}</h1> */}
+                        <MdOutlineAddCircle title="Add To List" className="pt-2 text-[2rem] text-primary_text/[.80] hover:cursor-pointer"/>
+                      </div>
+                      <div className="h-3/6 flex items-end">
+                        <div>
+                          <h1 className="w-full">{index.original_title}</h1>
+                          <div className="flex capitalize space-x-default items-center">
+                            <div className="flex space-x-1 text-[#1AC855] items-center font-semibold">
+                              <p id="match sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                                {randomNumbers[slideIndex]}
+                              </p>
+                              <p>%</p>
+                              <p>match</p>
+                            </div>
+                            <p className="sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                              {new Date(index.release_date).getFullYear()}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </SwiperSlide>
             ))}

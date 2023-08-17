@@ -14,13 +14,11 @@ export default function App() {
   return (
     <Router>
       <Switch>
-        <Route
-          path="/"
-          exact
-          render={() => (token ? <Home /> : <Login setToken={setToken} />)}
-        />
+        <Route path="/" exact render={() => (token ? <Home /> : <Login setToken={setToken} />)}/>
         <Route exact path="/signin" component={Login} />
         <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/dashboard" component={Home} />
         <Route component={PageNotFound} />
       </Switch>
     </Router>

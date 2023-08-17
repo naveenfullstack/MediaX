@@ -11,11 +11,12 @@ import api from "../../Apis";
 // import { BsInfoCircle } from "react-icons/bs";
 
 export default function FeaturedItems() {
-
   const [clients, setClients] = useState([]);
   const [randomNumbers, setRandomNumbers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const handleExternalLinkClick = (url) => {window.open(url, "_blank");};
+  const handleExternalLinkClick = (url) => {
+    window.open(url, "_blank");
+  };
   const PickRandom1stSlider = Math.floor(Math.random() * clients.length);
   const generateRandomNumber = () => {
     const min = 80;
@@ -42,7 +43,6 @@ export default function FeaturedItems() {
         setLoading(true);
       });
   }, []);
-
 
   return (
     <div>
@@ -81,21 +81,31 @@ export default function FeaturedItems() {
                     <h1 className="text-start lg:text-[3.5rem] md:text-[2.5rem] sm:text-[1.5rem] text-primary_text font-title">
                       {index.original_title}
                     </h1>
-                    <p className="max-w-[40rem] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">{index.overview}</p>
+                    <p className="max-w-[40rem] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                      {index.overview}
+                    </p>
                     <div className="flex capitalize space-x-default items-center">
                       <div className="flex space-x-1 text-[#1AC855] items-center font-semibold">
-                        <p id="match sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">{randomNumbers[slideIndex]}</p>
+                        <p id="match sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                          {randomNumbers[slideIndex]}
+                        </p>
                         <p>%</p>
                         <p>match</p>
                       </div>
-                      <p className="sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">{new Date(index.release_date).getFullYear()}</p>
+                      <p className="sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                        {new Date(index.release_date).getFullYear()}
+                      </p>
                       {/* <p>2 seasons</p> */}
                       <p className="border px-4 border-white/[.30] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem] sm:hidden md:block lg:block">
                         4k ultra hd
                       </p>
                       <div
                         className="flex border px-4 border-white/[.30] space-x-1 hover:cursor-pointer sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]"
-                        onClick={() => handleExternalLinkClick(index.imdb_url)}
+                        onClick={() =>
+                          handleExternalLinkClick(
+                            `https://www.imdb.com/find/?q=${index.original_title}&ref_=nv_sr_sm`
+                          )
+                        }
                       >
                         <p>IMDB</p>
                         <p>:</p>

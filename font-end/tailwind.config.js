@@ -11,7 +11,7 @@ module.exports = {
         sm: "320px",
         md: "600px",
         lg: "1024px",
-        xl: "1440px",
+        xl: "1920px",
       },
       colors: {
         primary: "#e50914",
@@ -47,6 +47,17 @@ module.exports = {
       fontFamily: {
         title: ['Alata', 'sans-serif'],
       },
+      height: {
+        item_xl: '13rem',
+        item_lg: '10rem',
+        item_md: '25rem',
+        item_sm: '15rem',
+      },
+      padding: {
+        item_lg_left: '5rem',
+        item_md_left: '2.5rem',
+        item_sm_left: '1rem',
+      }
     },
   },
   plugins: [],
