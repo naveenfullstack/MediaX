@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import Logo from "../../assets/MediaX Logo.svg";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+import api from "../../Apis";
 
-export default function DefaultLogin() {
+export default function DefaultLogin(setToken) {
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -9,14 +13,6 @@ export default function DefaultLogin() {
 
   const handleBackToHome = () => {
     window.location.href = "/";
-  };
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
   };
 
   const handleRememberMeChange = (event) => {
@@ -27,17 +23,36 @@ export default function DefaultLogin() {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    // Handle login logic here
-    console.log("Email:", email);
-    console.log("Password:", password);
-    console.log("Remember Me:", rememberMe);
+    console.log("handleLogin function called");
+    try {
+      const response = await axios.post(api.login,{email,password,}
+        // {
+        //   headers: {
+        //     "Content-Type": "application/json", // Set the Content-Type header
+        //   },
+        // }
+      );
+
+      const accessToken = response.data.access_token;
+
+      if (accessToken) {
+        // Successfully logged in, set the token using setToken function
+        setToken(accessToken);
+        history.push("/");
+      } else {
+        console.error("Login failed");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   };
 
   const handleGoToSignUp = () => {
     window.location.href = "/signup";
   };
+
   return (
     <div
       className="h-screen bg-cover bg-center"
@@ -61,15 +76,18 @@ export default function DefaultLogin() {
 
         <div className="flex w-full text-white justify-center h-[80%] items-center">
           <div className="w-full max-w-[400px] bg-black/[.80] lg:p-10 md:p-10 sm:px-6 sm:py-10 rounded-lg space-y-8">
-            <h1 className="text-[2rem] capitalize font-medium">sign in</h1>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <h1 title="123" className="text-[2rem] capitalize font-medium">
+              sign in
+            </h1>
+            <form className="space-y-4">
               <input
                 type="email"
                 id="email"
                 placeholder="Email or phone number"
                 className="p-3 rounded-lg bg-input_bg placeholder-white/[.40] w-full focus:outline-none"
                 value={email}
-                onChange={handleEmailChange}
+                //onChange={handleEmailChange}
+                onChange={(e) => setEmail(e.target.value)}
               />
 
               <div className="flex rounded-lg bg-input_bg p-3">
@@ -79,7 +97,8 @@ export default function DefaultLogin() {
                   placeholder="Password"
                   className="bg-transparent placeholder-white/[.40] w-full focus:outline-none"
                   value={password}
-                  onChange={handlePasswordChange}
+                  //onChange={handlePasswordChange}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <button
                   type="button"
@@ -116,6 +135,7 @@ export default function DefaultLogin() {
               <button
                 type="submit"
                 className="w-full font-semibold bg-primary text-white rounded-lg p-2 capitalize"
+                onClick={handleLogin}
               >
                 sign In
               </button>

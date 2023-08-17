@@ -16,13 +16,11 @@ export default function Popular() {
   useEffect(() => {
     axios
       .get(api.Popular, {
-        headers: {
-          Authorization: `Bearer ${api.Bearer}`,
-        },
       })
       .then((response) => {
         setClients(response.data.results);
         setLoading(false);
+        console.log(response)
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -48,7 +46,7 @@ export default function Popular() {
       ) : (
         <div className="pl-20 space-y-default">
           <h1 className="capitalize font-semibold lg:text-[1.5rem]">
-            popular on MediaX
+            popular on MediaX 
           </h1>
           <Swiper
             spaceBetween={10}
