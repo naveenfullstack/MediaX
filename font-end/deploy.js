@@ -7,8 +7,8 @@ const buildPath = path.join(__dirname, 'build'); // Path to your build directory
 
 if (fs.existsSync(buildPath)) {
   const config = {
-    user: 'mediax@mediax.naveenportfolio.site',
-    password: 'b7NSe4T9nH&9JuXtzLE6e',
+    user: 'username',
+    password: 'password',
     host: 'ftp.naveenportfolio.site',
     port: 21,
     localRoot: buildPath,
