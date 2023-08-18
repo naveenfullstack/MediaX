@@ -3,6 +3,8 @@ import Logo from "../../assets/MediaX Logo.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import api from "../../Apis";
+import { Link } from 'react-router-dom';
+
 
 export default function DefaultLogin(setToken) {
   const navigate = useNavigate();
@@ -49,9 +51,6 @@ export default function DefaultLogin(setToken) {
     }
   };
 
-  const handleGoToSignUp = () => {
-    window.location.href = "/signup";
-  };
 
   return (
     <div
@@ -63,14 +62,14 @@ export default function DefaultLogin(setToken) {
       <div className="bg-black/[.80] w-full h-screen">
         <div className="flex justify-center items-center w-full px-2 pt-2">
           <div className="flex w-full justifu-center items-center">
-            <div className="w-full">
+            <Link to="/" className="w-full">
               <img
                 onClick={handleBackToHome}
                 src={Logo}
                 alt="logo"
                 className="w-logo hover:cursor-pointer"
               />
-            </div>
+            </Link>
           </div>
         </div>
 
@@ -126,9 +125,9 @@ export default function DefaultLogin(setToken) {
                   </label>
                 </div>
                 <div className="w-2/4 flex justify-end">
-                  <p className="capitalize opacity-default hover:underline text-paragraph hover:cursor-pointer">
+                  <Link className="capitalize opacity-default hover:underline text-paragraph hover:cursor-pointer">
                     need help
-                  </p>
+                  </Link>
                 </div>
               </div>
 
@@ -143,12 +142,12 @@ export default function DefaultLogin(setToken) {
             <div className="space-y-2">
               <div className="flex space-x-1 capitalize items-center">
                 <h1 className="opacity-default">new to netflix?</h1>
-                <h1
-                  onClick={handleGoToSignUp}
+                <Link
+                  to = "signup"
                   className="font-semibold hover:cursor-pointer text-[1.1rem]"
                 >
                   sign up now
-                </h1>
+                </Link>
               </div>
               <h1 className="opacity-default text-paragraph_2">
                 This page is protected by Google reCAPTCHA to ensure you're not
