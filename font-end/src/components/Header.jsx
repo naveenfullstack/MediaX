@@ -97,7 +97,7 @@ export default function Header() {
                 <li
                   key={index.id}
                   onClick={index.url}
-                  className="capitalize cursor-pointer hover:bg-gray-100 px-4 py-2"
+                  className="capitalize cursor-pointer hover:bg-black px-4 py-2"
                 >
                   {index.name}
                 </li>
