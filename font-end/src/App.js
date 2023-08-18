@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React from "react";
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import "../src/App.css";
 import PageNotFound from "../src/page/PageNotFound";
 
@@ -9,18 +9,17 @@ import Login from "./page/Login";
 import SignUp from "./page/SignUp";
 
 export default function App() {
-  const [token, setToken] = useState(null);
+  // const [token, setToken] = useState(null);
 
   return (
-    <Router>
-      <Switch>
-        <Route path="/" exact render={() => (token ? <Home /> : <Login setToken={setToken} />)}/>
-        <Route exact path="/signin" component={Login} />
-        <Route exact path="/signup" component={SignUp} />
-        <Route exact path="/signup" component={SignUp} />
-        <Route exact path="/dashboard" component={Home} />
+    <Router basename="https://naveenportfolio.site">
+      <Routes>
+        {/* <Route path="/" exact render={() => (token ? <Home /> : <Login setToken={setToken} />)}/> */}
+        <Route path="/" element={<Home />} extend />
+        <Route path="/signin" element={<Login />} extend />
+        <Route path="/signup" element={<SignUp />} extend />
         <Route component={PageNotFound} />
-      </Switch>
+      </Routes>
     </Router>
   );
 }

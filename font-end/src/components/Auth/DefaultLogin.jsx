@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Logo from "../../assets/MediaX Logo.svg";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import api from "../../Apis";
 
 export default function DefaultLogin(setToken) {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -40,7 +40,7 @@ export default function DefaultLogin(setToken) {
       if (accessToken) {
         // Successfully logged in, set the token using setToken function
         setToken(accessToken);
-        history.push("/");
+        navigate("/");
       } else {
         console.error("Login failed");
       }
