@@ -1,4 +1,4 @@
-const Domain = "http://localhost:3001"
+const Domain = "https://media-x.vercel.app"
 
 const requests = {
 

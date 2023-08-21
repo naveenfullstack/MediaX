@@ -2,6 +2,8 @@
 const express = require("express");
 const home = require("./routes/home");
 const mongoose = require('mongoose');
+const cors = require('cors');
+require('dotenv').config();
 
 //Database
 
@@ -20,6 +22,7 @@ mongoose.connect(process.env.MONGODB_URI ,{
 // Middlewares
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const ReqDomain = require ('./middlewares/ReqDomain')
 app.use(ReqDomain);
