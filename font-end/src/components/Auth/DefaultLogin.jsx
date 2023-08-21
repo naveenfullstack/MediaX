@@ -3,6 +3,7 @@ import Logo from "../../assets/MediaX Logo.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import api from "../../Apis";
+import swal from "sweetalert";
 
 
 export default function DefaultLogin() {
@@ -58,6 +59,13 @@ export default function DefaultLogin() {
         console.error("Login failed with access token");
       }
     } catch (error) {
+      swal({
+        title: "Access Denited",
+        text: "Your username or password incorrect",
+        icon: "error",
+        className: "black",
+        button: "Okey",
+      });
       console.error("Login failed:", error);
     }
   };

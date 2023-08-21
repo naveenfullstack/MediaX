@@ -1,4 +1,4 @@
-const Domain = "http://192.168.1.8:3001"
+const Domain = "http://localhost:3001"
 
 const requests = {
 
