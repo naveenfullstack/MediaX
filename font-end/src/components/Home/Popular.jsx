@@ -7,7 +7,7 @@ import "swiper/css/navigation";
 import "../Css/FeaturedItems.scss";
 import { Autoplay } from "swiper/modules";
 import api from "../../Apis";
-import { MdOutlineAddCircle } from "react-icons/md"
+import { MdOutlineAddCircle } from "react-icons/md";
 
 export default function Popular() {
   const [clients, setClients] = useState([]);
@@ -33,7 +33,12 @@ export default function Popular() {
 
   useEffect(() => {
     axios
-      .get(api.Popular, {})
+      .get(api.Popular, {
+        headers: {
+          api_key: api.key,
+          authantication: api.authantication,
+        },
+      })
       .then((response) => {
         setClients(response.data.results);
         setRandomNumbers(
@@ -124,7 +129,10 @@ export default function Popular() {
                     <div className="block w-full h-full opacity-0 hover:opacity-100 transition hover:delay-100 duration-100 ease-in-out">
                       <div className="h-3/6 flex justify-end">
                         {/* <h1 className="w-full">{index.original_title}</h1> */}
-                        <MdOutlineAddCircle title="Add To List" className="pt-2 text-[2rem] text-primary_text/[.80] hover:cursor-pointer"/>
+                        <MdOutlineAddCircle
+                          title="Add To List"
+                          className="pt-2 text-[2rem] text-primary_text/[.80] hover:cursor-pointer"
+                        />
                       </div>
                       <div className="h-3/6 flex items-end">
                         <div>

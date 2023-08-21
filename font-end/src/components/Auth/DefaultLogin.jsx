@@ -3,15 +3,15 @@ import Logo from "../../assets/MediaX Logo.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import api from "../../Apis";
-import { Link } from 'react-router-dom';
 
 
-export default function DefaultLogin(setToken) {
+export default function DefaultLogin() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [token, setToken] = useState(null);
 
   const handleBackToHome = () => {
     window.location.href = "/";
@@ -25,30 +25,45 @@ export default function DefaultLogin(setToken) {
     setShowPassword(!showPassword);
   };
 
+
   const handleLogin = async (event) => {
     event.preventDefault();
     console.log("handleLogin function called");
+    console.log(email,password)
     try {
-      const response = await axios.post(api.login,{email,password,}
-        // {
-        //   headers: {
-        //     "Content-Type": "application/json", // Set the Content-Type header
-        //   },
-        // }
+      const response = await axios.post(
+        api.login,
+        {
+          email,
+          password,
+        },
+        {
+          headers: {
+            api_key: api.key,
+            authantication: api.authantication,
+          },
+        }
       );
 
-      const accessToken = response.data.access_token;
+      console.log("Login response:", response);
+      console.log("Token Saved:", token);
+
+      const accessToken = response.data.accessToken;
 
       if (accessToken) {
         // Successfully logged in, set the token using setToken function
         setToken(accessToken);
         navigate("/");
       } else {
-        console.error("Login failed");
+        console.error("Login failed with access token");
       }
     } catch (error) {
       console.error("Login failed:", error);
     }
+  };
+
+  const handleGoToSignUp = () => {
+    window.location.href = "/signup";
   };
 
 
@@ -62,14 +77,14 @@ export default function DefaultLogin(setToken) {
       <div className="bg-black/[.80] w-full h-screen">
         <div className="flex justify-center items-center w-full px-2 pt-2">
           <div className="flex w-full justifu-center items-center">
-            <Link to="/" className="w-full">
+            <div className="w-full">
               <img
                 onClick={handleBackToHome}
                 src={Logo}
                 alt="logo"
                 className="w-logo hover:cursor-pointer"
               />
-            </Link>
+            </div>
           </div>
         </div>
 
@@ -125,9 +140,9 @@ export default function DefaultLogin(setToken) {
                   </label>
                 </div>
                 <div className="w-2/4 flex justify-end">
-                  <Link className="capitalize opacity-default hover:underline text-paragraph hover:cursor-pointer">
+                  <div className="capitalize opacity-default hover:underline text-paragraph hover:cursor-pointer">
                     need help
-                  </Link>
+                  </div>
                 </div>
               </div>
 
@@ -142,12 +157,12 @@ export default function DefaultLogin(setToken) {
             <div className="space-y-2">
               <div className="flex space-x-1 capitalize items-center">
                 <h1 className="opacity-default">new to netflix?</h1>
-                <Link
-                  to = "signup"
+                <button
+                  onClick={handleGoToSignUp}
                   className="font-semibold hover:cursor-pointer text-[1.1rem]"
                 >
                   sign up now
-                </Link>
+                </button>
               </div>
               <h1 className="opacity-default text-paragraph_2">
                 This page is protected by Google reCAPTCHA to ensure you're not

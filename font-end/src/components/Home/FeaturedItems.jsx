@@ -27,9 +27,10 @@ export default function FeaturedItems() {
   useEffect(() => {
     axios
       .get(api.Popular, {
-        // headers: {
-        //   Authorization: `Bearer ${api.Bearer}`,
-        // },
+        headers: {
+          api_key: api.key,
+          authantication: api.authantication,
+        },
       })
       .then((response) => {
         setClients(response.data.results);
