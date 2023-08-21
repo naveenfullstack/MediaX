@@ -1,10 +1,15 @@
 import React from "react";
 import Logo from "../../assets/MediaX Logo.svg";
 import { IoIosArrowForward } from "react-icons/io";
-import { Link } from 'react-router-dom';
 
 export default function DefaultSignUp() {
-  
+  const handleBackToHome = () => {
+    window.location.href = "/";
+  };
+  const handleGoToSignIn = () => {
+    window.location.href = "/signin";
+  };
+
   return (
     <div
       className="h-screen text-white bg-cover bg-center"
@@ -15,15 +20,22 @@ export default function DefaultSignUp() {
       <div className="bg-black/[.80] w-full h-screen">
         <div className="flex justify-center items-center w-full px-2 pt-2">
           <div className="flex w-full max-w-default justifu-center items-center">
-            <Link to="/" className="w-2/4">
+            <div className="w-2/4">
               <img
+                onClick={handleBackToHome}
                 src={Logo}
                 alt="logo"
                 className="w-logo hover:cursor-pointer"
               />
-            </Link>
+            </div>
             <div className="w-2/4 flex justify-end">
-              <Link className="bg-primary p-2 px-4 h-fit capitalize font-semibold rounded-lg" to="/signin">sign in</Link>
+              <button
+                onClick={handleGoToSignIn}
+                className="bg-primary p-2 px-4 h-fit capitalize font-semibold rounded-lg"
+                to="/signin"
+              >
+                sign in
+              </button>
             </div>
           </div>
         </div>
@@ -51,7 +63,9 @@ export default function DefaultSignUp() {
                 />
               </form>
               <div className="bg-primary p-2 rounded-lg flex items-center text-[1.2rem]">
-                <Link className="capitalize font-semibold pl-2" to="/signin">get started</Link>
+                <button className="capitalize font-semibold pl-2" to="/signin">
+                  get started
+                </button>
                 <IoIosArrowForward className="text-[1.5rem]" />
               </div>
             </div>
@@ -66,7 +80,9 @@ export default function DefaultSignUp() {
               </form>
               <div className="w-full flex justify-center">
                 <div className="w-fit bg-primary p-2 rounded-lg flex items-center text-[1.2rem] justify-center">
-                  <Link className="capitalize font-semibold pl-2" to="/signin">get started</Link>
+                  <button className="capitalize font-semibold pl-2" to="/signin">
+                    get started
+                  </button>
                   <IoIosArrowForward className="text-[1.5rem]" />
                 </div>
               </div>

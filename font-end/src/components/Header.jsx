@@ -7,8 +7,8 @@ import "../App.css";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const SignUp = () => {
-    window.location.href = "/signup";
+  const SignIn = () => {
+    window.location.href = "/signin";
   };
 
   const options = [
@@ -25,7 +25,7 @@ export default function Header() {
     {
       id: 3,
       name: "log out",
-      url: SignUp,
+      url: SignIn,
     },
     {
       id: 4,
