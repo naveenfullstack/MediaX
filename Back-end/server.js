@@ -31,7 +31,6 @@ const ReqIp = require ('./middlewares/ReqIp')
 app.use(ReqIp);
 
 const Headers = require ('./middlewares/Headers')
-app.use(Headers);
 
 //Routes
 
@@ -39,13 +38,12 @@ const TestData = require('./routes/TestData');
 app.use('/', TestData);
 
 const GetMovies = require('./routes/GetMovies');
-app.use('/getmovies/', GetMovies);
+app.use('/getmovies/', Headers, GetMovies);
 
 const Login = require('./routes/auth/Login');
-app.use('/login/', Login);
+app.use('/login/', Headers, Login);
 
 
-const port = 3001;
-  app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-  });
+// connection
+const port = process.env.PORT || 3001;
+app.listen(port, () => console.log(`Listening to port ${port}`));
