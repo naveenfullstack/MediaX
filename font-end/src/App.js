@@ -9,6 +9,7 @@ import SignUp from "./page/SignUp";
 import PageNotFound from "../src/page/PageNotFound";
 import PrivateRoute from "./components/PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./context/ProtectedRoute";
 
 export default function App() {
   // const [token, setToken] = useState(null);
@@ -22,9 +23,17 @@ export default function App() {
             <Route exact path="/" element={<PrivateRoute />}>
               <Route exact path="/" element={<Home />} />
             </Route>
-            <Route exact path="/signin" element={<Login/>} />
-            <Route exact path="/signup" element={<SignUp/>} />
-            <Route element={<PageNotFound/>} />
+            <Route exact path="/signin" element={<Login />} />
+            <Route exact path="/signup" element={<SignUp />} />
+            <Route element={<PageNotFound />} />
+            <Route
+              path="/account"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </Fragment>
       </Router>
