@@ -1,49 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import axios from "axios";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "../Css/FeaturedItems.scss";
 import { Autoplay } from "swiper/modules";
-import api from "../../Apis";
-// import { FaPlay } from "react-icons/fa";
-// import { BsInfoCircle } from "react-icons/bs";
+import { usePopularMovies } from "../../context/PopularMoviesContext";
 
 export default function FeaturedItems() {
-  const [clients, setClients] = useState([]);
-  const [randomNumbers, setRandomNumbers] = useState([]);
-  const [loading, setLoading] = useState(true);
   const handleExternalLinkClick = (url) => {
     window.open(url, "_blank");
   };
-  const PickRandom1stSlider = Math.floor(Math.random() * clients.length);
-  const generateRandomNumber = () => {
-    const min = 80;
-    const max = 100;
-    return Math.floor(Math.random() * (max - min) + min);
-  };
-
-  useEffect(() => {
-    axios
-      .get(api.Popular, {
-        headers: {
-          api_key: api.key,
-          authantication: api.authantication,
-        },
-      })
-      .then((response) => {
-        setClients(response.data.results);
-        setRandomNumbers(
-          response.data.results.map(() => generateRandomNumber())
-        );
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setLoading(true);
-      });
-  }, []);
+  const { popularMovies, loading, randomNumbers } = usePopularMovies();
+  const PickRandom1stSlider = Math.floor(Math.random() * popularMovies.length);
 
   return (
     <div>
@@ -69,7 +38,7 @@ export default function FeaturedItems() {
           initialSlide={PickRandom1stSlider}
           className="mySwiper"
         >
-          {clients.map((index, slideIndex) => (
+          {popularMovies.map((index, slideIndex) => (
             <SwiperSlide key={index.id}>
               <div
                 className="lg:h-[30rem] md:h-[25rem] sm:h-[20rem] w-full bg-cover bg-center"
@@ -113,16 +82,6 @@ export default function FeaturedItems() {
                         <p>{index.vote_average}</p>
                       </div>
                     </div>
-                    {/* <div className="flex items-center space-x-default">
-                      <div className="flex items-center space-x-2 capitalize bg-white w-fit text-black p-2 px-6 rounded-lg font-semibold">
-                        <FaPlay />
-                        <p>play</p>
-                      </div>
-                      <div className="flex items-center space-x-2 capitalize bg-white w-fit text-black p-2 px-6 rounded-lg font-semibold">
-                        <BsInfoCircle />
-                        <p>more info</p>
-                      </div>
-                    </div> */}
                   </div>
                 </div>
               </div>

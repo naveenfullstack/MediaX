@@ -1,7 +1,7 @@
 {
-  "name": "vercel-testing",
+  "name": "mediax",
   "version": "1.0.0",
-  "description": "node express testing",
+  "description": "mediax",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",

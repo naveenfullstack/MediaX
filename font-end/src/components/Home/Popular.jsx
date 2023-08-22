@@ -1,23 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import axios from "axios";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "../Css/FeaturedItems.scss";
 import { Autoplay } from "swiper/modules";
-import api from "../../Apis";
 import { MdOutlineAddCircle } from "react-icons/md";
+import { usePopularMovies } from "../../context/PopularMoviesContext";
 
 export default function Popular() {
-  const [clients, setClients] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [randomNumbers, setRandomNumbers] = useState([]);
-  const generateRandomNumber = () => {
-    const min = 80;
-    const max = 100;
-    return Math.floor(Math.random() * (max - min) + min);
-  };
+  const { popularMovies, loading, randomNumbers } = usePopularMovies();
 
   const breakpoints = {
     mobile: 320,
@@ -30,27 +22,6 @@ export default function Popular() {
     tablet: 4,
     desktop: 5,
   };
-
-  useEffect(() => {
-    axios
-      .get(api.Popular, {
-        headers: {
-          api_key: api.key,
-          authantication: api.authantication,
-        },
-      })
-      .then((response) => {
-        setClients(response.data.results);
-        setRandomNumbers(
-          response.data.results.map(() => generateRandomNumber())
-        );
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setLoading(true);
-      });
-  }, []);
 
   const currentBreakpoint = Object.keys(breakpoints).find(
     (breakpoint) => window.innerWidth <= breakpoints[breakpoint]
@@ -117,7 +88,7 @@ export default function Popular() {
               },
             }}
           >
-            {clients.map((index, slideIndex) => (
+            {popularMovies.map((index, slideIndex) => (
               <SwiperSlide key={index.id}>
                 <div
                   className="xl:h-item_xl lg:h-item_lg md:h-item_md sm:h-item_sm w-full bg-cover bg-bottom"
