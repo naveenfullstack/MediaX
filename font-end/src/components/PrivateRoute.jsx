@@ -1,18 +1,12 @@
 // PrivateRoute.js
 import React from "react";
-import { Route, Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-function PrivateRoute({ ...props }) {
+function PrivateRoute({ children }) {
   const { user } = useAuth();
 
-  if (!user || !user.token) {
-    // Redirect to the login page if no user or token is found
-    return <Navigate to="/login" replace={true} />;
-  }
-
-  // Render the protected route if the user and token exist
-  return <Route {...props} />;
+  return user ? <Outlet /> : <Navigate to="/signin" />;
 }
 
 export default PrivateRoute;
