@@ -25,7 +25,7 @@ export default function App() {
             </Route>
             <Route exact path="/signin" element={<Login />} />
             <Route exact path="/signup" element={<SignUp />} />
-            <Route element={<PageNotFound />} />
+            <Route path="*" element={<PageNotFound />} />
             <Route
               path="/account"
               element={

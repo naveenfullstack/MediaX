@@ -8,7 +8,7 @@ import { useAuth } from "../../context/AuthContext";
 
 
 export default function DefaultLogin() {
-  const { login } = useAuth();
+  const {login } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,6 +44,7 @@ export default function DefaultLogin() {
             api_key: api.key,
             authantication: api.authantication,
           },
+          body: JSON.stringify({ email, password }),
         }
       );
 
