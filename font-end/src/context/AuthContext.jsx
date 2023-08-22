@@ -1,42 +1,37 @@
-// AuthContext.js
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useState, useEffect  } from 'react';
+import { useCookies } from 'react-cookie';
 
 const AuthContext = createContext();
 
-const initialState = {
-  isAuthenticated: false,
-  user: null,
-};
+export const AuthProvider = ({ children }) => {
+  const [token, setToken] = useCookies(['token']);
+  const [user, setUser] = useState(null);
 
-const authReducer = (state, action) => {
-  switch (action.type) {
-    case 'LOGIN':
-      return {
-        isAuthenticated: true,
-        user: action.payload,
-      };
-    case 'LOGOUT':
-      return {
-        isAuthenticated: false,
-        user: null,
-      };
-    default:
-      return state;
-  }
-};
+  useEffect(() => {
+    // Check if the user is authenticated when the component mounts
+    if (token.token) {
+      // Fetch user data or perform any other necessary checks
+      // Example: fetchUserData(token.token).then((data) => setUser(data));
+    }
+  }, [token.token]);
 
-const AuthProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, initialState);
+  const login = (newToken, userData) => {
+    setToken('token', newToken);
+    setUser(userData);
+  };
+
+  const logout = () => {
+    setToken('token', '', { path: '/' }); // Clear the token cookie
+    setUser(null);
+  };
 
   return (
-    <AuthContext.Provider value={{ state, dispatch }}>
+    <AuthContext.Provider value={{ token, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-const useAuth = () => {
+export const useAuth = () => {
   return useContext(AuthContext);
 };
-
-export { AuthProvider, useAuth };
