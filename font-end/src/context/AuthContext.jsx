@@ -1,37 +1,29 @@
-import { createContext, useContext, useState, useEffect  } from 'react';
-import { useCookies } from 'react-cookie';
+// AuthContext.js
+import React, { createContext, useContext, useState } from "react";
+import Cookies from "js-cookie";
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useCookies(['token']);
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    // Check if the user is authenticated when the component mounts
-    if (token.token) {
-      // Fetch user data or perform any other necessary checks
-      // Example: fetchUserData(token.token).then((data) => setUser(data));
-    }
-  }, [token.token]);
-
-  const login = (newToken, userData) => {
-    setToken('token', newToken);
-    setUser(userData);
+  const login = (token) => {
+    setUser({ token });
+    Cookies.set("token", token, { expires: 7 }); // Store the token in a cookie
   };
 
   const logout = () => {
-    setToken('token', '', { path: '/' }); // Clear the token cookie
     setUser(null);
+    Cookies.remove("token"); // Remove the token from the cookie
   };
 
   return (
-    <AuthContext.Provider value={{ token, user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
-};
+}
 
-export const useAuth = () => {
+export function useAuth() {
   return useContext(AuthContext);
-};
+}

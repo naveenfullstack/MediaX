@@ -4,15 +4,16 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import api from "../../Apis";
 import swal from "sweetalert";
+import { useAuth } from "../../context/AuthContext";
 
 
 export default function DefaultLogin() {
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [token, setToken] = useState(null);
 
   const handleBackToHome = () => {
     window.location.href = "/";
@@ -47,13 +48,12 @@ export default function DefaultLogin() {
       );
 
       console.log("Login response:", response);
-      console.log("Token Saved:", token);
 
       const accessToken = response.data.accessToken;
 
       if (accessToken) {
         // Successfully logged in, set the token using setToken function
-        setToken(accessToken);
+        login(accessToken);
         navigate("/");
       } else {
         console.error("Login failed with access token");
