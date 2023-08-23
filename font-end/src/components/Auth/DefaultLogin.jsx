@@ -4,11 +4,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import api from "../../Apis";
 import swal from "sweetalert";
-import { useAuth } from "../../context/AuthContext";
 
 
 export default function DefaultLogin() {
-  const {login } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -51,10 +49,11 @@ export default function DefaultLogin() {
       console.log("Login response:", response);
 
       const accessToken = response.data.accessToken;
+      const data = response.data;
 
       if (accessToken) {
         // Successfully logged in, set the token using setToken function
-        login(accessToken);
+        localStorage.setItem("_userData", JSON.stringify(data));
         navigate("/");
       } else {
         console.error("Login failed with access token");
