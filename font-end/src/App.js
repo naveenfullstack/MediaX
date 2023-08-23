@@ -8,17 +8,20 @@ import {
 } from "react-router-dom";
 import "../src/App.css";
 import axios from "axios";
+
+
 /* IMPORT COMPONENTS */
 import Home from "./page/Home";
 import Login from "./page/Login";
 import SignUp from "./page/SignUp";
 import PageNotFound from "../src/page/PageNotFound";
 
+
 export default function App() {
   // Initialize userData to an empty object to avoid undefined errors
   const userData = JSON.parse(localStorage.getItem("_userData")) || {};
   const ACCESS_TOKEN = userData.accessToken;
-  const USER_KEY = userData.user_key;
+  //const USER_KEY = userData.user_key;
   const REFRESH_TOKEN = userData.refreshToken;
 
   //const [user, setUser] = useState(false);
@@ -26,27 +29,28 @@ export default function App() {
   useEffect(() => {
     if (ACCESS_TOKEN) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${ACCESS_TOKEN}`;
-      axios.defaults.headers.common["User-Key"] = `${USER_KEY}`;
+      //axios.defaults.headers.common["User-Key"] = `${USER_KEY}`;
       axios.defaults.headers.common["User-Rt"] = `${REFRESH_TOKEN}`;
       document.cookie = `at=${ACCESS_TOKEN}`;
       //setUser(true);
     }
-  }, [ACCESS_TOKEN, USER_KEY, REFRESH_TOKEN]);
+  }, [ACCESS_TOKEN, REFRESH_TOKEN]);
 
   const ProtectedRoute = ({ redirectPath = "/signin" }) => {
     const userData = JSON.parse(localStorage.getItem("_userData")) || {};
     const ACCESS_TOKEN = userData.accessToken;
 
     if (!ACCESS_TOKEN) {
-      console.log("no token");
+      //console.log("no token");
       return <Navigate to={redirectPath} replace />;
     } else {
-      console.log("has token");
+      //console.log("has token");
     }
 
     return <Outlet />;
   };
 
+  
   return (
     <Router>
       <Routes>

@@ -7,7 +7,8 @@ import "../App.css";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const SignIn = () => {
+  const logout = () => {
+    localStorage.removeItem("_userData");
     window.location.href = "/signin";
   };
 
@@ -25,7 +26,7 @@ export default function Header() {
     {
       id: 3,
       name: "log out",
-      url: SignIn,
+      url: logout,
     },
     {
       id: 4,

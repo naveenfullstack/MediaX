@@ -9,6 +9,10 @@ export default function Dashboard() {
       <PopularMoviesProvider>
         <FeaturedItems />
         <Popular/>
+        <Popular/>
+        <Popular/>
+        <Popular/>
+        <Popular/>
       </PopularMoviesProvider>
     </div>
   );
