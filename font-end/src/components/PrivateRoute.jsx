@@ -1,12 +1,9 @@
-// PrivateRoute.js
-import React from "react";
-import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { Outlet, Navigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
-function PrivateRoute({ children }) {
-  const { user } = useAuth();
+export const PrivateRoute = () => {
+    const { user } = useAuth();
 
-  return user ? <Outlet /> : <Navigate to="/signin" />;
-}
-
+    return user ? <Outlet/> : <Navigate to='/signin' exact />
+};
 export default PrivateRoute;
