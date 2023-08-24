@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -7,9 +7,24 @@ import "../Css/FeaturedItems.scss";
 import { Autoplay } from "swiper/modules";
 import { MdOutlineAddCircle } from "react-icons/md";
 import { usePopularMovies } from "../../context/PopularMoviesContext";
+import QuickView from "../popup/QuickView";
 
 export default function Popular() {
   const { popularMovies, loading, randomNumbers } = usePopularMovies();
+  const [popupVisible, setPopupVisible] = useState(false);
+  const [popupData, setPopupData] = useState(null);
+
+  const openPopup = (movie) => {
+    // Find the movie you want to display in the popup from popularMovies array.
+    const selectedMovie = popularMovies.find((item) => item.id === movie.id);
+    setPopupData(selectedMovie);
+    setPopupVisible(true);
+  };
+
+  const closePopup = () => {
+    setPopupData(null);
+    setPopupVisible(false);
+  };
 
   const breakpoints = {
     mobile: 320,
@@ -70,10 +85,6 @@ export default function Popular() {
             slidesPerView={currentSlidesPerView}
             centeredSlides={true}
             loop={true}
-            // autoplay={{
-            //   delay: 3000,
-            //   disableOnInteraction: false,
-            // }}
             modules={[Autoplay]}
             className="mySwiper"
             breakpoints={{
@@ -96,7 +107,7 @@ export default function Popular() {
                     backgroundImage: `url(https://image.tmdb.org/t/p/original/${index.poster_path})`,
                   }}
                 >
-                  <div className="w-full h-full text-start pl-item_sm_left pr-2 h-full flex items-center hover:bg-black/[.75] transition hover:delay-75 duration-100 ease-in-out">
+                  <div onClick={() => openPopup(index)} className="w-full h-full cursor-pointer text-start pl-item_sm_left pr-2 h-full flex items-center hover:bg-black/[.75] transition hover:delay-75 duration-100 ease-in-out">
                     <div className="block w-full h-full opacity-0 hover:opacity-100 transition hover:delay-100 duration-100 ease-in-out">
                       <div className="h-3/6 flex justify-end">
                         {/* <h1 className="w-full">{index.original_title}</h1> */}
@@ -128,6 +139,13 @@ export default function Popular() {
               </SwiperSlide>
             ))}
           </Swiper>
+          {popupVisible && (
+            <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/[60%] w-full">
+              {popupData && (
+                <QuickView Popular={popupData} onClose={closePopup} />
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>

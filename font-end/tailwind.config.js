@@ -11,7 +11,7 @@ module.exports = {
         sm: "320px",
         md: "600px",
         lg: "1024px",
-        xl: "1920px",
+        xl: "1440px",
       },
       colors: {
         primary: "#e50914",
@@ -48,7 +48,7 @@ module.exports = {
         title: ['Alata', 'sans-serif'],
       },
       height: {
-        item_xl: '13rem',
+        item_xl: '12rem',
         item_lg: '10rem',
         item_md: '25rem',
         item_sm: '15rem',
