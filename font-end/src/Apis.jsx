@@ -3,8 +3,8 @@ const Domain = "https://media-x.vercel.app"
 const requests = {
 
   //Headers
-  key : "eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsIm",
-  authantication : "mediax_backend",
+  key : process.env.REACT_APP_API_KEY,
+  authantication : process.env.REACT_APP_AUTHANTICATION,
 
   //API Urls
   Popular: `${Domain}/getmovies/popular`,
