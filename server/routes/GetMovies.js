@@ -1,6 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
+const movieData = require ('../demodata/MovieVideos.json')
 
 // TMDb API key 
 const apiKey = "922f2e7560f506fe1b6689418dd8260c";
@@ -76,32 +77,19 @@ router.get("/Upcoming", async (req, res) => {
   }
 });
 
-router.get("/videos", async (req, res) => {
-  try {
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/1070514/videos?query=Jack+Reacher&api_key=${apiKey}`
-    );
-    const data = response.data;
-
-    res.json(data);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error fetching data from TMDb" });
+router.get('/videos/:id', (req, res) => {
+  const movieId = parseInt(req.params.id);
+  
+  // Find the movie data by ID
+  const movie = movieData.find((m) => m.id === movieId);
+  
+  if (!movie) {
+    return res.status(404).json({ message: 'Movie not found' });
   }
+  
+  // Return the movie's results
+  res.json(movie.results);
 });
 
-router.get("/get-movie-trailer", async (req, res) => {
-  try {
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/${req.query.id}/videos?api_key=f5baf8c74c7d5f00a242c165979d0913`
-    );
-
-    res.setHeader("Access-Control-Allow-Origin", "*"); // Adjust this for security
-    res.json(response.data);
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
 
 module.exports = router;

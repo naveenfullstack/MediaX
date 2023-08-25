@@ -1,45 +1,78 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
+import api from "../../Apis";
 
 export default function QuickView({ Popular, onClose }) {
-  const [popularTrailer, setPopularTrailer] = useState(null);
   const [loading, setLoading] = useState(true);
+  const iframeRef = useRef(null);
 
   useEffect(() => {
     axios
-      .get(
-        `https://api.themoviedb.org/3/movie/1070514/videos?query=Jack+Reacher&api_key=f5baf8c74c7d5f00a242c165979d0913`,
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "text/plain",
-          },
-        }
-      )
+      .get(`http://localhost:9001/getmovies/videos/${Popular.id}`, {
+        headers: {
+          api_key: api.key,
+          authantication: api.authantication,
+        },
+      })
       .then((response) => {
-        setPopularTrailer(response.data.results);
+        const trailers = response.data.filter(
+          (video) => video.type === "Trailer"
+        );
+        // Check if there are trailers available
+        if (trailers.length > 0) {
+          // Get the key of the first trailer
+          const trailerKey = trailers[0].key;
+
+          // Set the iframe source to the YouTube trailer
+          const iframe = iframeRef.current;
+          if (iframe) {
+            iframe.src = `https://www.youtube.com/embed/${trailerKey}`;
+          }
+        } else {
+          // Handle the case when there are no trailers
+          console.log("No trailers available.");
+        }
+
         setLoading(false);
-        console.log(response);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
         setLoading(true);
       });
-  }, []);
+  }, [Popular.id]);
+
+  // Function to toggle fullscreen mode
+  const toggleFullscreen = () => {
+    const iframe = iframeRef.current;
+
+    if (iframe) {
+      if (iframe.requestFullscreen) {
+        iframe.requestFullscreen();
+      } else if (iframe.mozRequestFullScreen) {
+        iframe.mozRequestFullScreen();
+      } else if (iframe.webkitRequestFullscreen) {
+        iframe.webkitRequestFullscreen();
+      }
+    }
+  };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/[60%] w-full">
       <div className="bg-white p-4 rounded-md text-black w-full max-w-[50rem]">
         <iframe
-          width="560"
-          height="315"
-          src={`https://www.youtube.com/embed/${Popular.key}`}
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
+          src=""
+          ref={iframeRef}
+          width="100%"
+          height="400px"
+          title="video"
         ></iframe>
+        <button
+          onClick={toggleFullscreen}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mt-2"
+        >
+          Fullscreen
+        </button>
         <h1 className="text-2xl font-semibold mb-2">
           {Popular.original_title}
         </h1>
