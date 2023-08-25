@@ -3,9 +3,14 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import api from "../../Apis";
 import { AiOutlineClose } from "react-icons/ai";
+import { MdAdd } from "react-icons/md";
+import { FaPlay } from "react-icons/fa";
+import ReactPlayer from "react-player";
 
 export default function QuickView({ Popular, onClose }) {
   const [loading, setLoading] = useState(true);
+  const [videoId, setVideoId] = useState(null);
+  const [playing, setPlaying] = useState(true);
   const iframeRef = useRef(null);
 
   const handleExternalLinkClick = (url) => {
@@ -28,12 +33,7 @@ export default function QuickView({ Popular, onClose }) {
         if (trailers.length > 0) {
           // Get the key of the first trailer
           const trailerKey = trailers[0].key;
-
-          // Set the iframe source to the YouTube trailer
-          const iframe = iframeRef.current;
-          if (iframe) {
-            iframe.src = `https://www.youtube.com/embed/${trailerKey}?autoplay=1`;
-          }
+          setVideoId(trailerKey); // Set the videoId state with the YouTube video key
         } else {
           console.log("No trailers available.");
         }
@@ -69,88 +69,124 @@ export default function QuickView({ Popular, onClose }) {
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/[60%] w-full h-full">
       {loading ? (
         // Show preloader while loading
-        <div className="text-white capitalize">Loading...</div>
-      ) : (
-        // Show the iframe and content once data is loaded
-        <div className="bg-white rounded-md text-black w-full max-w-[75%] h-[80%] overflow-y-auto scrollbar-dark">
+        <div className="text-white capitalize">
           <div className="w-full flex justify-end">
-            <div onClick={onClose} className="fixed p-4 bg-input_bg rounded-lg">
+            <div
+              onClick={onClose}
+              className="fixed top-0 right-0 p-4 bg-input_bg rounded-lg"
+            >
               <AiOutlineClose className="text-white" />
             </div>
           </div>
-          {/* Add a fixed height (e.g., h-[70vh]) and make it scrollable with overflow-y-auto */}
-          <iframe
-            src=""
-            ref={iframeRef}
-            width="100%"
-            height="400px"
-            title="video"
-            allow="autoplay"
-          ></iframe>
-          <div
-            className="lg:h-[30rem] md:h-[25rem] sm:h-[20rem] w-full bg-cover bg-center"
-            style={{
-              backgroundImage: `url(https://image.tmdb.org/t/p/original/${Popular.backdrop_path})`,
-            }}
-          >
-            <div className="w-full text-start lg:px-20 md:px-20 sm:px-6 bg-gradient-to-r from-black from-30% h-full flex items-center">
-              <div className="space-y-default text-primary_text/[.60]">
-                <h1 className="text-start lg:text-[3.5rem] md:text-[2.5rem] sm:text-[1.5rem] text-primary_text font-title">
-                  {Popular.original_title}
-                </h1>
-                <p className="max-w-[40rem] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
-                  {Popular.overview}
-                </p>
-                <div className="flex capitalize space-x-default items-center">
-                  <div className="flex space-x-1 text-[#1AC855] items-center font-semibold">
-                    <p id="match sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
-                      80
+          Loading...
+        </div>
+      ) : (
+        // Show the content with a background video once data is loaded
+        <div className="relative bg-black text-white rounded-md text-black w-full max-w-[80%] h-[80%] overflow-y-auto scrollbar-dark">
+          <div className="w-full flex justify-end">
+            <div
+              onClick={onClose}
+              className="fixed p-4 py-0 bg-input_bg rounded-lg"
+            >
+              <AiOutlineClose className="text-white" />
+            </div>
+          </div>
+
+          {/* Banner Background Video */}
+          <div className="relative h-[600px] overflow-x-hidden">
+            {videoId && (
+              <ReactPlayer
+                url={`https://www.youtube.com/watch?v=${videoId}`}
+                playing={playing}
+                width="100%"
+                height="100%"
+                onEnded={() => setPlaying(true)}
+                config={{
+                  youtube: {
+                    playerVars: {
+                      autoplay: 1,
+                    },
+                  },
+                }}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 220,
+                  width: "100%",
+                  height: "100%",
+                }}
+              />
+            )}
+
+            {/* Banner Content */}
+            <div className="absolute top-0 left-0 w-full h-full">
+              <div className="w-full flex justify-end">
+                <div
+                  onClick={onClose}
+                  className="fixed p-4 hover:cursor-pointer rounded-lg"
+                >
+                  <AiOutlineClose className="text-white" />
+                </div>
+              </div>
+              <div className="w-full text-start lg:px-20 md:px-20 sm:px-6 bg-gradient-to-r from-black from-30% h-full flex items-center">
+                <div className="space-y-default text-primary_text/[.60]">
+                  <h1 className="text-start lg:text-[3.5rem] md:text-[2.5rem] sm:text-[1.5rem] text-primary_text font-title">
+                    {Popular.original_title}
+                  </h1>
+                  <p className="max-w-[40rem] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                    {Popular.overview}
+                  </p>
+                  <div className="flex capitalize space-x-default items-center">
+                    <div className="flex space-x-1 text-[#1AC855] items-center font-semibold">
+                      <p id="match sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                        65
+                      </p>
+                      <p>%</p>
+                      <p>match</p>
+                    </div>
+                    <p className="sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                      {new Date(Popular.release_date).getFullYear()}
                     </p>
-                    <p>%</p>
-                    <p>match</p>
+                    {/* <p>2 seasons</p> */}
+                    <p className="border px-4 border-white/[.30] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem] sm:hidden md:block lg:block">
+                      4k ultra hd
+                    </p>
+                    <div
+                      className="flex border px-4 border-white/[.30] space-x-1 hover:cursor-pointer sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]"
+                      onClick={() =>
+                        handleExternalLinkClick(
+                          `https://www.imdb.com/find/?q=${Popular.original_title}&ref_=nv_sr_sm`
+                        )
+                      }
+                    >
+                      <p>IMDB</p>
+                      <p>:</p>
+                      <p>{Popular.vote_average}</p>
+                    </div>
                   </div>
-                  <p className="sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
-                    {new Date(Popular.release_date).getFullYear()}
-                  </p>
-                  {/* <p>2 seasons</p> */}
-                  <p className="border px-4 border-white/[.30] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem] sm:hidden md:block lg:block">
-                    4k ultra hd
-                  </p>
-                  <div
-                    className="flex border px-4 border-white/[.30] space-x-1 hover:cursor-pointer sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]"
-                    onClick={() =>
-                      handleExternalLinkClick(
-                        `https://www.imdb.com/find/?q=${Popular.original_title}&ref_=nv_sr_sm`
-                      )
-                    }
-                  >
-                    <p>IMDB</p>
-                    <p>:</p>
-                    <p>{Popular.vote_average}</p>
+                  <div className="flex space-x-default">
+                    <div className="flex items-center space-x-2 bg-primary w-fit px-6 py-2 rounded-md text-white ">
+                      <FaPlay />
+                      <button>Play</button>
+                    </div>
+
+                    <div className="flex items-center space-x-2 w-fit px-6 pl-4 py-2 rounded-md text-white border-default border-white/[.60] hover:bg-input_bg hover:border-transparent">
+                      <MdAdd className="text-[1.5rem]" />
+                      <button className="capitalize">my list</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Rest of your content */}
           <div className="p-4">
             <button
               onClick={toggleFullscreen}
               className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mt-2"
             >
               Fullscreen
-            </button>
-            <h1 className="text-2xl font-semibold mb-2">
-              {Popular.original_title}
-            </h1>
-            {/* Add more data fields you want to display in the popup */}
-            <p>Release Year: {new Date(Popular.release_date).getFullYear()}</p>
-            <p>{Popular.id}</p>
-            {/* Add more data fields here */}
-            <button
-              onClick={onClose}
-              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mt-2"
-            >
-              Close
             </button>
           </div>
         </div>
