@@ -2,10 +2,15 @@ import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import api from "../../Apis";
+import { AiOutlineClose } from "react-icons/ai";
 
 export default function QuickView({ Popular, onClose }) {
   const [loading, setLoading] = useState(true);
   const iframeRef = useRef(null);
+
+  const handleExternalLinkClick = (url) => {
+    window.open(url, "_blank");
+  };
 
   useEffect(() => {
     axios
@@ -27,7 +32,7 @@ export default function QuickView({ Popular, onClose }) {
           // Set the iframe source to the YouTube trailer
           const iframe = iframeRef.current;
           if (iframe) {
-            iframe.src = `https://www.youtube.com/embed/${trailerKey}`;
+            iframe.src = `https://www.youtube.com/embed/${trailerKey}?autoplay=1`;
           }
         } else {
           console.log("No trailers available.");
@@ -54,7 +59,8 @@ export default function QuickView({ Popular, onClose }) {
         iframe.webkitRequestFullscreen();
       } else {
         // If fullscreen is not supported, set a default YouTube URL
-        iframe.src = "https://www.youtube.com/embed/_inIyoPsx-g?si=pLT_E8fZU5pAsMZY";
+        iframe.src =
+          "https://www.youtube.com/embed/_inIyoPsx-g?si=pLT_E8fZU5pAsMZY";
       }
     }
   };
@@ -66,7 +72,12 @@ export default function QuickView({ Popular, onClose }) {
         <div className="text-white capitalize">Loading...</div>
       ) : (
         // Show the iframe and content once data is loaded
-        <div className="bg-white rounded-md text-black w-full max-w-[50rem] h-[70vh] overflow-y-auto scrollbar-dark">
+        <div className="bg-white rounded-md text-black w-full max-w-[75%] h-[80%] overflow-y-auto scrollbar-dark">
+          <div className="w-full flex justify-end">
+            <div onClick={onClose} className="fixed p-4 bg-input_bg rounded-lg">
+              <AiOutlineClose className="text-white" />
+            </div>
+          </div>
           {/* Add a fixed height (e.g., h-[70vh]) and make it scrollable with overflow-y-auto */}
           <iframe
             src=""
@@ -76,6 +87,51 @@ export default function QuickView({ Popular, onClose }) {
             title="video"
             allow="autoplay"
           ></iframe>
+          <div
+            className="lg:h-[30rem] md:h-[25rem] sm:h-[20rem] w-full bg-cover bg-center"
+            style={{
+              backgroundImage: `url(https://image.tmdb.org/t/p/original/${Popular.backdrop_path})`,
+            }}
+          >
+            <div className="w-full text-start lg:px-20 md:px-20 sm:px-6 bg-gradient-to-r from-black from-30% h-full flex items-center">
+              <div className="space-y-default text-primary_text/[.60]">
+                <h1 className="text-start lg:text-[3.5rem] md:text-[2.5rem] sm:text-[1.5rem] text-primary_text font-title">
+                  {Popular.original_title}
+                </h1>
+                <p className="max-w-[40rem] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                  {Popular.overview}
+                </p>
+                <div className="flex capitalize space-x-default items-center">
+                  <div className="flex space-x-1 text-[#1AC855] items-center font-semibold">
+                    <p id="match sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                      80
+                    </p>
+                    <p>%</p>
+                    <p>match</p>
+                  </div>
+                  <p className="sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                    {new Date(Popular.release_date).getFullYear()}
+                  </p>
+                  {/* <p>2 seasons</p> */}
+                  <p className="border px-4 border-white/[.30] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem] sm:hidden md:block lg:block">
+                    4k ultra hd
+                  </p>
+                  <div
+                    className="flex border px-4 border-white/[.30] space-x-1 hover:cursor-pointer sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]"
+                    onClick={() =>
+                      handleExternalLinkClick(
+                        `https://www.imdb.com/find/?q=${Popular.original_title}&ref_=nv_sr_sm`
+                      )
+                    }
+                  >
+                    <p>IMDB</p>
+                    <p>:</p>
+                    <p>{Popular.vote_average}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="p-4">
             <button
               onClick={toggleFullscreen}
