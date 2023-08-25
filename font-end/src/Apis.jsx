@@ -7,6 +7,7 @@ const requests = {
   authantication : process.env.REACT_APP_AUTHANTICATION,
 
   //API Urls
+  Domain : `https://media-x.vercel.app`,
   Popular: `${Domain}/getmovies/popular`,
   requestTopRated: `${Domain}/getmovies/toprated`,
   requestNowPlaying: `${Domain}/getmovies/nowplaying`,

@@ -102,7 +102,7 @@ export default function Popular() {
             {popularMovies.map((index, slideIndex) => (
               <SwiperSlide key={index.id}>
                 <div
-                  className="xl:h-item_xl lg:h-item_lg md:h-item_md sm:h-item_sm w-full bg-cover bg-bottom"
+                  className="xxxl:h-item_xxxl xxl:h-item_xxl xl:h-item_xl lg:h-item_lg md:h-item_md sm:h-item_sm w-full bg-cover bg-bottom"
                   style={{
                     backgroundImage: `url(https://image.tmdb.org/t/p/original/${index.poster_path})`,
                   }}
@@ -140,7 +140,7 @@ export default function Popular() {
             ))}
           </Swiper>
           {popupVisible && (
-            <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/[60%] w-full">
+            <div className="fixed flex items-center justify-center z-50 bg-black/[60%] w-full h-full">
               {popupData && (
                 <QuickView Popular={popupData} onClose={closePopup} />
               )}
