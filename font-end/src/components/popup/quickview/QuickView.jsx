@@ -1,20 +1,27 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import api from "../../Apis";
+import api from "../../../Apis";
 import { AiOutlineClose } from "react-icons/ai";
 import { MdAdd } from "react-icons/md";
 import { FaPlay } from "react-icons/fa";
+import { PiSpeakerSimpleSlash, PiSpeakerHigh } from "react-icons/pi";
 import ReactPlayer from "react-player";
+import Overview from "./tabs/Overview";
 
 export default function QuickView({ Popular, onClose }) {
   const [loading, setLoading] = useState(true);
   const [videoId, setVideoId] = useState(null);
   const [playing, setPlaying] = useState(true);
-  const iframeRef = useRef(null);
+  const [activeTab, setActiveTab] = useState("overview");
+  const [muted, setMuted] = useState(false);
 
   const handleExternalLinkClick = (url) => {
     window.open(url, "_blank");
+  };
+
+  const toggleMute = () => {
+    setMuted(!muted);
   };
 
   useEffect(() => {
@@ -31,9 +38,8 @@ export default function QuickView({ Popular, onClose }) {
         );
         // Check if there are trailers available
         if (trailers.length > 0) {
-          // Get the key of the first trailer
           const trailerKey = trailers[0].key;
-          setVideoId(trailerKey); // Set the videoId state with the YouTube video key
+          setVideoId(trailerKey);
         } else {
           console.log("No trailers available.");
         }
@@ -46,24 +52,17 @@ export default function QuickView({ Popular, onClose }) {
       });
   }, [Popular.id]);
 
-  // Function to toggle fullscreen mode
-  const toggleFullscreen = () => {
-    const iframe = iframeRef.current;
+  const tabs = [
+    { id: "overview", label: "Overview" },
+    { id: "episodes", label: "Episodes" },
+    { id: "trailer", label: "Trailers & More" },
+    { id: "Cast", label: "Cast" },
+  ];
 
-    if (iframe) {
-      if (iframe.requestFullscreen) {
-        iframe.requestFullscreen();
-      } else if (iframe.mozRequestFullScreen) {
-        iframe.mozRequestFullScreen();
-      } else if (iframe.webkitRequestFullscreen) {
-        iframe.webkitRequestFullscreen();
-      } else {
-        // If fullscreen is not supported, set a default YouTube URL
-        iframe.src =
-          "https://www.youtube.com/embed/_inIyoPsx-g?si=pLT_E8fZU5pAsMZY";
-      }
-    }
-  };
+  const tabButtonClasses = "px-4 py-2 rounded-lg focus:outline-none";
+  const activeTabButtonClasses =
+    "text-white font-medium underline underline-offset-8 decoration-2 decoration-primary";
+  const inactiveTabButtonClasses = "text-white hover:cursor-pointer";
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/[60%] w-full h-full">
@@ -98,6 +97,7 @@ export default function QuickView({ Popular, onClose }) {
               <ReactPlayer
                 url={`https://www.youtube.com/watch?v=${videoId}`}
                 playing={playing}
+                muted={muted} // Muted prop based on state
                 width="100%"
                 height="100%"
                 onEnded={() => setPlaying(true)}
@@ -139,7 +139,7 @@ export default function QuickView({ Popular, onClose }) {
                   <div className="flex capitalize space-x-default items-center">
                     <div className="flex space-x-1 text-[#1AC855] items-center font-semibold">
                       <p id="match sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
-                        65
+                        87
                       </p>
                       <p>%</p>
                       <p>match</p>
@@ -147,7 +147,6 @@ export default function QuickView({ Popular, onClose }) {
                     <p className="sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
                       {new Date(Popular.release_date).getFullYear()}
                     </p>
-                    {/* <p>2 seasons</p> */}
                     <p className="border px-4 border-white/[.30] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem] sm:hidden md:block lg:block">
                       4k ultra hd
                     </p>
@@ -165,9 +164,9 @@ export default function QuickView({ Popular, onClose }) {
                     </div>
                   </div>
                   <div className="flex space-x-default">
-                    <div className="flex items-center space-x-2 bg-primary w-fit px-6 py-2 rounded-md text-white ">
+                    <div className="flex items-center space-x-2 bg-white w-fit px-6 py-2 rounded-md text-black hover:bg-input_bg hover:text-white">
                       <FaPlay />
-                      <button>Play</button>
+                      <button className="font-medium">Play</button>
                     </div>
 
                     <div className="flex items-center space-x-2 w-fit px-6 pl-4 py-2 rounded-md text-white border-default border-white/[.60] hover:bg-input_bg hover:border-transparent">
@@ -180,14 +179,59 @@ export default function QuickView({ Popular, onClose }) {
             </div>
           </div>
 
-          {/* Rest of your content */}
-          <div className="p-4">
-            <button
-              onClick={toggleFullscreen}
-              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mt-2"
-            >
-              Fullscreen
-            </button>
+          <div
+            className="absolute right-0 top-[75%] m-4 flex items-center space-x-2 cursor-pointer"
+            onClick={toggleMute}
+          >
+            {muted ? (
+              <div className="p-3 bg-input_bg rounded-full">
+                <PiSpeakerHigh className="text-[1.3rem]" />
+              </div>
+            ) : (
+              <div className="p-3 bg-input_bg rounded-full">
+                <PiSpeakerSimpleSlash className="text-[1.3rem]" />
+              </div>
+            )}
+          </div>
+
+          <div className="flex justify-center w-full mt-4">
+            <div className="w-full">
+              <div className="flex space-x-4 justify-center">
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    className={`${tabButtonClasses} ${
+                      activeTab === tab.id
+                        ? activeTabButtonClasses
+                        : inactiveTabButtonClasses
+                    }`}
+                    onClick={() => setActiveTab(tab.id)}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="mt-4 px-20">
+                {activeTab === "overview" && (
+                  <div>
+                    <Overview Popular={Popular} />
+                  </div>
+                )}
+                {activeTab === "episodes" && (
+                  <div>
+                    <h2 className="text-xl font-semibold">Episodes</h2>
+                    <p>This is the episodes content.</p>
+                  </div>
+                )}
+                {activeTab === "details" && (
+                  <div>
+                    <h2 className="text-xl font-semibold">Details</h2>
+                    <p>This is the details content.</p>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       )}

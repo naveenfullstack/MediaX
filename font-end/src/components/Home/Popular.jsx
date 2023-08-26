@@ -7,7 +7,7 @@ import "../Css/FeaturedItems.scss";
 import { Autoplay } from "swiper/modules";
 import { MdOutlineAddCircle } from "react-icons/md";
 import { usePopularMovies } from "../../context/PopularMoviesContext";
-import QuickView from "../popup/QuickView";
+import QuickView from "../popup/quickview/QuickView";
 
 export default function Popular() {
   const { popularMovies, loading, randomNumbers } = usePopularMovies();
@@ -44,6 +44,7 @@ export default function Popular() {
 
   const currentSlidesPerView =
     slidesPerView[currentBreakpoint] || slidesPerView.desktop;
+    
 
   return (
     <div>
@@ -142,7 +143,7 @@ export default function Popular() {
           {popupVisible && (
             <div className="fixed flex items-center justify-center z-50 bg-black/[60%] w-full h-full">
               {popupData && (
-                <QuickView Popular={popupData} onClose={closePopup} />
+                <QuickView  Popular={popupData} onClose={closePopup} />
               )}
             </div>
           )}

@@ -56,6 +56,7 @@ export default function App() {
       <Routes>
         {/* <Route exact path="/" element={<Home />} /> */}
         <Route exact path="/signin" element={<Login />} />
+        <Route exact path="/dev" element={<Home />} />
         <Route exact path="/signup" element={<SignUp />} />
         <Route path="*" element={<PageNotFound />} />
         <Route element={<ProtectedRoute />}>
