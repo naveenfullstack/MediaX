@@ -44,6 +44,9 @@ app.use('/getmovies/', Headers, GetMovies);
 const Login = require('./routes/auth/Login');
 app.use('/login/', Headers, Login);
 
+const Signup = require('./routes/auth/signup');
+app.use('/signup/', Headers, Signup);
+
 // connection
 const port = process.env.PORT || 9001;
 app.listen(port, () => console.log(`Listening to port ${port}`));

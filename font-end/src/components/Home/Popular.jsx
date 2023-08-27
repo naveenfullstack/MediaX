@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "../Css/FeaturedItems.scss";
 import { Autoplay } from "swiper/modules";
-import { MdOutlineAddCircle } from "react-icons/md";
+import { MdOutlineAddCircle , MdKeyboardArrowRight} from "react-icons/md";
 import { usePopularMovies } from "../../context/PopularMoviesContext";
 import QuickView from "../popup/quickview/QuickView";
 
@@ -13,6 +13,7 @@ export default function Popular() {
   const { popularMovies, loading, randomNumbers } = usePopularMovies();
   const [popupVisible, setPopupVisible] = useState(false);
   const [popupData, setPopupData] = useState(null);
+  const swiperRef = useRef(null);
 
   const openPopup = (movie) => {
     // Find the movie you want to display in the popup from popularMovies array.
@@ -44,7 +45,6 @@ export default function Popular() {
 
   const currentSlidesPerView =
     slidesPerView[currentBreakpoint] || slidesPerView.desktop;
-    
 
   return (
     <div>
@@ -81,69 +81,81 @@ export default function Popular() {
           <h1 className="capitalize font-semibold lg:text-[1.5rem] md:text-[1.5rem] sm:text-[1.3rem]">
             popular on MediaX
           </h1>
-          <Swiper
-            spaceBetween={10}
-            slidesPerView={currentSlidesPerView}
-            centeredSlides={true}
-            loop={true}
-            modules={[Autoplay]}
-            className="mySwiper"
-            breakpoints={{
-              [breakpoints.mobile]: {
-                slidesPerView: slidesPerView.mobile,
-              },
-              [breakpoints.tablet]: {
-                slidesPerView: slidesPerView.tablet,
-              },
-              [breakpoints.desktop]: {
-                slidesPerView: slidesPerView.desktop,
-              },
-            }}
-          >
-            {popularMovies.map((index, slideIndex) => (
-              <SwiperSlide key={index.id}>
-                <div
-                  className="xxxl:h-item_xxxl xxl:h-item_xxl xl:h-item_xl lg:h-item_lg md:h-item_md sm:h-item_sm w-full bg-cover bg-bottom"
-                  style={{
-                    backgroundImage: `url(https://image.tmdb.org/t/p/original/${index.poster_path})`,
-                  }}
-                >
-                  <div onClick={() => openPopup(index)} className="w-full h-full cursor-pointer text-start pl-item_sm_left pr-2 h-full flex items-center hover:bg-black/[.75] transition hover:delay-75 duration-100 ease-in-out">
-                    <div className="block w-full h-full opacity-0 hover:opacity-100 transition hover:delay-100 duration-100 ease-in-out">
-                      <div className="h-3/6 flex justify-end">
-                        {/* <h1 className="w-full">{index.original_title}</h1> */}
-                        <MdOutlineAddCircle
-                          title="Add To List"
-                          className="pt-2 text-[2rem] text-primary_text/[.80] hover:cursor-pointer"
-                        />
-                      </div>
-                      <div className="h-3/6 flex items-end">
-                        <div>
-                          <h1 className="w-full">{index.original_title}</h1>
-                          <div className="flex capitalize space-x-default items-center">
-                            <div className="flex space-x-1 text-[#1AC855] items-center font-semibold">
-                              <p id="match sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
-                                {randomNumbers[slideIndex]}
+          <div className=" flex">
+            <Swiper
+              onSwiper={(swiper) => (swiperRef.current = swiper)}
+              spaceBetween={10}
+              slidesPerView={currentSlidesPerView}
+              centeredSlides={true}
+              loop={true}
+              modules={[Autoplay]}
+              className="mySwiper"
+              breakpoints={{
+                [breakpoints.mobile]: {
+                  slidesPerView: slidesPerView.mobile,
+                },
+                [breakpoints.tablet]: {
+                  slidesPerView: slidesPerView.tablet,
+                },
+                [breakpoints.desktop]: {
+                  slidesPerView: slidesPerView.desktop,
+                },
+              }}
+            >
+              {popularMovies.map((index, slideIndex) => (
+                <SwiperSlide key={index.id}>
+                  <div
+                    className="xxxl:h-item_xxxl xxl:h-item_xxl xl:h-item_xl lg:h-item_lg md:h-item_md sm:h-item_sm w-full bg-cover bg-bottom"
+                    style={{
+                      backgroundImage: `url(https://image.tmdb.org/t/p/original/${index.poster_path})`,
+                    }}
+                  >
+                    <div
+                      onClick={() => openPopup(index)}
+                      className="w-full h-full cursor-pointer text-start pl-item_sm_left pr-2 h-full flex items-center hover:bg-black/[.75] transition hover:delay-75 duration-100 ease-in-out"
+                    >
+                      <div className="block w-full h-full opacity-0 hover:opacity-100 transition hover:delay-100 duration-100 ease-in-out">
+                        <div className="h-3/6 flex justify-end">
+                          {/* <h1 className="w-full">{index.original_title}</h1> */}
+                          <MdOutlineAddCircle
+                            title="Add To List"
+                            className="pt-2 text-[2rem] text-primary_text/[.80] hover:cursor-pointer"
+                          />
+                        </div>
+                        <div className="h-3/6 flex items-end">
+                          <div>
+                            <h1 className="w-full">{index.original_title}</h1>
+                            <div className="flex capitalize space-x-default items-center">
+                              <div className="flex space-x-1 text-[#1AC855] items-center font-semibold">
+                                <p id="match sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                                  {randomNumbers[slideIndex]}
+                                </p>
+                                <p>%</p>
+                                <p>match</p>
+                              </div>
+                              <p className="sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                                {new Date(index.release_date).getFullYear()}
                               </p>
-                              <p>%</p>
-                              <p>match</p>
                             </div>
-                            <p className="sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
-                              {new Date(index.release_date).getFullYear()}
-                            </p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <div onClick={() => swiperRef.current?.slideNext()} className="xxxl:flex xxl:flex xl:flex lg:flex hidden items-center bg-black/[.60] px-2 absolute right-0 z-10 xxxl:h-item_xxxl xxl:h-item_xxl xl:h-item_xl lg:h-item_lg md:h-item_md sm:h-item_sm ">
+              <MdKeyboardArrowRight
+                className="text-[3rem] "
+                style={{ cursor: "pointer" }}
+              />
+            </div>
+          </div>
           {popupVisible && (
             <div className="fixed flex items-center justify-center z-50 bg-black/[60%] w-full h-full">
               {popupData && (
-                <QuickView  Popular={popupData} onClose={closePopup} />
+                <QuickView Popular={popupData} onClose={closePopup} />
               )}
             </div>
           )}

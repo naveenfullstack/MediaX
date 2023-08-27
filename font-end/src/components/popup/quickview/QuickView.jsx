@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-// import api from "../../../Apis";
+import api from "../../../Apis";
 import { AiOutlineClose } from "react-icons/ai";
 import { MdAdd } from "react-icons/md";
 import { FaPlay } from "react-icons/fa";
@@ -26,24 +26,24 @@ export default function QuickView({ Popular, onClose }) {
 
   useEffect(() => {
     axios
-      // .get(`${api.Domain}/getmovies/videos/${Popular.id}`, {
-      //   headers: {
-      //     api_key: api.key,
-      //     authantication: api.authantication,
-      //   },
-      // })
-      .get(
-        `https://api.themoviedb.org/3/movie/${Popular.id}/videos?api_key=922f2e7560f506fe1b6689418dd8260c&language=en-US`,
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "*", // Replace '*' with your API's actual allowed origin
-            "Content-Type": "application/json",
-          },
-        }
-      )
+      .get(`${api.Domain}/getmovies/videos/${Popular.id}`, {
+        headers: {
+          api_key: api.key,
+          authantication: api.authantication,
+        },
+      })
+      // .get(
+      //   `https://api.themoviedb.org/3/movie/${Popular.id}/videos?api_key=922f2e7560f506fe1b6689418dd8260c&language=en-US`,
+      //   {
+      //     headers: {
+      //       "Access-Control-Allow-Origin": "*", // Replace '*' with your API's actual allowed origin
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // )
       .then((response) => {
         console.log(response);
-        const trailers = response.data.results.filter(
+        const trailers = response.data.filter(
           (video) => video.type === "Trailer"
         );
         // Check if there are trailers available
