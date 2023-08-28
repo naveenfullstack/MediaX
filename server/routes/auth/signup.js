@@ -3,9 +3,9 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../../models/user");
-// const signupMail = require('@sendgrid/mail');
+const signupMail = require('@sendgrid/mail');
 
-// signupMail.setApiKey(process.env.SENDGRID_KEY);
+signupMail.setApiKey(process.env.SENDGRID_KEY);
 
 router.post("/", async (req, res) => {
   try {
@@ -33,18 +33,18 @@ router.post("/", async (req, res) => {
     // Generate a JWT token for the user
     const token = jwt.sign({ userId: newUser._id }, process.env.SECRET_KEY);
 
-    // const msg = {
-    //   to: email,
-    //   from: {
-    //     email: process.env.SENDING_EMAIL,
-    //     name: process.env.COMPANY_NAME
-    //   },
-    //   subject: 'Welcome to Your App',
-    //   text: 'Thank you for signing up!',
-    //   html: '<h1>Welcome to Your App</h1><p>Thank you for signing up!</p>',
-    // };
+    const msg = {
+      to: email,
+      from: {
+        email: process.env.SENDING_EMAIL,
+        name: process.env.COMPANY_NAME
+      },
+      subject: 'Welcome to Your App',
+      text: 'Thank you for signing up!',
+      html: '<h1>Welcome to Your App</h1><p>Thank you for signing up!</p>',
+    };
 
-    // await signupMail.send(msg);
+    await signupMail.send(msg);
 
     res
       .status(200)

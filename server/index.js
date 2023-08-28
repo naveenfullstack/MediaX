@@ -47,6 +47,9 @@ app.use('/login/', Headers, Login);
 const Signup = require('./routes/auth/signup');
 app.use('/signup/', Headers, Signup);
 
+const ForgetPassword = require('./routes/auth/forgetpassword');
+app.use('/auth/', Headers, ForgetPassword);
+
 // connection
 const port = process.env.PORT || 9001;
 app.listen(port, () => console.log(`Listening to port ${port}`));
