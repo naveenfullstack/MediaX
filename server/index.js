@@ -50,6 +50,15 @@ app.use('/signup/', Headers, Signup);
 const ForgetPassword = require('./routes/auth/forgetpassword');
 app.use('/auth/', Headers, ForgetPassword);
 
+const UserDetails = require('./routes/auth/getuserdetails');
+app.use('/auth/', Headers, UserDetails);
+
+const Videos = require('./routes/Videos');
+app.use('/videos/', Headers, Videos);
+
+const Shows = require('./routes/Shows');
+app.use('/shows/', Headers, Shows);
+
 // connection
 const port = process.env.PORT || 9001;
 app.listen(port, () => console.log(`Listening to port ${port}`));

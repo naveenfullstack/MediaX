@@ -8,7 +8,7 @@ const buildPath = path.join(__dirname, 'build'); // Path to your build directory
 // Color codes
 const resetColor = '\x1b[0m';
 const greenColor = '\x1b[32m';
-const cyanColor = '\x1b[36m';
+// const cyanColor = '\x1b[36m';
 
 if (fs.existsSync(buildPath)) {
   const config = {
