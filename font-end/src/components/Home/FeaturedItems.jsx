@@ -49,7 +49,7 @@ export default function FeaturedItems() {
                 <div className="w-full text-start lg:px-20 md:px-20 sm:px-6 bg-gradient-to-r from-black from-30% h-full flex items-center">
                   <div className="space-y-default text-primary_text/[.60]">
                     <h1 className="text-start lg:text-[3.5rem] md:text-[2.5rem] sm:text-[1.5rem] text-primary_text font-title">
-                      {index.original_title}
+                      {index.title}
                     </h1>
                     <p className="max-w-[40rem] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
                       {index.overview}
@@ -73,13 +73,13 @@ export default function FeaturedItems() {
                         className="flex border px-4 border-white/[.30] space-x-1 hover:cursor-pointer sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]"
                         onClick={() =>
                           handleExternalLinkClick(
-                            `https://www.imdb.com/find/?q=${index.original_title}&ref_=nv_sr_sm`
+                            `https://www.imdb.com/title/${index.imdb_id}`
                           )
                         }
                       >
                         <p>IMDB</p>
                         <p>:</p>
-                        <p>{index.vote_average}</p>
+                        <p>{index.imdb_vote}</p>
                       </div>
                     </div>
                   </div>

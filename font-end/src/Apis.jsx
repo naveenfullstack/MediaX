@@ -8,7 +8,7 @@ const requests = {
 
   //API Urls
   Domain : `https://media-x.vercel.app`,
-  Popular: `${Domain}/getmovies/popular`,
+  Popular: `${Domain}/shows/get-all-shows`,
   requestTopRated: `${Domain}/getmovies/toprated`,
   requestNowPlaying: `${Domain}/getmovies/nowplaying`,
   requestHorror: `${Domain}/getmovies/horror`,

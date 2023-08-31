@@ -124,7 +124,7 @@ export default function Popular() {
                         </div>
                         <div className="h-3/6 flex items-end">
                           <div>
-                            <h1 className="w-full">{index.original_title}</h1>
+                            <h1 className="w-full">{index.title}</h1>
                             <div className="flex capitalize space-x-default items-center">
                               <div className="flex space-x-1 text-[#1AC855] items-center font-semibold">
                                 <p id="match sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">

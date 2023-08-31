@@ -23,9 +23,9 @@ export const PopularMoviesProvider = ({ children }) => {
         },
       })
       .then((response) => {
-        setPopularMovies(response.data.results);
+        setPopularMovies(response.data.shows);
         setRandomNumbers(
-          response.data.results.map(() => generateRandomNumber())
+          response.data.shows.map(() => generateRandomNumber())
         );
         setLoading(false);
         console.log(response)
