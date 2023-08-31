@@ -6,6 +6,8 @@ const videoSchema = new mongoose.Schema({
   site: String,
   size: Number,
   type: String,
+  iso_639_1: String,
+  iso_3166_1: String,
   official: Boolean,
 });
 

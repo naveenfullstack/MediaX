@@ -1,23 +1,13 @@
 // Import packages
 const express = require("express");
-const home = require("./routes/home");
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 
 //Database
 
-mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI ,{
-  useNewUrlParser: true,
-  useUnifiedTopology: true ,
-})
-  .then( () => {
-      console.log('Connected to the MongoDB database')
-  })
-  .catch( (err) => {
-      console.error(`Error connecting to the database. n${err}`);
-  })
+const connectToDatabase = require('./databses/mainmongo');
+connectToDatabase();
 
 // Middlewares
 const app = express();
@@ -33,7 +23,6 @@ app.use(ReqIp);
 const Headers = require ('./middlewares/Headers')
 
 // Routes
-app.use("/test", home);
 
 const TestData = require('./routes/TestData');
 app.use('/', TestData);
@@ -52,6 +41,9 @@ app.use('/auth/', Headers, ForgetPassword);
 
 const UserDetails = require('./routes/auth/getuserdetails');
 app.use('/auth/', Headers, UserDetails);
+
+const MyList = require('./routes/auth/mylist');
+app.use('/auth/', Headers, MyList);
 
 const Videos = require('./routes/Videos');
 app.use('/videos/', Headers, Videos);

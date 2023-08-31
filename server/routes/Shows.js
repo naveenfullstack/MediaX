@@ -5,57 +5,105 @@ const Shows = require("../models/shows");
 //const signupMail = require('@sendgrid/mail');
 //signupMail.setApiKey(process.env.SENDGRID_KEY);
 
-
 router.post("/add-shows", async (req, res) => {
   try {
-    const { id, backdrop_path, poster_path, language, title, overview, release_date, imdb_id, imdb_vote, status, category, tags, is_popular, is_featured, is_movie } = req.body;
+    // Extract the array of show objects from the request body
+    const showDataArray = req.body;
 
-    // Check if the project is already taken
-    const existingShow = await Shows.findOne({ id });
-    if (existingShow) {
-      return res.status(409).json({ error: "Show already exists" });
+    // Check if showDataArray is an array
+    if (!Array.isArray(showDataArray)) {
+      return res
+        .status(400)
+        .json({
+          error: "Invalid request body. Expected an array of show objects.",
+        });
     }
 
-    // Create a new user with the encrypted password
-    const newShows = new Shows({ id, backdrop_path, poster_path, language, title, overview, release_date, imdb_id, imdb_vote, status, category, tags, is_popular, is_featured, is_movie });
-    await newShows.save();
+    // Create an array to store new show documents
+    const newShows = [];
 
-    res
-      .status(200)
-      .json({
-        success: "true",
-        message: "Show Added successfully",
-        //mail: "Account created Mail Has Been Sent Via SendGrid",
-        newShows
-      });
+    // Iterate through the show data and create new show documents
+    for (const showData of showDataArray) {
+      const existingShow = await Shows.findOne({ id: showData.id });
+      if (existingShow) {
+        return res
+          .status(409)
+          .json({ error: `Show with ID ${showData.id} already exists` });
+      }
+
+      const newShow = new Shows(showData);
+      await newShow.save();
+      newShows.push(newShow);
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Shows added successfully",
+      newShows,
+    });
   } catch (error) {
-    console.error("Error adding a Show:", error);
+    console.error("Error adding shows:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
 
-
-router.put('/editprojects/:id', async (req, res) => {
+router.get("/get-all-shows", async (req, res) => {
   try {
-    const projectId = req.params.id;
-    const { project_name, project_description, hours_spent, started_date, end_date } = req.body;
+    // Retrieve all shows from the database
+    const allShows = await Shows.find();
 
-    // Find the project by ID and update its details
-    const updatedProject = await Projects.findByIdAndUpdate(projectId, { project_name, project_description, hours_spent, started_date, end_date }, { new: true });
-
-    if (!updatedProject) {
-      return res.status(404).json({ error: 'Project not found' });
-    }
-
-    res.status(200).json({ message: 'Project updated successfully', project: updatedProject });
+    res.status(200).json({
+      success: true,
+      message: "Shows retrieved successfully",
+      shows: allShows,
+    });
   } catch (error) {
-    console.error('Error updating project:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error("Error fetching shows:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
+router.put("/editprojects/:id", async (req, res) => {
+  try {
+    const projectId = req.params.id;
+    const {
+      project_name,
+      project_description,
+      hours_spent,
+      started_date,
+      end_date,
+    } = req.body;
 
-router.delete('/deleteprojects/:id', async (req, res) => {
+    // Find the project by ID and update its details
+    const updatedProject = await Projects.findByIdAndUpdate(
+      projectId,
+      {
+        project_name,
+        project_description,
+        hours_spent,
+        started_date,
+        end_date,
+      },
+      { new: true }
+    );
+
+    if (!updatedProject) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+
+    res
+      .status(200)
+      .json({
+        message: "Project updated successfully",
+        project: updatedProject,
+      });
+  } catch (error) {
+    console.error("Error updating project:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.delete("/deleteprojects/:id", async (req, res) => {
   try {
     const projectId = req.params.id;
 
@@ -63,13 +111,13 @@ router.delete('/deleteprojects/:id', async (req, res) => {
     const deletedProject = await Projects.findByIdAndDelete(projectId);
 
     if (!deletedProject) {
-      return res.status(404).json({ error: 'Project not found' });
+      return res.status(404).json({ error: "Project not found" });
     }
 
-    res.status(200).json({ message: 'Project deleted successfully' });
+    res.status(200).json({ message: "Project deleted successfully" });
   } catch (error) {
-    console.error('Error deleting project:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error("Error deleting project:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 

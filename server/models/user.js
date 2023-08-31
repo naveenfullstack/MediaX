@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
   refreshToken: {type: String},
   lastLogin: {type: Date},
   failedLoginAttempts: {type: String},
+  mylist: { type: [String] },
   is_blocked : {type: Boolean}
 });
 
