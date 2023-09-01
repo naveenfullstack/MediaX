@@ -3,8 +3,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import 'swiper/css/free-mode';
 import "../Css/FeaturedItems.scss";
-import { Autoplay } from "swiper/modules";
+import { Autoplay , FreeMode} from "swiper/modules";
 import { MdOutlineAddCircle , MdKeyboardArrowRight} from "react-icons/md";
 import { usePopularMovies } from "../../context/PopularMoviesContext";
 import QuickView from "../popup/quickview/QuickView";
@@ -87,8 +88,9 @@ export default function Popular() {
               spaceBetween={10}
               slidesPerView={currentSlidesPerView}
               centeredSlides={true}
+              freeMode={true}
               loop={true}
-              modules={[Autoplay]}
+              modules={[Autoplay , FreeMode]}
               className="mySwiper"
               breakpoints={{
                 [breakpoints.mobile]: {

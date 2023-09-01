@@ -8,10 +8,12 @@ import { FaPlay } from "react-icons/fa";
 import { PiSpeakerSimpleSlash, PiSpeakerHigh } from "react-icons/pi";
 import ReactPlayer from "react-player";
 import Overview from "./tabs/Overview";
+import Trailers from "./tabs/Trailers";
 
 export default function QuickView({ Popular, onClose }) {
   const [loading, setLoading] = useState(true);
   const [videoId, setVideoId] = useState(null);
+  const [allvideos, setAllvideos] = useState(null);
   const [playing, setPlaying] = useState(true);
   const [activeTab, setActiveTab] = useState("overview");
   const [muted, setMuted] = useState(false);
@@ -42,6 +44,7 @@ export default function QuickView({ Popular, onClose }) {
         if (trailers.length > 0) {
           const trailerKey = trailers[0].key;
           setVideoId(trailerKey);
+          setAllvideos(response.data.results);
         } else {
           console.log("No trailers available.");
         }
@@ -56,10 +59,13 @@ export default function QuickView({ Popular, onClose }) {
 
   const tabs = [
     { id: "overview", label: "Overview" },
-    { id: "episodes", label: "Episodes" },
-    { id: "trailer", label: "Trailers & More" },
+    { id: "trailers", label: "Trailers & More" },
     { id: "Cast", label: "Cast" },
   ];
+
+  if (Popular.is_movie === false) {
+    tabs.splice(1, 0, { id: "episodes", label: "Episodes" });
+  }
 
   const tabButtonClasses = "px-4 py-2 rounded-lg focus:outline-none";
   const activeTabButtonClasses =
@@ -124,11 +130,19 @@ export default function QuickView({ Popular, onClose }) {
               <div className="w-full text-start lg:px-20 md:px-20 sm:px-6 bg-gradient-to-r from-black from-30% h-full flex items-center">
                 <div className="space-y-default text-primary_text/[.60]">
                   <h1 className="text-start lg:text-[3.5rem] md:text-[2.5rem] sm:text-[1.5rem] text-primary_text font-title">
-                    {Popular.original_title}
+                    {Popular.title}
                   </h1>
                   <p className="max-w-[40rem] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
                     {Popular.overview}
                   </p>
+                  <div className="text-white/[.60] flex space-x-4">
+                    <p className="max-w-[40rem] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                      Budget : $ {Popular.budget.toLocaleString()}
+                    </p>
+                    <p className="max-w-[40rem] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                      Revenue : $ {Popular.revenue.toLocaleString()}
+                    </p>
+                  </div>
                   <div className="flex capitalize space-x-default items-center">
                     <div className="flex space-x-1 text-[#1AC855] items-center font-semibold">
                       <p id="match sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
@@ -147,13 +161,13 @@ export default function QuickView({ Popular, onClose }) {
                       className="flex border px-4 border-white/[.30] space-x-1 hover:cursor-pointer sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]"
                       onClick={() =>
                         handleExternalLinkClick(
-                          `https://www.imdb.com/find/?q=${Popular.original_title}&ref_=nv_sr_sm`
+                          `https://www.imdb.com/title/${Popular.imdb_id}`
                         )
                       }
                     >
                       <p>IMDB</p>
                       <p>:</p>
-                      <p>{Popular.vote_average}</p>
+                      <p>{Popular.imdb_vote}</p>
                     </div>
                   </div>
                   <div className="flex space-x-default">
@@ -208,7 +222,11 @@ export default function QuickView({ Popular, onClose }) {
               <div className="mt-4 px-20">
                 {activeTab === "overview" && (
                   <div>
-                    <Overview Popular={Popular} />
+                    <Overview
+                      Popular={Popular}
+                      allvideos={allvideos}
+                      loading={loading}
+                    />
                   </div>
                 )}
                 {activeTab === "episodes" && (
@@ -217,10 +235,13 @@ export default function QuickView({ Popular, onClose }) {
                     <p>This is the episodes content.</p>
                   </div>
                 )}
-                {activeTab === "details" && (
+                {activeTab === "trailers" && (
                   <div>
-                    <h2 className="text-xl font-semibold">Details</h2>
-                    <p>This is the details content.</p>
+                    <Trailers
+                      Popular={Popular}
+                      allvideos={allvideos}
+                      loading={loading}
+                    />
                   </div>
                 )}
               </div>

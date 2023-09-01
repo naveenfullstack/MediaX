@@ -51,6 +51,9 @@ app.use('/videos/', Headers, Videos);
 const Shows = require('./routes/Shows');
 app.use('/shows/', Headers, Shows);
 
+const Cast = require('./routes/cast');
+app.use('/cast/', Headers, Cast);
+
 // connection
 const port = process.env.PORT || 9001;
 app.listen(port, () => console.log(`Listening to port ${port}`));

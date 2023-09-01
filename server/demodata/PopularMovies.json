@@ -1,5 +1,26 @@
 [
   {
+    "id": 615656,
+    "backdrop_path": "/2Icjry0xdRSNxrtsBR1F47b9r3u.jpg",
+    "poster_path": "/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg",
+    "language": "en",
+    "title": "Meg 2: The Trench",
+    "overview": "An exploratory dive into the deepest depths of the ocean of a daring research team spirals into chaos when a malevolent mining operation threatens their mission and forces them into a high-stakes battle for survival.",
+    "release_date": "2023-08-02",
+    "imdb_id": "tt9224104",
+    "imdb_vote":  7.7,
+    "status": "Released",
+    "category": "Action",
+    "tags": ["Action","Science Fiction","Horror" ],
+    "homepage" : "https://www.themeg.movie",
+    "trailer" : "",
+    "budget": 129000000,
+    "revenue": 352056482,
+    "is_popular": true,
+    "is_featured": false,
+    "is_movie": true
+  },
+  {
     "id": 76610,
     "backdrop_path": "",
     "poster_path": "",

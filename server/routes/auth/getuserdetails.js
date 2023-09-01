@@ -9,7 +9,7 @@ router.get('/userdetails/:email', async (req, res) => {
     const email = req.params.email;
     // Find the user by email in the database and select only specific fields
     const user = await User.findOne({ email }).select(
-      '_id firstname lastname username email lastLogin is_blocked'
+      '_id firstname lastname username email lastLogin is_blocked mylist'
     );
 
     if (!user) {
@@ -25,6 +25,7 @@ router.get('/userdetails/:email', async (req, res) => {
           lastname: user.lastname,
           username: user.username,
           email: user.email,
+          mylist: user.mylist,
           is_blocked: user.is_blocked,
           lastLogin: user.lastLogin,
         },

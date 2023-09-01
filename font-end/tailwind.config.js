@@ -24,6 +24,7 @@ module.exports = {
       fontSize: {
         paragraph: '1rem',
         paragraph_2: '0.8rem',
+        title: '1.5rem'
       },
       opacity: {
         default: '.60',
@@ -61,7 +62,7 @@ module.exports = {
         item_lg_left: '5rem',
         item_md_left: '2.5rem',
         item_sm_left: '1rem',
-      }
+      },
     },
   },
   plugins: [],
