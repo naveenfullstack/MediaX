@@ -10,6 +10,7 @@ export default function Player() {
         <div className="flex justify-center items-center h-screen">
             <ReactPlayer
                 url={`http://127.0.0.1:5500/${videoId}.mp4`}
+                //url={`https://static-api.naveenportfolio.site/${videoId}.mp4`}
                 controls={true}
                 width="100%"
                 height="100%"
