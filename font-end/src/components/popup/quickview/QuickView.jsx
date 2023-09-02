@@ -7,8 +7,8 @@ import { MdAdd } from "react-icons/md";
 import { FaPlay } from "react-icons/fa";
 import { PiSpeakerSimpleSlash, PiSpeakerHigh } from "react-icons/pi";
 import ReactPlayer from "react-player";
-import Overview from "./tabs/Overview";
-import Trailers from "./tabs/Trailers";
+import Overview from "./tabs/overview/Overview";
+import Trailers from "./tabs/trailers/Trailers";
 
 export default function QuickView({ Popular, onClose }) {
   const [loading, setLoading] = useState(true);
@@ -20,6 +20,10 @@ export default function QuickView({ Popular, onClose }) {
 
   const handleExternalLinkClick = (url) => {
     window.open(url, "_blank");
+  };
+
+  const Play = () => {
+    window.location.href = `/player/${Popular.id}`;
   };
 
   const toggleMute = () => {
@@ -61,6 +65,7 @@ export default function QuickView({ Popular, onClose }) {
     { id: "overview", label: "Overview" },
     { id: "trailers", label: "Trailers & More" },
     { id: "Cast", label: "Cast" },
+    { id: "book", label: "Buy Tickets" }
   ];
 
   if (Popular.is_movie === false) {
@@ -175,7 +180,7 @@ export default function QuickView({ Popular, onClose }) {
                     </div>
                   </div>
                   <div className="flex space-x-default">
-                    <div className="flex items-center space-x-2 bg-white w-fit px-6 py-2 rounded-md text-black hover:bg-input_bg hover:text-white">
+                    <div onClick={Play} className="flex items-center space-x-2 bg-white w-fit px-6 py-2 rounded-md text-black hover:bg-input_bg hover:text-white">
                       <FaPlay />
                       <button className="font-medium">Play</button>
                     </div>
@@ -240,6 +245,15 @@ export default function QuickView({ Popular, onClose }) {
                   </div>
                 )}
                 {activeTab === "trailers" && (
+                  <div>
+                    <Trailers
+                      Popular={Popular}
+                      allvideos={allvideos}
+                      loading={loading}
+                    />
+                  </div>
+                )}
+                {activeTab === "book" && (
                   <div>
                     <Trailers
                       Popular={Popular}

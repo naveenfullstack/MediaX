@@ -61,7 +61,7 @@ export default function App() {
         <Route path="*" element={<PageNotFound />} />
         <Route element={<ProtectedRoute />}>
           <Route index element={<Home />} />
-          <Route path="/player" element={<Player />} />
+          <Route path="/player/:videoId" element={<Player />} />
         </Route>
       </Routes>
     </Router>

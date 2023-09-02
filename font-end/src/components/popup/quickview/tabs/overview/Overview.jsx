@@ -1,39 +1,15 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-import "./css/overview.css";
+import "../css/overview.css";
 import { Navigation } from "swiper/modules";
 import ReactPlayer from "react-player";
-import axios from "axios";
-import api from "../../../../Apis";
+import CastOverview from "./CastOverview";
 
 export default function Overview({ Popular, allvideos, loading }) {
   const swiperRef = useRef(null);
-
-  const [cast, setCast] = useState([]);
-  const [castloading, setCastloading] = useState(true);
-
-  useEffect(() => {
-    axios
-      .get(`${api.Domain}/cast/${Popular.id}`, {
-        headers: {
-          api_key: api.key,
-          authantication: api.authantication,
-        },
-      })
-      .then((response) => {
-        setCast(response.data.results);
-        // setLoading(false);
-        console.log(response);
-        setCastloading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setCastloading(true);
-      });
-  }, [Popular.id]);
 
   return (
     <div>
@@ -56,9 +32,7 @@ export default function Overview({ Popular, allvideos, loading }) {
       ) : (
         <div className="bg-black">
           <div>
-            <h1 className="text-title capitalize font-medium">
-              videos & Trailers
-            </h1>
+            <CastOverview Popular={Popular}/>
           </div>
 
           <div className="bg-black space-y-default">
