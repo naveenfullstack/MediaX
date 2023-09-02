@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -6,30 +6,34 @@ import "swiper/css/pagination";
 import "./css/overview.css";
 import { Navigation } from "swiper/modules";
 import ReactPlayer from "react-player";
-//import axios from "axios";
+import axios from "axios";
+import api from "../../../../Apis";
 
 export default function Overview({ Popular, allvideos, loading }) {
   const swiperRef = useRef(null);
 
-  //const [cast, setCast] = useState([]);
-  //const [loading, setLoading] = useState(true);
+  const [cast, setCast] = useState([]);
+  const [castloading, setCastloading] = useState(true);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `https://api.themoviedb.org/3/movie/${Popular.id}/credits?api_key=922f2e7560f506fe1b6689418dd8260c&language=en-US`
-  //     )
-  //     .then((response) => {
-  //       setCast(response.data.cast);
-  //       // setLoading(false);
-  //       console.log(response);
-  //       setLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //       setLoading(true);
-  //     });
-  // }, [Popular.id]);
+  useEffect(() => {
+    axios
+      .get(`${api.Domain}/cast/${Popular.id}`, {
+        headers: {
+          api_key: api.key,
+          authantication: api.authantication,
+        },
+      })
+      .then((response) => {
+        setCast(response.data.results);
+        // setLoading(false);
+        console.log(response);
+        setCastloading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setCastloading(true);
+      });
+  }, [Popular.id]);
 
   return (
     <div>
@@ -51,10 +55,17 @@ export default function Overview({ Popular, allvideos, loading }) {
         </div>
       ) : (
         <div className="bg-black">
-
+          <div>
+            <h1 className="text-title capitalize font-medium">
+              videos & Trailers
+            </h1>
+          </div>
 
           <div className="bg-black space-y-default">
-            <h1 className="text-title capitalize font-medium"> videos & Trailers</h1>
+            <h1 className="text-title capitalize font-medium">
+              {" "}
+              videos & Trailers
+            </h1>
             <Swiper
               ref={swiperRef}
               slidesPerView={3}
@@ -66,28 +77,26 @@ export default function Overview({ Popular, allvideos, loading }) {
               {allvideos.slice(0, 5).map((index) => (
                 <SwiperSlide key={index.key} className="bg-black">
                   <div className="bg-black ">
-                      <ReactPlayer
-                        url={`https://www.youtube.com/watch?v=${index.key}`}
-                        className="bg-black"
-                        width={440}
-                        height={250}
-                        config={{
-                          youtube: {
-                            playerVars: {
-                              controls: 1, // Show player controls
-                              modestbranding: 1, // Show minimal branding
-                              fs: 1, // Enable fullscreen button
-                            },
+                    <ReactPlayer
+                      url={`https://www.youtube.com/watch?v=${index.key}`}
+                      className="bg-black"
+                      width={440}
+                      height={250}
+                      config={{
+                        youtube: {
+                          playerVars: {
+                            controls: 1, // Show player controls
+                            modestbranding: 1, // Show minimal branding
+                            fs: 1, // Enable fullscreen button
                           },
-                        }}
-                      />
+                        },
+                      }}
+                    />
                   </div>
                 </SwiperSlide>
               ))}
             </Swiper>
           </div>
-
-          
 
           <h1>{Popular.title}</h1>
         </div>

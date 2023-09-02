@@ -136,12 +136,16 @@ export default function QuickView({ Popular, onClose }) {
                     {Popular.overview}
                   </p>
                   <div className="text-white/[.60] flex space-x-4">
-                    <p className="max-w-[40rem] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
-                      Budget : $ {Popular.budget.toLocaleString()}
-                    </p>
-                    <p className="max-w-[40rem] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
-                      Revenue : $ {Popular.revenue.toLocaleString()}
-                    </p>
+                    {Popular.budget && (
+                      <p className="max-w-[40rem] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                        Budget : $ {Popular.budget.toLocaleString()}
+                      </p>
+                    )}
+                    {Popular.revenue && (
+                      <p className="max-w-[40rem] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                        Revenue : $ {Popular.revenue.toLocaleString()}
+                      </p>
+                    )}
                   </div>
                   <div className="flex capitalize space-x-default items-center">
                     <div className="flex space-x-1 text-[#1AC855] items-center font-semibold">

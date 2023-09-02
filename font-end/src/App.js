@@ -15,6 +15,7 @@ import Home from "./page/Home";
 import Login from "./page/Login";
 import SignUp from "./page/SignUp";
 import PageNotFound from "../src/page/PageNotFound";
+import Player from "./components/Player";
 
 
 export default function App() {
@@ -56,11 +57,11 @@ export default function App() {
       <Routes>
         {/* <Route exact path="/" element={<Home />} /> */}
         <Route exact path="/signin" element={<Login />} />
-        <Route exact path="/dev" element={<Home />} />
         <Route exact path="/signup" element={<SignUp />} />
         <Route path="*" element={<PageNotFound />} />
         <Route element={<ProtectedRoute />}>
           <Route index element={<Home />} />
+          <Route path="/player" element={<Player />} />
         </Route>
       </Routes>
     </Router>
