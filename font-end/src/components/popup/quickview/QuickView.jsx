@@ -9,6 +9,7 @@ import { PiSpeakerSimpleSlash, PiSpeakerHigh } from "react-icons/pi";
 import ReactPlayer from "react-player";
 import Overview from "./tabs/overview/Overview";
 import Trailers from "./tabs/trailers/Trailers";
+import Cast from "./tabs/cast/Cast";
 
 export default function QuickView({ Popular, onClose }) {
   const [loading, setLoading] = useState(true);
@@ -64,8 +65,8 @@ export default function QuickView({ Popular, onClose }) {
   const tabs = [
     { id: "overview", label: "Overview" },
     { id: "trailers", label: "Trailers & More" },
-    { id: "Cast", label: "Cast" },
-    { id: "book", label: "Buy Tickets" }
+    { id: "cast", label: "Cast" },
+    { id: "book", label: "Buy Tickets" },
   ];
 
   if (Popular.is_movie === false) {
@@ -180,7 +181,10 @@ export default function QuickView({ Popular, onClose }) {
                     </div>
                   </div>
                   <div className="flex space-x-default">
-                    <div onClick={Play} className="flex items-center space-x-2 bg-white w-fit px-6 py-2 rounded-md text-black hover:bg-input_bg hover:text-white">
+                    <div
+                      onClick={Play}
+                      className="flex items-center space-x-2 bg-white w-fit px-6 py-2 rounded-md text-black hover:bg-input_bg hover:text-white"
+                    >
                       <FaPlay />
                       <button className="font-medium">Play</button>
                     </div>
@@ -251,6 +255,11 @@ export default function QuickView({ Popular, onClose }) {
                       allvideos={allvideos}
                       loading={loading}
                     />
+                  </div>
+                )}
+                {activeTab === "cast" && (
+                  <div>
+                    <Cast Popular={Popular}/>
                   </div>
                 )}
                 {activeTab === "book" && (

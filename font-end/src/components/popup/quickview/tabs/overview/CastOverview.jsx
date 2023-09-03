@@ -65,8 +65,7 @@ export default function CastOverview({ Popular }) {
                 modules={[Navigation, Autoplay]}
                 className="mySwiper"
               >
-                {cast
-                  .filter((index) => index.profile_path) // Filter out cast with no image
+                {cast.filter((index) => index.profile_path) // Filter out cast with no image
                   .slice(0, 30)
                   .map((index) => (
                     <SwiperSlide key={index.key}>
@@ -85,6 +84,9 @@ export default function CastOverview({ Popular }) {
                       </div>
                     </SwiperSlide>
                   ))}
+                  <div>
+                    123
+                  </div>
               </Swiper>
             </div>
           </div>
