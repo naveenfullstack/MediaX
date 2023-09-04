@@ -31,7 +31,7 @@ export default function CastOverview({ Popular }) {
     setTimeout(() => {
       setVisibleCastCount(visibleCastCount + 16);
       setIsLoadingMore(false);
-    }, 1000); // Simulate a delay for loading more data (remove this in production)
+    }, 1000); 
   };
 
   return (

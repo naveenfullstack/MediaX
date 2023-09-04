@@ -6,6 +6,8 @@ import "swiper/css/navigation";
 import "../Css/FeaturedItems.scss";
 import { Autoplay } from "swiper/modules";
 import { usePopularMovies } from "../../context/PopularMoviesContext";
+import { MdAdd } from "react-icons/md";
+import { FaPlay } from "react-icons/fa";
 
 export default function FeaturedItems() {
   const handleExternalLinkClick = (url) => {
@@ -80,6 +82,22 @@ export default function FeaturedItems() {
                         <p>IMDB</p>
                         <p>:</p>
                         <p>{index.imdb_vote}</p>
+                      </div>
+                    </div>
+                    <div className="flex space-x-default">
+                      <div
+                        onClick={() =>
+                          (window.location.href = `/player/${index.id}`)
+                        }
+                        className="flex items-center space-x-2 bg-white w-fit px-6 py-2 rounded-md text-black hover:bg-input_bg hover:text-white"
+                      >
+                        <FaPlay />
+                        <button className="font-medium">Play</button>
+                      </div>
+
+                      <div className="flex items-center space-x-2 w-fit px-6 pl-4 py-2 rounded-md text-white border-default border-white/[.60] hover:bg-input_bg hover:border-transparent">
+                        <MdAdd className="text-[1.5rem]" />
+                        <button className="capitalize">my list</button>
                       </div>
                     </div>
                   </div>

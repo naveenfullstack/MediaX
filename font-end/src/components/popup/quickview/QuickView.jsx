@@ -2,10 +2,15 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import api from "../../../Apis";
+import { useNavigate } from "react-router-dom";
+
+// Recat - Icons
 import { AiOutlineClose } from "react-icons/ai";
 import { MdAdd } from "react-icons/md";
 import { FaPlay } from "react-icons/fa";
 import { PiSpeakerSimpleSlash, PiSpeakerHigh } from "react-icons/pi";
+
+// Components
 import ReactPlayer from "react-player";
 import Overview from "./tabs/overview/Overview";
 import Trailers from "./tabs/trailers/Trailers";
@@ -18,13 +23,10 @@ export default function QuickView({ Popular, onClose }) {
   const [playing, setPlaying] = useState(true);
   const [activeTab, setActiveTab] = useState("overview");
   const [muted, setMuted] = useState(false);
+  const navigate = useNavigate();
 
   const handleExternalLinkClick = (url) => {
     window.open(url, "_blank");
-  };
-
-  const Play = () => {
-    window.location.href = `/player/${Popular.id}`;
   };
 
   const toggleMute = () => {
@@ -32,6 +34,21 @@ export default function QuickView({ Popular, onClose }) {
   };
 
   useEffect(() => {
+    const userDataString = localStorage.getItem("_userData");
+
+    if (userDataString) {
+      try {
+        const userData = JSON.parse(userDataString);
+        const { email } = userData;
+
+        console.log("Email from local storage:", email);
+      } catch (error) {
+        console.error("Error parsing user data from local storage:", error);
+      }
+    } else {
+      console.warn("No user data found in local storage");
+    }
+
     axios
       .get(`${api.Domain}/videos/${Popular.id}`, {
         headers: {
@@ -181,13 +198,25 @@ export default function QuickView({ Popular, onClose }) {
                     </div>
                   </div>
                   <div className="flex space-x-default">
-                    <div
-                      onClick={Play}
-                      className="flex items-center space-x-2 bg-white w-fit px-6 py-2 rounded-md text-black hover:bg-input_bg hover:text-white"
-                    >
-                      <FaPlay />
-                      <button className="font-medium">Play</button>
-                    </div>
+                    {Popular.status === "boxoffice" ? (
+                        <div
+                          onClick={() => navigate(`/player/${Popular.id}`)}
+                          className="flex items-center space-x-2 bg-white w-fit px-6 py-2 rounded-md text-black hover:bg-input_bg hover:text-white"
+                        >
+                          <FaPlay />
+                          <button className="font-medium capitalize">
+                            watch in theater
+                          </button>
+                        </div>
+                    ) : (
+                      <div
+                        onClick={() => navigate(`/player/${Popular.id}`)}
+                        className="flex items-center space-x-2 bg-white w-fit px-6 py-2 rounded-md text-black hover:bg-input_bg hover:text-white"
+                      >
+                        <FaPlay />
+                        <button className="font-medium">Play</button>
+                      </div>
+                    )}
 
                     <div className="flex items-center space-x-2 w-fit px-6 pl-4 py-2 rounded-md text-white border-default border-white/[.60] hover:bg-input_bg hover:border-transparent">
                       <MdAdd className="text-[1.5rem]" />
@@ -259,7 +288,7 @@ export default function QuickView({ Popular, onClose }) {
                 )}
                 {activeTab === "cast" && (
                   <div>
-                    <Cast Popular={Popular}/>
+                    <Cast Popular={Popular} />
                   </div>
                 )}
                 {activeTab === "book" && (

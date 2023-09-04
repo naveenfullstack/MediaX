@@ -63,62 +63,33 @@ router.get("/get-all-shows", async (req, res) => {
   }
 });
 
-router.put("/editprojects/:id", async (req, res) => {
+// Search shows by title and return matched shows first
+router.get('/search', async (req, res) => {
+  const { title } = req.query;
+
   try {
-    const projectId = req.params.id;
-    const {
-      project_name,
-      project_description,
-      hours_spent,
-      started_date,
-      end_date,
-    } = req.body;
+    // Find the shows that match the search criteria
+    const regexTitle = new RegExp(title, 'i'); 
+    const matchedShows = await Shows.find({ title: regexTitle });
 
-    // Find the project by ID and update its details
-    const updatedProject = await Projects.findByIdAndUpdate(
-      projectId,
-      {
-        project_name,
-        project_description,
-        hours_spent,
-        started_date,
-        end_date,
-      },
-      { new: true }
-    );
+    // Extract unique categories from the matched shows
+    const categories = [...new Set(matchedShows.map(show => show.category))];
 
-    if (!updatedProject) {
-      return res.status(404).json({ error: "Project not found" });
-    }
+    // Find related shows based on the categories of the matched shows
+    const relatedShows = await Shows.find({
+      category: { $in: categories },
+      _id: { $nin: matchedShows.map(show => show._id) }, 
+    });
 
-    res
-      .status(200)
-      .json({
-        message: "Project updated successfully",
-        project: updatedProject,
-      });
+    // Combine matched and related shows into a single array
+    const allShows = [...matchedShows, ...relatedShows];
+
+    res.json(allShows);
   } catch (error) {
-    console.error("Error updating project:", error);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: 'Server error' });
   }
 });
 
-router.delete("/deleteprojects/:id", async (req, res) => {
-  try {
-    const projectId = req.params.id;
 
-    // Find the project by ID and delete it
-    const deletedProject = await Projects.findByIdAndDelete(projectId);
-
-    if (!deletedProject) {
-      return res.status(404).json({ error: "Project not found" });
-    }
-
-    res.status(200).json({ message: "Project deleted successfully" });
-  } catch (error) {
-    console.error("Error deleting project:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
 
 module.exports = router;

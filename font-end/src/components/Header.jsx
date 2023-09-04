@@ -53,7 +53,10 @@ export default function Header() {
             movies
           </h1>
           <h1 className="text-white/[.60] hover:text-white hover:cursor-pointer">
-            new & populer
+            videos
+          </h1>
+          <h1 className="text-white/[.60] hover:text-white hover:cursor-pointer">
+            Box Office
           </h1>
           <h1 className="text-white/[.60] hover:text-white hover:cursor-pointer">
             my list

@@ -35,7 +35,7 @@ export default function Overview({ Popular, allvideos, loading }) {
             <CastOverview Popular={Popular}/>
           </div>
 
-          <div className="bg-black space-y-default">
+          <div className="bg-black space-y-default pb-8">
             <h1 className="text-title capitalize font-medium">
               {" "}
               videos & Trailers
@@ -50,12 +50,12 @@ export default function Overview({ Popular, allvideos, loading }) {
             >
               {allvideos.slice(0, 5).map((index) => (
                 <SwiperSlide key={index.key} className="bg-black">
-                  <div className="bg-black ">
+                  <div className="bg-black w-[35rem] md:h-[6rem] lg:h-[10rem] xxxl:h-[15rem] xxl:h-[15rem] xl:h-[15rem] lg:h-[15rem]">
                     <ReactPlayer
                       url={`https://www.youtube.com/watch?v=${index.key}`}
                       className="bg-black"
-                      width={440}
-                      height={250}
+                      width="100%"
+                      height="100%"
                       config={{
                         youtube: {
                           playerVars: {
@@ -72,7 +72,6 @@ export default function Overview({ Popular, allvideos, loading }) {
             </Swiper>
           </div>
 
-          <h1>{Popular.title}</h1>
         </div>
       )}
     </div>

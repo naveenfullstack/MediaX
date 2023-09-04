@@ -31,20 +31,22 @@ export default function Trailers({ Popular, allvideos }) {
                 {/* Adjust the height */}
               </div>
             ) : (
-              <ReactPlayer
-                url={`https://www.youtube.com/watch?v=${index.key}`}
-                width={440}
-                height={250}
-                config={{
-                  youtube: {
-                    playerVars: {
-                      controls: 1, // Show player controls
-                      modestbranding: 1, // Show minimal branding
-                      fs: 1, // Enable fullscreen button
+              <div className="md:h-[6rem] lg:h-[10rem] xxxl:h-[15rem] xxl:h-[15rem] xl:h-[15rem] lg:h-[15rem]">
+                <ReactPlayer
+                  url={`https://www.youtube.com/watch?v=${index.key}`}
+                  width="100%"
+                  height="100%"
+                  config={{
+                    youtube: {
+                      playerVars: {
+                        controls: 1, // Show player controls
+                        modestbranding: 1, // Show minimal branding
+                        fs: 1, // Enable fullscreen button
+                      },
                     },
-                  },
-                }}
-              />
+                  }}
+                />
+              </div>
             )}
           </div>
         ))}

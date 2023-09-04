@@ -84,9 +84,6 @@ export default function CastOverview({ Popular }) {
                       </div>
                     </SwiperSlide>
                   ))}
-                  <div>
-                    123
-                  </div>
               </Swiper>
             </div>
           </div>
