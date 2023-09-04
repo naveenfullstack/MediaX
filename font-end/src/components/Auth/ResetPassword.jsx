@@ -1,72 +1,61 @@
 import React, { useState } from "react";
 import Logo from "../../assets/MediaX Logo.svg";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../../Apis";
 import swal from "sweetalert";
 
-export default function DefaultLogin() {
+export default function ResetPassword() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { token } = useParams();
 
   const handleBackToHome = () => {
     window.location.href = "/";
-  };
-
-  const handleRememberMeChange = (event) => {
-    setRememberMe(event.target.checked);
   };
 
   const handleShowPasswordChange = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleLogin = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
-    console.log("handleLogin function called");
-    console.log(email, password);
     try {
       const response = await axios.post(
-        api.login,
+        `${api.Domain}/auth/reset-password/${token}`,
         {
-          email,
-          password,
+          newPassword,
         },
         {
           headers: {
             api_key: api.key,
             authantication: api.authantication,
           },
-          body: JSON.stringify({ email, password }),
+          body: JSON.stringify({ newPassword }),
         }
       );
 
-      console.log("Login response:", response);
+      console.log("Reset Password response:", response);
 
-      const accessToken = response.data.accessToken;
-      const data = response.data;
+      const data = response.data.message;
 
-      if (accessToken) {
-        // Successfully logged in, set the token using setToken function
-        localStorage.setItem("_userData", JSON.stringify(data));
+      if (data) {
         navigate("/");
       } else {
-        console.error("Login failed with access token");
+        swal({
+          title: "Access Denited",
+          text: "Somthing Wrong Try Again",
+          icon: "error",
+          className: "black",
+          button: "Okey",
+        });
+        console.error("Incorrect Token or failed");
       }
     } catch (error) {
-      swal({
-        title: "Access Denited",
-        text: "Your username or password incorrect",
-        icon: "error",
-        className: "black",
-        button: "Okey",
-      });
-      console.error("Login failed:", error);
+      console.error("Password Reset failed:", error);
     } finally {
       setIsLoading(false);
     }
@@ -99,29 +88,25 @@ export default function DefaultLogin() {
 
         <div className="flex w-full text-white justify-center h-[80%] items-center">
           <div className="w-full max-w-[400px] bg-black/[.80] lg:p-10 md:p-10 sm:px-6 sm:py-10 rounded-lg space-y-8">
-            <h1 title="123" className="text-[2rem] capitalize font-medium">
-              sign in
-            </h1>
+            <div className="space-y-2">
+              <h1 title="123" className="text-[2rem] capitalize font-medium">
+                Reset Password
+              </h1>
+              {/* <p className="opacity-default text-paragraph_2">
+                Enter your email and click "submit" button we will send you
+                password reset Url to your email
+              </p> */}
+            </div>
             <form className="space-y-4">
-              <input
-                type="email"
-                id="email"
-                placeholder="Email or phone number"
-                className="p-3 rounded-lg bg-input_bg placeholder-white/[.40] w-full focus:outline-none"
-                value={email}
-                //onChange={handleEmailChange}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-
               <div className="flex rounded-lg bg-input_bg p-3">
                 <input
                   type={showPassword ? "text" : "password"}
                   id="password"
-                  placeholder="Password"
+                  placeholder="Enter Your New Password"
                   className="bg-transparent placeholder-white/[.40] w-full focus:outline-none"
-                  value={password}
+                  value={newPassword}
                   //onChange={handlePasswordChange}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => setNewPassword(e.target.value)}
                 />
                 <button
                   type="button"
@@ -132,39 +117,13 @@ export default function DefaultLogin() {
                 </button>
               </div>
 
-              <div className="flex items-center">
-                <div className="w-2/4">
-                  <input
-                    type="checkbox"
-                    id="rememberMe"
-                    className="mr-2"
-                    checked={rememberMe}
-                    onChange={handleRememberMeChange}
-                  />
-                  <label
-                    htmlFor="rememberMe"
-                    className="opacity-default text-paragraph"
-                  >
-                    Remember Me
-                  </label>
-                </div>
-                <div className="w-2/4 flex justify-end">
-                  <div
-                    onClick={() => navigate(`/forgot-password`)}
-                    className="capitalize opacity-default hover:underline text-paragraph hover:cursor-pointer"
-                  >
-                    Forgot Password?
-                  </div>
-                </div>
-              </div>
-
               <button
                 type="submit"
                 className="w-full font-semibold bg-primary text-white rounded-lg p-2 capitalize"
-                onClick={handleLogin}
+                onClick={handleSubmit}
                 disabled={isLoading}
               >
-                {isLoading ? "Loading..." : "Sign In"}
+                {isLoading ? "Loading..." : "Reset New Password"}
               </button>
             </form>
             <div className="space-y-2">
@@ -174,7 +133,7 @@ export default function DefaultLogin() {
                   onClick={handleGoToSignUp}
                   className="font-semibold hover:cursor-pointer text-[1.1rem]"
                 >
-                  sign up
+                  sign up now
                 </button>
               </div>
               <h1 className="opacity-default text-paragraph_2">

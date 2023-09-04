@@ -2,14 +2,25 @@ import React, { useState } from "react";
 import Logo from "../assets/MediaX Logo.svg";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   const logout = () => {
     localStorage.removeItem("_userData");
     window.location.href = "/signin";
+  };
+
+  const handleSearch = () => {
+    navigate(`/search/${search}`);
+  };
+
+  const Home = () => {
+    navigate(`/`);
   };
 
   const options = [
@@ -42,9 +53,9 @@ export default function Header() {
   };
 
   return (
-    <div className="items-center px-4 sm:hidden lg:flex md:hidden">
+    <div className="items-center px-4 sm:hidden lg:flex md:hidden text-white">
       <div className="flex items-center space-x-default w-9/12">
-        <img src={Logo} alt="logo" className="w-logo" />
+        <img onClick={Home} src={Logo} alt="logo" className="w-logo cursor-pointer" />
         <div className="capitalize flex space-x-8">
           <h1 className="text-white/[.60] hover:text-white hover:cursor-pointer">
             tv shows
@@ -57,6 +68,9 @@ export default function Header() {
           </h1>
           <h1 className="text-white/[.60] hover:text-white hover:cursor-pointer">
             Box Office
+          </h1>
+          <h1 className="text-white/[.60] hover:text-white hover:cursor-pointer">
+            music
           </h1>
           <h1 className="text-white/[.60] hover:text-white hover:cursor-pointer">
             my list
@@ -74,11 +88,15 @@ export default function Header() {
           )}
           {isSearchVisible && (
             <div className="rounded border h-fit flex items-center px-2 duration-300">
-              <AiOutlineSearch className="cursor-pointer text-xl" />
+              <AiOutlineSearch
+                onClick={handleSearch}
+                className="cursor-pointer text-xl"
+              />
               <input
                 type="text"
                 className="p-2 bg-transparent h-fit focus:outline-none"
                 placeholder="Search..."
+                onChange={(e) => setSearch(e.target.value)}
               />
               <AiOutlineClose
                 className="cursor-pointer"
