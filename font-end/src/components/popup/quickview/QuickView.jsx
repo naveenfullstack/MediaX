@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 // Recat - Icons
 import { AiOutlineClose } from "react-icons/ai";
-import { MdAdd } from "react-icons/md";
 import { FaPlay } from "react-icons/fa";
 import { PiSpeakerSimpleSlash, PiSpeakerHigh } from "react-icons/pi";
 
@@ -15,6 +14,7 @@ import ReactPlayer from "react-player";
 import Overview from "./tabs/overview/Overview";
 import Trailers from "./tabs/trailers/Trailers";
 import Cast from "./tabs/cast/Cast";
+import MyList from "./elements/MyList";
 
 export default function QuickView({ Popular, onClose }) {
   const [loading, setLoading] = useState(true);
@@ -34,20 +34,21 @@ export default function QuickView({ Popular, onClose }) {
   };
 
   useEffect(() => {
-    const userDataString = localStorage.getItem("_userData");
+    // const userDataString = localStorage.getItem("_userData");
 
-    if (userDataString) {
-      try {
-        const userData = JSON.parse(userDataString);
-        const { email } = userData;
+    // if (userDataString) {
+    //   try {
+    //     const userData = JSON.parse(userDataString);
+    //     const { email } = userData;
+    //     setUserEmail(userData)
 
-        console.log("Email from local storage:", email);
-      } catch (error) {
-        console.error("Error parsing user data from local storage:", error);
-      }
-    } else {
-      console.warn("No user data found in local storage");
-    }
+    //     console.log("Email from local storage:", useremail);
+    //   } catch (error) {
+    //     console.error("Error parsing user data from local storage:", error);
+    //   }
+    // } else {
+    //   console.warn("No user data found in local storage");
+    // }
 
     axios
       .get(`${api.Domain}/videos/${Popular.id}`, {
@@ -199,15 +200,15 @@ export default function QuickView({ Popular, onClose }) {
                   </div>
                   <div className="flex space-x-default">
                     {Popular.status === "boxoffice" ? (
-                        <div
-                          onClick={() => navigate(`/player/${Popular.id}`)}
-                          className="flex items-center space-x-2 bg-white w-fit px-6 py-2 rounded-md text-black hover:bg-input_bg hover:text-white"
-                        >
-                          <FaPlay />
-                          <button className="font-medium capitalize">
-                            watch in theater
-                          </button>
-                        </div>
+                      <div
+                        onClick={() => navigate(`/player/${Popular.id}`)}
+                        className="flex items-center space-x-2 bg-white w-fit px-6 py-2 rounded-md text-black hover:bg-input_bg hover:text-white"
+                      >
+                        <FaPlay />
+                        <button className="font-medium capitalize">
+                          watch in theater
+                        </button>
+                      </div>
                     ) : (
                       <div
                         onClick={() => navigate(`/player/${Popular.id}`)}
@@ -218,10 +219,10 @@ export default function QuickView({ Popular, onClose }) {
                       </div>
                     )}
 
-                    <div className="flex items-center space-x-2 w-fit px-6 pl-4 py-2 rounded-md text-white border-default border-white/[.60] hover:bg-input_bg hover:border-transparent">
-                      <MdAdd className="text-[1.5rem]" />
-                      <button className="capitalize">my list</button>
+                    <div>
+                      <MyList />
                     </div>
+
                   </div>
                 </div>
               </div>

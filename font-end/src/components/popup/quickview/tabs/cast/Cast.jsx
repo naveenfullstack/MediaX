@@ -63,7 +63,7 @@ export default function CastOverview({ Popular }) {
                         alt=""
                       />
                       <h1 className="text-left px-2 pt-2 text-paragraph">
-                        {index.name}
+                        {index.title}
                       </h1>
                       <h1 className="text-left px-2 text-paragraph text-white/[.60]">
                         {index.character}

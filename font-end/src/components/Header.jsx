@@ -52,10 +52,23 @@ export default function Header() {
     setIsSearchVisible(!isSearchVisible);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      navigate(`/search/${search}`);
+    }
+  };
+
+
   return (
     <div className="items-center px-4 sm:hidden lg:flex md:hidden text-white">
       <div className="flex items-center space-x-default w-9/12">
-        <img onClick={Home} src={Logo} alt="logo" className="w-logo cursor-pointer" />
+        <img
+          onClick={Home}
+          src={Logo}
+          alt="logo"
+          className="w-logo cursor-pointer"
+        />
         <div className="capitalize flex space-x-8">
           <h1 className="text-white/[.60] hover:text-white hover:cursor-pointer">
             tv shows
@@ -97,6 +110,7 @@ export default function Header() {
                 className="p-2 bg-transparent h-fit focus:outline-none"
                 placeholder="Search..."
                 onChange={(e) => setSearch(e.target.value)}
+                keypress={handleKeyPress}
               />
               <AiOutlineClose
                 className="cursor-pointer"

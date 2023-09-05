@@ -50,7 +50,7 @@ export default function Overview({ Popular, allvideos, loading }) {
             >
               {allvideos.slice(0, 5).map((index) => (
                 <SwiperSlide key={index.key} className="bg-black">
-                  <div className="bg-black w-[35rem] md:h-[6rem] lg:h-[10rem] xxxl:h-[15rem] xxl:h-[15rem] xl:h-[15rem] lg:h-[15rem]">
+                  <div className="bg-black w-[35rem] md:h-[rem] lg:h-[10rem] xxxl:h-[15rem] xxl:h-[15rem] xl:h-[15rem] lg:h-[15rem]">
                     <ReactPlayer
                       url={`https://www.youtube.com/watch?v=${index.key}`}
                       className="bg-black"
