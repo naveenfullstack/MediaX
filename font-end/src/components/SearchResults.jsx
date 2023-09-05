@@ -89,7 +89,7 @@ export default function SearchResults() {
       ) : (
         <div className="text-white px-20">
           <div className="flex space-x-2 items-center text-title mt-4 mb-8">
-            <h1 className="capitalize">search results showing for</h1>
+            <h1 className="capitalize">{shows.length} search results showing for</h1>
             <p>:</p>
             <p>{title}</p>
           </div>
@@ -121,7 +121,7 @@ export default function SearchResults() {
                         <div className="flex capitalize space-x-default items-center">
                           <div className="flex space-x-1 text-[#1AC855] items-center font-semibold">
                             <p id="match sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
-                              {/* {randomNumbers[slideIndex]} */}
+                              {/* {randomNumbers[slideIndex]} */}90
                             </p>
                             <p>%</p>
                             <p>match</p>
@@ -129,6 +129,7 @@ export default function SearchResults() {
                           <p className="sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
                             {new Date(index.release_date).getFullYear()}
                           </p>
+                          <p>{index.is_movie ? "movie" : "TV series"}</p>
                         </div>
                       </div>
                     </div>

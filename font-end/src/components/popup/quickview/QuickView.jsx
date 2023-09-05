@@ -151,7 +151,7 @@ export default function QuickView({ Popular, onClose }) {
                   <AiOutlineClose className="text-white" />
                 </div>
               </div>
-              <div className="w-full text-start lg:px-20 md:px-20 sm:px-6 bg-gradient-to-r from-black from-30% h-full flex items-center">
+              <div  className="w-full text-start lg:px-20 md:px-20 sm:px-6 bg-gradient-to-r from-black from-30% h-full flex items-center">
                 <div className="space-y-default text-primary_text/[.60]">
                   <h1 className="text-start lg:text-[3.5rem] md:text-[2.5rem] sm:text-[1.5rem] text-primary_text font-title">
                     {Popular.title}

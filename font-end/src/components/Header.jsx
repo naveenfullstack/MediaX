@@ -110,7 +110,7 @@ export default function Header() {
                 className="p-2 bg-transparent h-fit focus:outline-none"
                 placeholder="Search..."
                 onChange={(e) => setSearch(e.target.value)}
-                keypress={handleKeyPress}
+                onKeyUp={handleKeyPress}
               />
               <AiOutlineClose
                 className="cursor-pointer"

@@ -107,6 +107,7 @@ export default function ResetPassword() {
                   value={newPassword}
                   //onChange={handlePasswordChange}
                   onChange={(e) => setNewPassword(e.target.value)}
+                  onKeyUp={handleSubmit}
                 />
                 <button
                   type="button"

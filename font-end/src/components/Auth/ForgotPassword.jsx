@@ -99,6 +99,7 @@ export default function ForgotPassword() {
                 className="p-3 rounded-lg bg-input_bg placeholder-white/[.40] w-full focus:outline-none"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                onKeyUp={handleSubmit}
               />
 
               <button
