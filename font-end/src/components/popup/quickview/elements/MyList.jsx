@@ -15,8 +15,6 @@ export default function MyList({ Popular }) {
       try {
         const userData = JSON.parse(userDataString);
         const { email } = userData;
-
-        console.log("Email from local storage:", email);
         setUserEmail(email);
 
         axios

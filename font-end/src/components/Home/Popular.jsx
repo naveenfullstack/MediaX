@@ -3,10 +3,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import 'swiper/css/free-mode';
+import "swiper/css/free-mode";
 import "../Css/FeaturedItems.scss";
-import { Autoplay , FreeMode} from "swiper/modules";
-import { MdOutlineAddCircle , MdKeyboardArrowRight} from "react-icons/md";
+import { Autoplay, FreeMode } from "swiper/modules";
+import { MdKeyboardArrowRight } from "react-icons/md";
 import { usePopularMovies } from "../../context/PopularMoviesContext";
 import QuickView from "../popup/quickview/QuickView";
 
@@ -90,7 +90,7 @@ export default function Popular() {
               centeredSlides={true}
               freeMode={true}
               loop={true}
-              modules={[Autoplay , FreeMode]}
+              modules={[Autoplay, FreeMode]}
               className="mySwiper"
               breakpoints={{
                 [breakpoints.mobile]: {
@@ -119,10 +119,10 @@ export default function Popular() {
                       <div className="block w-full h-full opacity-0 hover:opacity-100 transition hover:delay-100 duration-100 ease-in-out">
                         <div className="h-3/6 flex justify-end">
                           {/* <h1 className="w-full">{index.original_title}</h1> */}
-                          <MdOutlineAddCircle
+                          {/* <MdOutlineAddCircle
                             title="Add To List"
                             className="pt-2 text-[2rem] text-primary_text/[.80] hover:cursor-pointer"
-                          />
+                          /> */}
                         </div>
                         <div className="h-3/6 flex items-end">
                           <div>
@@ -138,6 +138,9 @@ export default function Popular() {
                               <p className="sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
                                 {new Date(index.release_date).getFullYear()}
                               </p>
+                              <p className="sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
+                                {index.is_movie ? "movie" : "TV series"}
+                              </p>
                             </div>
                           </div>
                         </div>
@@ -147,7 +150,10 @@ export default function Popular() {
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div onClick={() => swiperRef.current?.slideNext()} className="xxxl:flex xxl:flex xl:flex lg:flex hidden items-center bg-black/[.60] px-2 absolute right-0 z-10 xxxl:h-item_xxxl xxl:h-item_xxl xl:h-item_xl lg:h-item_lg md:h-item_md sm:h-item_sm ">
+            <div
+              onClick={() => swiperRef.current?.slideNext()}
+              className="xxxl:flex xxl:flex xl:flex lg:flex hidden items-center bg-black/[.60] px-2 absolute right-0 z-10 xxxl:h-item_xxxl xxl:h-item_xxl xl:h-item_xl lg:h-item_lg md:h-item_md sm:h-item_sm "
+            >
               <MdKeyboardArrowRight
                 className="text-[3rem] "
                 style={{ cursor: "pointer" }}
