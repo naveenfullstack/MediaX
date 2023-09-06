@@ -34,21 +34,6 @@ export default function QuickView({ Popular, onClose }) {
   };
 
   useEffect(() => {
-    // const userDataString = localStorage.getItem("_userData");
-
-    // if (userDataString) {
-    //   try {
-    //     const userData = JSON.parse(userDataString);
-    //     const { email } = userData;
-    //     setUserEmail(userData)
-
-    //     console.log("Email from local storage:", useremail);
-    //   } catch (error) {
-    //     console.error("Error parsing user data from local storage:", error);
-    //   }
-    // } else {
-    //   console.warn("No user data found in local storage");
-    // }
 
     axios
       .get(`${api.Domain}/videos/${Popular.id}`, {
@@ -151,7 +136,7 @@ export default function QuickView({ Popular, onClose }) {
                   <AiOutlineClose className="text-white" />
                 </div>
               </div>
-              <div  className="w-full text-start lg:px-20 md:px-20 sm:px-6 bg-gradient-to-r from-black from-30% h-full flex items-center">
+              <div className="w-full text-start lg:px-20 md:px-20 sm:px-6 bg-gradient-to-r from-black from-30% h-full flex items-center">
                 <div className="space-y-default text-primary_text/[.60]">
                   <h1 className="text-start lg:text-[3.5rem] md:text-[2.5rem] sm:text-[1.5rem] text-primary_text font-title">
                     {Popular.title}
@@ -220,7 +205,7 @@ export default function QuickView({ Popular, onClose }) {
                     )}
 
                     <div>
-                      <MyList />
+                      <MyList Popular={Popular}/>
                     </div>
 
                   </div>
@@ -235,11 +220,11 @@ export default function QuickView({ Popular, onClose }) {
           >
             {muted ? (
               <div className="p-3 bg-input_bg rounded-full">
-                <PiSpeakerHigh className="text-[1.3rem]" />
+                 <PiSpeakerSimpleSlash className="text-[1.3rem]" />
               </div>
             ) : (
               <div className="p-3 bg-input_bg rounded-full">
-                <PiSpeakerSimpleSlash className="text-[1.3rem]" />
+                <PiSpeakerHigh className="text-[1.3rem]" />
               </div>
             )}
           </div>

@@ -122,7 +122,6 @@ export default function DefaultLogin() {
                   value={password}
                   //onChange={handlePasswordChange}
                   onChange={(e) => setPassword(e.target.value)}
-                  onKeyUp={handleShowPasswordChange}
                 />
                 <button
                   type="button"
