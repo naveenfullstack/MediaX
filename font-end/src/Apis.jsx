@@ -1,4 +1,5 @@
-const Domain = "https://media-x.vercel.app"
+//const Domain = "https://media-x.vercel.app"
+const Domain = "http://192.168.1.8:9001"
 
 const requests = {
 
@@ -7,7 +8,8 @@ const requests = {
   authantication : process.env.REACT_APP_AUTHANTICATION,
 
   //API Urls
-  Domain : `https://media-x.vercel.app`,
+  //Domain : `https://media-x.vercel.app`,
+  Domain : `http://192.168.1.8:9001`,
   Local_Domain : `localhost:9001`,
   ForgetPassword : `${Domain}/auth/forgotpassword`,
   Popular: `${Domain}/shows/get-all-shows`,

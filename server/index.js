@@ -17,8 +17,8 @@ app.use(cors());
 const ReqDomain = require ('./middlewares/ReqDomain')
 app.use(ReqDomain);
 
-const ReqIp = require ('./middlewares/ReqIp')
-app.use(ReqIp);
+// const ReqIp = require ('./middlewares/ReqIp')
+// app.use(ReqIp);
 
 const Headers = require ('./middlewares/Headers')
 

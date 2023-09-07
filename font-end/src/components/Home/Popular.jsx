@@ -9,6 +9,7 @@ import { Autoplay, FreeMode } from "swiper/modules";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { usePopularMovies } from "../../context/PopularMoviesContext";
 import QuickView from "../popup/quickview/QuickView";
+import MyListIcon from "../popup/quickview/elements/MyListIcon";
 
 export default function Popular() {
   const { popularMovies, loading, randomNumbers } = usePopularMovies();
@@ -46,6 +47,10 @@ export default function Popular() {
 
   const currentSlidesPerView =
     slidesPerView[currentBreakpoint] || slidesPerView.desktop;
+
+  const test = () => {
+    window.location.href = "/signin";
+  };
 
   return (
     <div>
@@ -112,19 +117,25 @@ export default function Popular() {
                       backgroundImage: `url(https://image.tmdb.org/t/p/original/${index.poster_path})`,
                     }}
                   >
-                    <div
-                      onClick={() => openPopup(index)}
-                      className="w-full h-full cursor-pointer text-start pl-item_sm_left pr-2 h-full flex items-center hover:bg-black/[.75] transition hover:delay-75 duration-100 ease-in-out"
-                    >
+                    <div className="w-full h-full cursor-pointer text-start pl-item_sm_left pr-2 h-full flex items-center hover:bg-black/[.75] transition hover:delay-75 duration-100 ease-in-out">
                       <div className="block w-full h-full opacity-0 hover:opacity-100 transition hover:delay-100 duration-100 ease-in-out">
-                        <div className="h-3/6 flex justify-end">
-                          {/* <h1 className="w-full">{index.original_title}</h1> */}
-                          {/* <MdOutlineAddCircle
-                            title="Add To List"
-                            className="pt-2 text-[2rem] text-primary_text/[.80] hover:cursor-pointer"
-                          /> */}
+                        <div className="h-1/6 flex justify-end">
+                          <MyListIcon Popular={index} />
                         </div>
-                        <div className="h-3/6 flex items-end">
+                        <div
+                          // onClick={() => openPopup(index)}
+                          onClick={() => {
+                            if (currentBreakpoint === "mobile") {
+                              test();
+                            } else if (currentBreakpoint === "tablet") {
+                              test();
+                            } else {
+                              // Handle desktop click here
+                              openPopup(index);
+                            }
+                          }}
+                          className="h-5/6 flex items-end"
+                        >
                           <div>
                             <h1 className="w-full">{index.title}</h1>
                             <div className="flex capitalize space-x-default items-center">

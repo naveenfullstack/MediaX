@@ -6,8 +6,8 @@ import "swiper/css/navigation";
 import "../Css/FeaturedItems.scss";
 import { Autoplay } from "swiper/modules";
 import { usePopularMovies } from "../../context/PopularMoviesContext";
-import { MdAdd } from "react-icons/md";
 import { FaPlay } from "react-icons/fa";
+import MyList from "../popup/quickview/elements/MyList";
 
 export default function FeaturedItems() {
   const handleExternalLinkClick = (url) => {
@@ -15,6 +15,15 @@ export default function FeaturedItems() {
   };
   const { popularMovies, loading, randomNumbers } = usePopularMovies();
   const PickRandom1stSlider = Math.floor(Math.random() * popularMovies.length);
+
+  const truncateText = (text, maxWords) => {
+    const words = text.split(" ");
+    if (words.length > maxWords) {
+      return words.slice(0, maxWords).join(" ") + " ...";
+    } else {
+      return text;
+    }
+  };
 
   return (
     <div>
@@ -54,7 +63,7 @@ export default function FeaturedItems() {
                       {index.title}
                     </h1>
                     <p className="max-w-[40rem] sm:text-[0.8rem] md:text-[1rem] lg:text-[1rem]">
-                      {index.overview}
+                      {truncateText(index.overview, 50)}
                     </p>
                     <div className="flex capitalize space-x-default items-center">
                       <div className="flex space-x-1 text-[#1AC855] items-center font-semibold">
@@ -94,10 +103,8 @@ export default function FeaturedItems() {
                         <FaPlay />
                         <button className="font-medium">Play</button>
                       </div>
-
-                      <div className="flex items-center space-x-2 w-fit px-6 pl-4 py-2 rounded-md text-white border-default border-white/[.60] hover:bg-input_bg hover:border-transparent">
-                        <MdAdd className="text-[1.5rem]" />
-                        <button className="capitalize">my list</button>
+                      <div>
+                        <MyList Popular={index} />
                       </div>
                     </div>
                   </div>

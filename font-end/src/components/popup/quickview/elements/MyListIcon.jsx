@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { MdAdd } from "react-icons/md";
-import { BiCheck } from "react-icons/bi";
 import axios from "axios";
 import api from "../../../../Apis";
 import { useMyListIdContext } from "../../../../context/MyListIdContext";
+import { MdOutlineAddCircle } from "react-icons/md";
+import { AiFillCheckCircle } from "react-icons/ai";
 
-export default function MyList({ Popular }) {
+export default function MyListIcon({ Popular }) {
   const { myList } = useMyListIdContext();
   const [isInMyList, setIsInMyList] = useState(false);
   const [userEmail, setUserEmail] = useState(null);
@@ -84,20 +84,18 @@ export default function MyList({ Popular }) {
   return (
     <div>
       {isInMyList ? (
-        <div
-          onClick={handleDeleteMyListItem}
-          className={`flex items-center space-x-2 w-fit px-6 pl-4 py-2 rounded-md text-white border-default border-white/[.60] hover:bg-input_bg hover:border-transparent`}
-        >
-          <BiCheck className="text-[1.5rem]" />
-          <button className="capitalize">Added</button>
+        <div onClick={handleDeleteMyListItem}>
+          <AiFillCheckCircle
+            title="Remove From The List"
+            className="pt-2 text-[2rem] text-primary_text/[.80] hover:cursor-pointer"
+          />
         </div>
       ) : (
-        <div
-          onClick={handleAddToMyList}
-          className={`flex items-center space-x-2 w-fit px-6 pl-4 py-2 rounded-md text-white border-default border-white/[.60] hover:bg-input_bg hover:border-transparent`}
-        >
-          <MdAdd className="text-[1.5rem]" />
-          <button className="capitalize">My List</button>
+        <div onClick={handleAddToMyList}>
+          <MdOutlineAddCircle
+            title="Add To The List"
+            className="pt-2 text-[2rem] text-primary_text/[.80] hover:cursor-pointer"
+          />
         </div>
       )}
     </div>
