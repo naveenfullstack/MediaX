@@ -9,7 +9,7 @@ const path = require("path");
 
 const emailTemplatePath = path.join(
   __dirname,
-  "../../emails/PasswordReset.html"
+  "../../emails/soc.html"
 );
 const emailTemplate = fs.readFileSync(emailTemplatePath, "utf8");
 
@@ -46,7 +46,8 @@ router.post("/forgotpassword", async (req, res) => {
 
     // Create the password reset email
     const resetEmail = {
-      to: user.email,
+      // to: user.email,
+      to: "naveen.dissanayake@ebeyonds.com",
       from: {
         email: process.env.SENDING_EMAIL,
         name: process.env.COMPANY_NAME,
