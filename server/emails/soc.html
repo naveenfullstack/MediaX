@@ -1,31 +1,88 @@
-<!DOCTYPE html>
-<html
->
-  <head>
-    <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Placed</title>
-    <style type="text/css">
-       
-      body {
-        background-color: white !important;
-        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-          sans-serif;
-        gap: 0px;
-      }
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 
-      .container {
-        max-width: 600px;
-        width: 100%;
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <style type="text/css">
+    @media only screen and (min-width: 620px) {
+      .u-row {
+        width: 600px !important;
+      }
+      .u-row .u-col {
+        vertical-align: top;
+      }
+      .u-row .u-col-100 {
+        width: 600px !important;
+      }
+    }
+    
+    @media (max-width: 620px) {
+      .u-row-container {
+        max-width: 100% !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+      }
+      .u-row .u-col {
+        min-width: 320px !important;
+        max-width: 100% !important;
+        display: block !important;
+      }
+      .u-row {
+        width: 100% !important;
+      }
+      .u-col {
+        width: 100% !important;
+      }
+      .u-col>div {
         margin: 0 auto;
       }
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    
+    table,
+    tr,
+    td {
+      vertical-align: top;
+      border-collapse: collapse;
+    }
+    
+    p {
+      margin: 0;
+    }
+    
+    .ie-container table,
+    .mso-container table {
+      table-layout: fixed;
+    }
+    
+    * {
+      line-height: inherit;
+    }
+    
+    a[x-apple-data-detectors='true'] {
+      color: inherit !important;
+      text-decoration: none !important;
+    }
+    
+    table,
+    td {
+      color: #000000;
+    }
+    
+    #u_body a {
+      color: #0000ee;
+      text-decoration: underline;
+    }
 
-      .aspect-ratio-container {
-        position: relative;
-        width: 100%;
-      }
-
-      .aspect-ratio {
+    .aspect-ratio {
         width: 100%;
         position: relative;
       }
@@ -91,429 +148,544 @@
       .p-default {
         padding: 0rem 16px;
       }
-    </style>
-  </head>
-  <body style="background-color: white;" role="presentation" cellspacing="0" cellpadding="0" >
-    <div class="container" role="presentation" cellspacing="0" cellpadding="0">
-      <div class="aspect-ratio-container">
-        <div class="aspect-ratio">
-          <div
-            style="justify-content: center; display: flex; padding: 0.5rem"
-          >
-            <img
-              style="
-                cursor: pointer;
-                object-fit: cover;
-              "
-              src="https://assets.unlayer.com/projects/179430/1693304444700-download%20(4)%201%20(1).png"
-              alt=""
-            />
-          </div>
-
-          <div style="border-top: solid; border-width: 1px; margin-top: 1rem; border-color: rgba(0, 0, 0, 0.20); "></div>
-
-          <div>
-            <!-- Content -->
-            <div style="display: block;">
-              <p style="font-size: 1.5rem; font-weight: 600; margin-bottom: 14px;">
-                [order id] Order has been placed | [ Date ]
-              </p>
-              <p class="text-subtitle" style="margin-top: 0">
-                Your total for this purchase: [ Currency ][ Amount ]
-              </p>
-            </div>
-          </div>
+  </style>
 
 
-          <div style="border-top: solid; border-width: 1px; margin-top: 1rem; border-color: rgba(0, 0, 0, 0.20); "></div>
 
-          <!-- Start of info -->
+</head>
 
-          <div
-            class="info mt-16"
-            style="
-              background-color: #efefef;
-              padding: 0px 16px;
-              border-radius: 4px;
-              display: flex;
-              gap: 0.5rem;
-            "
-          >
-            <div style="width: 100%">
-              <p class="text-title" style="margin-bottom: 0">Billing Info</p>
-              <p
-                class="text-paragraph text-body_color"
-                style="line-height: 180%"
-              >
-                Naveen Dissanayaka
-                <br />46/1Davro Place, Old Neighborhood,<br />Nittambuwa,
-                <br />Western Province, <br />Sri Lanka <br />11880 <br />+94 71
-                456 8545 <br />shop@shoponcloud.com
-              </p>
-            </div>
-            <div class="info-w-420 info-w-600" style="width: 100%">
-              <p style="margin-bottom: 0" class="text-title">Delivery Info</p>
-              <p
-                class="text-paragraph text-body_color"
-                style="line-height: 180%"
-              >
-                Naveen Dissanayaka
-                <br />46/1Davro Place, Old Neighborhood,<br />Nittambuwa,
-                <br />Western Province, <br />Sri Lanka<br />
-                11880 <br />+94 71 456 8545 <br />shop@shoponcloud.com
-              </p>
-            </div>
-          </div>
+<body class="clean-body u_body" style="margin: 0;padding: 0;-webkit-text-size-adjust: 100%;background-color: #ffffff;color: #000000">
+  <table id="u_body" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 320px;Margin: 0 auto;background-color: #ffffff;width:100%" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr style="vertical-align: top">
+        <td style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
 
-          <!-- End of info -->
+          <div class="u-row-container" style="padding: 0px;background-color: transparent;">
+            <div class="u-row" style="margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
+              <div style="border-collapse: collapse;display: table;width: 100%;height: 100%;background-color: transparent;">
+                <div class="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
+                  <div style="background-color: #ffffff;height: 100%;width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
+                    <div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px; padding: 0rem 0.5rem;">
 
-          <!-- Start of Order Details -->
+                      <table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" >
+                        <tbody>
+                          <tr>
+                            <td style="overflow-wrap:break-word;word-break:break-word;padding:14px 10px 10px;font-family:arial,helvetica,sans-serif;" align="left">
 
-          <div>
-            <p class="text-title p-default">Order Details</p>
-          </div>
+                              <table width="100%" cellpadding="0" cellspacing="0" >
+                                <tr>
+                                  <td style="padding-right: 0px;padding-left: 0px; " align="center">
+                                    <a href="https://ebeyonds.com" target="_blank">
+                                      <img align="center"  src="https://assets.unlayer.com/projects/179430/1692772953778-download%20(4)%201.png" alt="" title="" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 149px;"
+                                        width="149" />
+                                    </a>
+                                  </td>
+                                </tr>
+                              </table>
 
-          <div
-            class="text-body_color p-default"
-            style="display: flex; gap: 0.5rem"
-          >
-            <div id="u_content_text_42" style="width: 50%; margin-top: -12px">
-              <div style="display: flex; width: 100%" class="text-paragraph">
-                <p style="font-weight: 600; max-width: 114px; width: 100%">
-                  Location
-                </p>
-                <p class="pr-default">:</p>
-                <p style="max-width: 200px; text-transform: capitalize">
-                  Location
-                </p>
-              </div>
-            </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
 
-            <div id="u_content_text_42" style="width: 50%; margin-top: -12px">
-              <div style="display: flex; width: 100%" class="text-paragraph">
-                <p style="font-weight: 600; max-width: 114px; width: 100%">
-                  Order Type
-                </p>
-                <p class="pr-default">:</p>
-                <p style="max-width: 200px; text-transform: capitalize">
-                  Order Type
-                </p>
-              </div>
-            </div>
-          </div>
+                      <table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" >
+                        <tbody>
+                          <tr>
+                            <td style="overflow-wrap:break-word;word-break:break-word;font-family:arial,helvetica,sans-serif;" align="left">
 
-          <div
-            class="text-body_color p-default"
-            style="display: flex; gap: 0.5rem"
-          >
-            <div id="u_content_text_42" style="width: 50%; margin-top: -12px">
-              <div style="display: flex; width: 100%" class="text-paragraph">
-                <p style="font-weight: 600; max-width: 114px; width: 100%">
-                  Payment Status
-                </p>
-                <p class="pr-default">:</p>
-                <p style="max-width: 200px; text-transform: capitalize">
-                  Payment Status
-                </p>
-              </div>
-            </div>
+                              <div style="padding-bottom: 1rem; border-top: solid; border-width: 1px; margin-top: 1rem; border-color: rgba(0, 0, 0, 0.20); "></div>
 
-            <div id="u_content_text_42" style="width: 50%; margin-top: -12px">
-              <div style="display: flex; width: 100%" class="text-paragraph">
-                <p style="font-weight: 600; max-width: 114px; width: 100%">
-                  Payment Method
-                </p>
-                <p class="pr-default">:</p>
-                <p style="max-width: 200px; text-transform: capitalize">
-                  Payment Method
-                </p>
-              </div>
-            </div>
-          </div>
+                              <div>
+                                <!-- Content -->
+                                <div style="display: block; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; padding: 0rem 1rem;">
+                                  <p style="font-size: 1.5rem; font-weight: 600; margin-bottom: 14px;">
+                                    [order id] Order has been placed | [ Date ]
+                                  </p>
+                                  <p class="text-subtitle" style="margin-top: 0">
+                                    Your total for this purchase: [ Currency ][ Amount ]
+                                  </p>
+                                </div>
+                              </div>
 
-          <div
-            class="text-body_color p-default"
-            style="display: flex; gap: 0.5rem"
-          >
-            <div id="u_content_text_42" style="width: 50%; margin-top: -12px">
-              <div style="display: flex; width: 100%" class="text-paragraph">
-                <p style="font-weight: 600; max-width: 114px; width: 100%">
-                  Delivery Priority
-                </p>
-                <p class="pr-default">:</p>
-                <p style="max-width: 200px; text-transform: capitalize">
-                  Delivery Priority
-                </p>
-              </div>
-            </div>
+                              <div style="border-top: solid; border-width: 1px; margin-top: 1rem; border-color: rgba(0, 0, 0, 0.20); "></div>
 
-            <div id="u_content_text_42" style="width: 50%; margin-top: -12px">
-              <div style="display: flex; width: 100%" class="text-paragraph">
-                <p style="font-weight: 600; max-width: 114px; width: 100%">
-                  Status
-                </p>
-                <p class="pr-default">:</p>
-                <p style="max-width: 200px; text-transform: capitalize">
-                  Status
-                </p>
-              </div>
-            </div>
-          </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
 
-          <div
-            class="text-body_color p-default"
-            style="display: flex; gap: 0.5rem"
-          >
-            <div id="u_content_text_42" style="width: 50%; margin-top: -12px">
-              <div style="display: flex; width: 100%" class="text-paragraph">
-                <p style="font-weight: 600; max-width: 114px; width: 100%">
-                  Order Date
-                </p>
-                <p class="pr-default">:</p>
-                <p style="max-width: 200px; text-transform: capitalize">
-                  Order Date
-                </p>
-              </div>
-            </div>
+                      <table role="presentation" cellpadding="0" cellspacing="0" width="100%" >
+                        <tbody>
+                          <tr>
+                            <td style="overflow-wrap:break-word;word-break:break-word;" align="left">
 
-            <div id="u_content_text_42" style="width: 50%; margin-top: -12px">
-              <div style="display: flex; width: 100%" class="text-paragraph">
-                <p style="font-weight: 600; max-width: 114px; width: 100%">
-                  Delivery Date
-                </p>
-                <p class="pr-default">:</p>
-                <p style="max-width: 200px; text-transform: capitalize">
-                  Delivery Date
-                </p>
-              </div>
-            </div>
-          </div>
+                              <div
+                              class="info mt-16"
+                              style="
+                                background-color: #efefef;
+                                border-radius: 4px;
+                                display: flex;
+                                gap: 0.5rem;
+                                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                                padding: 1rem;
+                              ">
 
-          <!-- End of Order Details -->
+                              <div style="width: 100%;">
+                                <p class="text-title" style="margin-bottom: 0; padding-bottom: 0.5rem;">Billing Info</p>
+                                <p
+                                  class="text-paragraph text-body_color"
+                                  style="line-height: 180%"
+                                >
+                                  Naveen Dissanayaka
+                                  <br />46/1Davro Place, Old Neighborhood,<br />Nittambuwa,
+                                  <br />Western Province, <br />Sri Lanka <br />11880 <br />+94 71
+                                  456 8545 <br />shop@shoponcloud.com
+                                </p>
+                              </div>
+                              <div class="info-w-420 info-w-600" style="width: 100%;">
+                                <p style="margin-bottom: 0;padding-bottom: 0.5rem;" class="text-title">Delivery Info</p>
+                                <p
+                                  class="text-paragraph text-body_color"
+                                  style="line-height: 180%"
+                                >
+                                  Naveen Dissanayaka
+                                  <br />46/1Davro Place, Old Neighborhood,<br />Nittambuwa,
+                                  <br />Western Province, <br />Sri Lanka<br />
+                                  11880 <br />+94 71 456 8545 <br />shop@shoponcloud.com
+                                </p>
+                              </div>
+                            </div>
 
-          <!-- Start of Order Items -->
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
 
-          <div>
-            <p class="text-title p-default">Order Items</p>
-          </div>
+                      <table style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" >
+                        <tbody>
+                          <tr>
+                            <td style="overflow-wrap:break-word;word-break:break-word; padding: 1rem 0rem 0rem 0rem;" align="left">
 
-          <div
-          class="text-order_title order-item-600 order-item-420"
-          style="
-            background-color: rgba(0, 0, 0, 0.13);
-            padding: 0px 16px;
-            color: rgba(0, 0, 0, 0.8);
-            border-radius: 4px;
-            align-items: center;
-            height: 3rem;
-            display: flex;
-            margin: 8px 0px;
-            font-weight: 600;
-          "
-        >
-          <p style="max-width: 250px; width: 42%">Product Name</p>
-          <div
-            style="display: flex; justify-content: end; width: 60%; gap: 16px"
-          >
-            <p style="width: 10%; display: flex; justify-content: start">Qty</p>
-            <p style="width: 45%; display: flex; justify-content: end">
-              Item Price ( LKR )
-            </p>
-            <p style="width: 45%; display: flex; justify-content: end">
-              Sub Total ( LKR )
-            </p>
-          </div>
-        </div>
+                              <div>
+                                <p class="text-title p-default" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 1.3rem;">Order Details</p>
+                              </div>
 
-          <div style="margin-bottom: 0.5rem; display: flex; background-color: rgba(157, 157, 157, 0.30); border-radius: 4px; padding: 8px 16px; padding-bottom: 0; padding-left: 8px;">
-            <div style="max-width: 10%; height: 10%; padding-right: 16px;">
-              <img
-                style="width: 100%; height: 100%; border-radius: 4px"
-                alt=""
-                src="https://media.very.co.uk/i/very/V8GCK_SQ1_0000000354_DARK_BLUE_MDf/v-by-very-denim-western-jacket-blue.jpg?$180x240_retinamobilex2$"
-              />
-            </div>
-            <div style="width: 100%">
-              <p class="text-order_title" style="margin-top: 4px; text-transform: capitalize; font-weight: 600; color: #000000c9; margin-bottom: 0px;">
-                Adidas Originals Womens Short Sleeves Dress ( SOC2023NO0713S23 )
-              </p>
-              <div style="display: flex; width: 100%;">
-                <p class="text-body_color" style="width: 50%; text-transform: capitalize; display: flex; padding-right: 16px;">color - Blue | Size - S </p>
-                <div style="display: flex; width: 100%; align-items: center;">
-                  <p class="text-body_color" style="width: 10%; ">1</p>
-                  <div style="width: 45%; display: flex; justify-content: end; align-items: center;">
-                    <div>
-                      <p style=" line-height: 0;">3,500.00</p>
-                      <p class="text-body_color" style="margin-top: -6px; font-size: 0.8rem; text-align:end; text-decoration: line-through;">4,500.00</p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <table style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" >
+                        <tbody>
+                          <tr>
+                            <td class="container" style="overflow-wrap:break-word;word-break:break-word; padding: 1rem 0rem 0rem 0rem;" align="left">
+
+                              <div
+                              class="text-body_color p-default"
+                              style="display: flex; gap: 0.5rem"
+                            >
+                              <div id="u_content_text_42" style="width: 50%; ">
+                                <div style="display: flex; width: 100%" class="text-paragraph">
+                                  <p style="font-weight: 600; max-width: 114px; width: 100%">
+                                    Location
+                                  </p>
+                                  <p class="pr-default">:</p>
+                                  <p style="max-width: 200px; min-width: 50px; text-transform: capitalize">
+                                    Location
+                                  </p>
+                                </div>
+                              </div>
+                
+                              <div id="u_content_text_42" style="width: 50%; ">
+                                <div style="display: flex; width: 100%" class="text-paragraph">
+                                  <p style="font-weight: 600; max-width: 114px; width: 100%">
+                                    Order Type
+                                  </p>
+                                  <p class="pr-default">:</p>
+                                  <p style="max-width: 200px; min-width: 50px; text-transform: capitalize">
+                                    Order Type
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            
+                            <div
+                              class="text-body_color p-default"
+                              style="display: flex; gap: 0.5rem; padding-top: 1rem;"
+                            >
+                              <div id="u_content_text_42" style="width: 50%; ">
+                                <div style="display: flex; width: 100%" class="text-paragraph">
+                                  <p style="font-weight: 600; max-width: 114px; width: 100%">
+                                    Payment Status
+                                  </p>
+                                  <p class="pr-default">:</p>
+                                  <p style="max-width: 200px; min-width: 50px; text-transform: capitalize">
+                                    Payment Status
+                                  </p>
+                                </div>
+                              </div>
+
+                              <div id="u_content_text_42" style="width: 50%;">
+                                <div style="display: flex; width: 100%" class="text-paragraph">
+                                  <p style="font-weight: 600; max-width: 114px; width: 100%">
+                                    Payment Method
+                                  </p>
+                                  <p class="pr-default">:</p>
+                                  <p style="max-width: 200px; min-width: 50px; text-transform: capitalize">
+                                    Payment Method
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div
+                            class="text-body_color p-default"
+                            style="display: flex; gap: 0.5rem; padding-top: 1rem;"
+                          >
+                            <div id="u_content_text_42" style="width: 50%; ">
+                              <div style="display: flex; width: 100%" class="text-paragraph">
+                                <p style="font-weight: 600; max-width: 114px; width: 100%">
+                                  Delivery Priority
+                                </p>
+                                <p class="pr-default">:</p>
+                                <p style="max-width: 200px; min-width: 50px; text-transform: capitalize">
+                                  Delivery Priority
+                                </p>
+                              </div>
+                            </div>
+
+                            <div id="u_content_text_42" style="width: 50%;">
+                              <div style="display: flex; width: 100%" class="text-paragraph">
+                                <p style="font-weight: 600; max-width: 114px; width: 100%">
+                                  Status
+                                </p>
+                                <p class="pr-default">:</p>
+                                <p style="max-width: 200px; min-width: 50px; text-transform: capitalize">
+                                  Status
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <div
+                          class="text-body_color p-default"
+                          style="display: flex; gap: 0.5rem; padding-top: 1rem;"
+                        >
+                          <div id="u_content_text_42" style="width: 50%; ">
+                            <div style="display: flex; width: 100%" class="text-paragraph">
+                              <p style="font-weight: 600; max-width: 114px; width: 100%">
+                                Order Date
+                              </p>
+                              <p class="pr-default">:</p>
+                              <p style="max-width: 200px; min-width: 50px; text-transform: capitalize">
+                                Order Date
+                              </p>
+                            </div>
+                          </div>
+
+                          <div id="u_content_text_42" style="width: 50%;">
+                            <div style="display: flex; width: 100%" class="text-paragraph">
+                              <p style="font-weight: 600; max-width: 114px; width: 100%">
+                                Delivery Date
+                              </p>
+                              <p class="pr-default">:</p>
+                              <p style="max-width: 200px; min-width: 50px; text-transform: capitalize">
+                                Delivery Date
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                            
+
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+
+                      <table style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" >
+                        <tbody>
+                          <tr>
+                            <td style="overflow-wrap:break-word;word-break:break-word; padding: 1rem 0rem 0rem 0rem;" align="left">
+
+                              <div>
+                                <p class="text-title p-default" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 1.3rem;">Order Items</p>
+                              </div>
+
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+
+                      <table style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" >
+                        <tbody>
+                          <tr>
+                            <td style="overflow-wrap:break-word;word-break:break-word; padding: 0.5rem 0rem 0rem 0rem;" align="left">
+
+                              <div
+                              class="text-order_title order-item-600 order-item-420"
+                              style="
+                                background-color: rgba(0, 0, 0, 0.13);
+                                padding: 0px 16px;
+                                color: rgba(0, 0, 0, 0.8);
+                                border-radius: 4px;
+                                align-items: center;
+                                height: 3rem;
+                                display: flex;
+                                align-items: center;
+                                margin-bottom: 8px;
+                                font-weight: 600;
+                              "
+                            >
+                              <p style="max-width: 250px; width: 42%;margin: auto;">Product Name</p>
+                              <div
+                                style="display: flex; justify-content: flex-end; width: 60%; gap: 16px;margin: auto;"
+                              >
+                                <p style="width: 10%; display: flex; justify-content: flex-start; min-width: 25px;">Qty</p>
+                                <p style="width: 45%; display: flex; justify-content: flex-end">
+                                  Item Price ( LKR )
+                                </p>
+                                <p style="width: 45%; display: flex; justify-content: flex-end">
+                                  Sub Total ( LKR )
+                                </p>
+                              </div>
+                            </div>
+
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <table style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" >
+                        <tbody>
+                          <tr>
+                            <td style="overflow-wrap:break-word;word-break:break-word; " align="left">
+
+                              <div style="display: flex; background-color: rgba(157, 157, 157, 0.30); border-radius: 4px; padding: 8px 16px; padding-bottom: 0; padding-left: 8px; margin-bottom: 0.5rem;">
+                                <div style="max-width: 10%; height: 10%; padding-right: 16px;">
+                                  <img
+                                    style="width: 100%; height: 100%; border-radius: 4px ;padding-bottom: 8px;"
+                                    alt=""
+                                    src="https://media.very.co.uk/i/very/V8GCK_SQ1_0000000354_DARK_BLUE_MDf/v-by-very-denim-western-jacket-blue.jpg?$180x240_retinamobilex2$"
+                                  />
+                                </div>
+                                <div style="width: 100%; padding-bottom: 8px;">
+                                  <p class="text-order_title" style=" text-transform: capitalize; font-weight: 600; color: #000000c9;">
+                                    Adidas Originals Womens Short Sleeves Dress ( SOC2023NO0713S23 )
+                                  </p>
+                                  <div style="display: flex; width: 100%; margin-top: 0.2rem;">
+                                    <p class="text-body_color" style="width: 50%; text-transform: capitalize; display: flex; padding-right: 16px;">color - Blue | Size - S </p>
+                                    <div style="display: flex; width: 100%;">
+                                      <p class="text-body_color" style="width: 10%;">1</p>
+                                      <div style="width: 45%; display: flex; justify-content: end;">
+                                        <div>
+                                          <p >3,500.00</p>
+                                          <p class="text-body_color" style=" font-size: 0.8rem; text-align:end; text-decoration: line-through;">4,500.00</p>
+                                        </div>
+                                      </div>
+                                      <p
+                                        style="
+                                          width: 45%;
+                                          display: flex;
+                                          justify-content: end;
+                                        "
+                                      >
+                                        7,000.00
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+
+
+
+                              <div style="display: flex; background-color: rgba(157, 157, 157, 0.30); border-radius: 4px; padding: 8px 16px; padding-bottom: 0; padding-left: 8px; margin-bottom: 0.5rem;">
+                                <div style="max-width: 10%; height: 10%; padding-right: 16px;">
+                                  <img
+                                    style="width: 100%; height: 100%; border-radius: 4px;padding-bottom: 8px;"
+                                    alt=""
+                                    src="https://images.wrangler.com/is/image/Wrangler/MGW90BR-HERO?$KDP-XLARGE$"
+                                  />
+                                </div>
+                                <div style="width: 100%;padding-bottom: 8px;">
+                                  <p class="text-order_title" style=" text-transform: capitalize; font-weight: 600; color: #000000c9;">
+                                    pants - the Fashion Maven's Essential Pants ( TRD023NO0713S23 )
+                                  </p>
+                                  <div style="display: flex; width: 100%; margin-top: 0.2rem;">
+                                    <p class="text-body_color" style="width: 50%; text-transform: capitalize; display: flex; padding-right: 16px;">color - brown | Size - M | weight - 0.2KG | feel - luxury  | Materiel - Leather | Design - UK | manufactured -  china | brand - puma </p>
+                                    <div style="display: flex; width: 100%;">
+                                      <p class="text-body_color" style="width: 10%;">1</p>
+                                      <div style="width: 45%; display: flex; justify-content: end;">
+                                        <div>
+                                          <p >8,500.00</p>
+                                          <!-- <p class="text-body_color" style=" font-size: 0.8rem; text-align:end; text-decoration: line-through;">4,500.00</p> -->
+                                        </div>
+                                      </div>
+                                      <p
+                                        style="
+                                          width: 45%;
+                                          display: flex;
+                                          justify-content: end;
+                                        "
+                                      >
+                                        8,500.00
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                              <div style="display: flex; background-color: rgba(157, 157, 157, 0.30); border-radius: 4px; padding: 8px 16px; padding-bottom: 0; padding-left: 8px; margin-bottom: 0.5rem;">
+                                <div style="max-width: 10%; height: 10%; padding-right: 16px;">
+                                  <img
+                                    style="width: 100%; height: 100%; border-radius: 4px;padding-bottom: 8px;"
+                                    alt=""
+                                    src="https://udarata.com/img-udarata/product-images/thumb_2307_womens-handbags_st-products-ladies-bags-udarata-com-5.jpg"
+                                  />
+                                </div>
+                                <div style="width: 100%; padding-bottom: 8px;">
+                                  <p class="text-order_title" style=" text-transform: capitalize; font-weight: 600; color: #000000c9;">
+                                    Executive  Crochet branded Handbag School Bags Bags Makers - Suppliers Sri Lanka Visit for ladies 
+                                    ( JGYUFG55634635KGHJ )
+                                  </p>
+                                  <div style="display: flex; width: 100%; margin-top: 0.2rem;">
+                                    <p class="text-body_color" style="width: 50%; text-transform: capitalize; display: flex; padding-right: 16px;">color - Blue | Size - S </p>
+                                    <div style="display: flex; width: 100%;">
+                                      <p class="text-body_color" style="width: 10%;">1</p>
+                                      <div style="width: 45%; display: flex; justify-content: end;">
+                                        <div>
+                                          <p >9,500.00</p>
+                                          <p class="text-body_color" style=" font-size: 0.8rem; text-align:end; text-decoration: line-through;">12,990.00</p>
+                                        </div>
+                                      </div>
+                                      <p
+                                        style="
+                                          width: 45%;
+                                          display: flex;
+                                          justify-content: end;
+                                        "
+                                      >
+                                        9,500.00
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div style="border-bottom: solid; border-width: 1px; margin: 1rem 0rem; border-color: rgb(0,0,0,0.20);"></div>
+
+                              
+
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <table style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" >
+                        <tbody>
+                          <tr>
+                            <td style="overflow-wrap:break-word;word-break:break-word;" align="left">
+
+                              <div style="background-color: #E2E2E2; padding: 8px 16px; border-radius: 4px;">
+
+                                <div style="display: flex; width: 100%; padding: 0.5rem 0rem;">
+                                  <p class="mt-6" style="width: 50%;">Gross Amount</p>
+                                  <p class="mt-6" style="width: 50%; text-align: end;">LKR 25,000.00</p>
+                                </div>
+                    
+                                <div style="display: flex; width: 100%;padding: 0.5rem 0rem;">
+                                  <p class="mt-6" style="width: 50%;">Delivery Charges</p>
+                                  <p class="mt-6" style="width: 50%; text-align: end; margin-top: 0;">LKR 350.00</p>
+                                </div>
+                    
+                                <div style="border-top: solid; border-width: 1px; margin-top: 0.5rem; border-color: rgba(0, 0, 0, 0.15); "></div>
+                    
+                                <div>
+                                  <p class="text-title mt-8 " style="font-weight: 600; margin-bottom: 0.5rem;padding: 1rem 0rem;">Discount</p>
+                                </div>
+                    
+                                <div style="display: flex; width: 100%;padding: 0.5rem 0rem;">
+                                  <p class="mt-6" style="width: 50%; ">Blissful Cart Offer</p>
+                                  <p class="mt-6" style="width: 50%; text-align: end;">- LKR 1,100.00</p>
+                                </div>
+                    
+                                <div style="display: flex; width: 100%;padding: 0.5rem 0rem;">
+                                  <p class="mt-6" style="width: 50%;">Blissful Coupon Code <strong class="text-body_color" style="font-weight: 500;">( BLISSCODE )</strong></p>
+                                  <p class="mt-6" style="width: 50%; text-align: end;">- LKR 1,100.00</p>
+                                </div>
+                    
+                                <div  style="border-top: solid; border-width: 1px; margin-top: 0.5rem; border-color: rgba(0, 0, 0, 0.15); "></div>
+                    
+                                <div>
+                                  <p class="text-title mt-8" style="font-weight: 600; margin-bottom: 0.5rem; padding: 1rem 0rem;">Delivery Charges Discount</p>
+                                </div>
+                    
+                                <div style="display: flex; width: 100%;padding: 0.5rem 0rem;">
+                                  <p class="mt-6" style="width: 50%;">Blissful Cart Offer</strong></p>
+                                  <p class="mt-6" style="width: 50%; text-align: end;">- LKR 15.00</p>
+                                </div>
+                    
+                                <div style="display: flex; width: 100%;padding: 0.5rem 0rem;">
+                                  <p class="mt-6" style="width: 50%;">Blissful Coupon Code <strong class="text-body_color" style="font-weight: 500;">( BLISSCODE )</strong></p>
+                                  <p class="mt-6" style="width: 50%; text-align: end;">- -LKR 150.00</p>
+                                </div>
+                    
+                              </div>
+
+                              <div style="width: 100%; background-color: #303030; color: white; border-radius: 0px 0px 4px 4px; width: 100%;">
+                                <div style="display: flex; padding: 0px 16px; align-items: center;">
+                                  <div style="width: 50%;">
+                                    <p class="text-title" style="width: 50%; margin: 1.2rem 0rem;">Total</p>
+                                  </div>
+                                  <div style="width: 50%;">
+                                    <p style="text-align: end; margin-bottom: 2px; font-size: 1.3rem; font-weight:500; margin-top: 0px;">LKR 20,235.00</p>
+                                    <p style="text-align: end; margin-top: 0px; font-weight: 300; margin-bottom: 0px; font-size: 0.8rem;">Totally Saved LKR 4,765.00</p>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+
+                      <table style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" >
+                        <tbody>
+                          <tr>
+                            <td style="overflow-wrap:break-word;word-break:break-word; padding: 1rem 0rem 0rem 0rem;" align="left">
+
+                              <div>
+                                <div  style="border-top: solid; border-width: 1px; margin-top: 0.5rem; border-color: rgba(0, 0, 0, 0.15); "></div>
+
+                                <div class="text-body_color" style="text-align: center; padding: 1rem 0rem;">
+                                  <p style="font-size: 1.2rem; font-weight: 600; padding-bottom: 0.5rem;">Thank You !</p>
+                                  <p>Copyright © 2023 Blissful Buys. All rights reserved. Powered by <a href="https://ebeyonds.com" target="_blank">ShopOnCloud</a> eCommerce platform.</p>
+                                </div>
+                              </div>
+
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+
+
                     </div>
                   </div>
-                  <p
-                    style="
-                      width: 45%;
-                      display: flex;
-                      justify-content: end;
-                    "
-                  >
-                    7,000.00
-                  </p>
                 </div>
               </div>
             </div>
           </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
 
-
-
-          <div style="margin-bottom: 0.5rem; display: flex; background-color: rgba(157, 157, 157, 0.30); border-radius: 4px; padding: 8px 16px; padding-bottom: 0; padding-left: 8px;">
-            <div style="max-width: 10%; height: 10%; padding-right: 16px;">
-              <img
-                style="width: 100%; height: 100%; border-radius: 4px"
-                alt=""
-                src="https://images.wrangler.com/is/image/Wrangler/MGW90BR-HERO?$KDP-XLARGE$"
-              />
-            </div>
-            <div style="width: 100%">
-              <p class="text-order_title" style="margin-top: 4px; text-transform: capitalize; font-weight: 600; color: #000000c9; margin-bottom: 0px;">
-                pants - the Fashion Maven's Essential Pants ( SKU )
-              </p>
-              <div style="display: flex; width: 100%;">
-                <p class="text-body_color" style="width: 50%; text-transform: capitalize; display: flex; padding-right: 16px;">color - Blue | Size - S | brand - puma | made in - china | imported by - gml</p>
-                <div style="display: flex; width: 100%; align-items: center;">
-                  <p class="text-body_color" style="width: 10%; ">1</p>
-                  <div style="width: 45%; display: flex; justify-content: end; align-items: center;">
-                    <div>
-                      <p style=" line-height: 0;">3,500.00</p>
-                      <!-- <p class="text-body_color" style="margin-top: -6px; font-size: 0.8rem; text-align:end; text-decoration: line-through;">4,500.00</p> -->
-                    </div>
-                  </div>
-                  <p
-                    style="
-                      width: 45%;
-                      display: flex;
-                      justify-content: end;
-                    "
-                  >
-                    7,000.00
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div style="margin-bottom: 0.5rem; display: flex; background-color: rgba(157, 157, 157, 0.30); border-radius: 4px; padding: 8px 16px; padding-bottom: 0; padding-left: 8px;">
-            <div style="max-width: 10%; height: 10%; padding-right: 16px;">
-              <img
-                style="width: 100%; height: 100%; border-radius: 4px"
-                alt=""
-                src="https://udarata.com/img-udarata/product-images/thumb_2307_womens-handbags_st-products-ladies-bags-udarata-com-5.jpg"
-              />
-            </div>
-            <div style="width: 100%">
-              <p class="text-order_title" style="margin-top: 4px; text-transform: capitalize; font-weight: 600; color: #000000c9; margin-bottom: 0px;">
-                Executive  Crochet branded Handbag School Bags Bags Makers - Suppliers Sri Lanka Visit for ladies 
-( JGYUFG55634635KGHJ )
-              </p>
-              <div style="display: flex; width: 100%;">
-                <p class="text-body_color" style="width: 50%; text-transform: capitalize; display: flex; padding-right: 16px;">color - brown | Size - M | weight - 0.2KG | feel - luxury  | Materiel - Leather | Design - UK | manufactured -  china | brand - puma </p>
-                <div style="display: flex; width: 100%; align-items: center;">
-                  <p class="text-body_color" style="width: 10%; ">1</p>
-                  <div style="width: 45%; display: flex; justify-content: end; align-items: center;">
-                    <div>
-                      <p style=" line-height: 0;">9,500.00</p>
-                      <p class="text-body_color" style="margin-top: -6px; font-size: 0.8rem; text-align:end; text-decoration: line-through;">10,990.90</p>
-                    </div>
-                  </div>
-                  <p
-                    style="
-                      width: 45%;
-                      display: flex;
-                      justify-content: end;
-                    "
-                  >
-                    9,500.00
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-           <!-- End of Order Items -->
-
-           <div style="border-bottom: solid; border-width: 1px; margin: 1rem 0rem; border-color: rgb(0,0,0,0.20);"></div>
-
-           <!-- Start of Total -->
-
-        <div style="background-color: #E2E2E2; padding: 8px 16px; border-radius: 4px;">
-
-          <div style="display: flex; width: 100%;">
-            <p class="mt-6" style="width: 50%;">Gross Amount</p>
-            <p class="mt-6" style="width: 50%; text-align: end;">LKR 25,000.00</p>
-          </div>
-
-          <div style="display: flex; width: 100%;">
-            <p class="mt-6" style="width: 50%;">Delivery Charges</p>
-            <p class="mt-6" style="width: 50%; text-align: end; margin-top: 0;">LKR 350.00</p>
-          </div>
-
-          <div style="border-top: solid; border-width: 1px; margin-top: 0.5rem; border-color: rgba(0, 0, 0, 0.15); "></div>
-
-          <div>
-            <p class="text-title mt-8 " style="font-weight: 600; margin-bottom: 0.5rem;">Discount</p>
-          </div>
-
-          <div style="display: flex; width: 100%;">
-            <p class="mt-6" style="width: 50%; ">Blissful Cart Offer</p>
-            <p class="mt-6" style="width: 50%; text-align: end;">- LKR 1,100.00</p>
-          </div>
-
-          <div style="display: flex; width: 100%;">
-            <p class="mt-6" style="width: 50%;">Blissful Coupon Code <strong class="text-body_color" style="font-weight: 500;">( BLISSCODE )</strong></p>
-            <p class="mt-6" style="width: 50%; text-align: end;">- LKR 1,100.00</p>
-          </div>
-
-          <div  style="border-top: solid; border-width: 1px; margin-top: 0.5rem; border-color: rgba(0, 0, 0, 0.15); "></div>
-
-          <div>
-            <p class="text-title mt-8" style="font-weight: 600; margin-bottom: 0.5rem;">Delivery Charges Discount</p>
-          </div>
-
-          <div style="display: flex; width: 100%;">
-            <p class="mt-6" style="width: 50%;">Blissful Cart Offer</strong></p>
-            <p class="mt-6" style="width: 50%; text-align: end;">- LKR 15.00</p>
-          </div>
-
-          <div style="display: flex; width: 100%;">
-            <p class="mt-6" style="width: 50%;">Blissful Coupon Code <strong class="text-body_color" style="font-weight: 500;">( BLISSCODE )</strong></p>
-            <p class="mt-6" style="width: 50%; text-align: end;">- -LKR 150.00</p>
-          </div>
-
-        </div>
-
-        <div style="width: 100%; background-color: #303030; color: white; border-radius: 0px 0px 4px 4px; width: 100%;">
-          <div style="display: flex; padding: 0px 16px; align-items: center;">
-            <div style="width: 50%;">
-              <p class="text-title" style="width: 50%; margin: 1.2rem 0rem;">Total</p>
-            </div>
-            <div style="width: 50%;">
-              <p style="text-align: end; margin-bottom: 2px; font-size: 1.3rem; font-weight:500; margin-top: 0px;">LKR 20,235.00</p>
-              <p style="text-align: end; margin-top: 0px; font-weight: 300; margin-bottom: 0px; font-size: 0.8rem;">Totally Saved LKR 4,765.00</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- End of Total -->
-
-        <div style="border-top: solid; border-width: 1px; margin-top: 1rem; border-color: rgba(0, 0, 0, 0.20); "></div>
-
-        <div class="text-body_color" style="text-align: center;">
-          <p style="font-size: 1.2rem; font-weight: 600;">Thank You !</p>
-          <p>Copyright © 2023 Blissful Buys. All rights reserved. Powered by <a href="https://ebeyonds.com" target="_blank">ShopOnCloud</a> eCommerce platform.</p>
-        </div>
-
-
-        </div>
-      </div>
-      <!-- ... Your other content here ... -->
-    </div>
-  </body>
 </html>

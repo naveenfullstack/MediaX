@@ -46,13 +46,12 @@ router.post("/forgotpassword", async (req, res) => {
 
     // Create the password reset email
     const resetEmail = {
-      // to: user.email,
-      to: "naveen.dissanayake@ebeyonds.com",
+      to: user.email,
       from: {
         email: process.env.SENDING_EMAIL,
         name: process.env.COMPANY_NAME,
       },
-      subject: "Password Reset",
+      subject: "Reset your Password",
       html: emailContent,
     };
 
