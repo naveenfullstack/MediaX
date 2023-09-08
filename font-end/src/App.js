@@ -19,6 +19,7 @@ import PageNotFound from "../src/page/PageNotFound";
 import Player from "./components/Player";
 import ForgetPasswordEmailSent from "./components/Auth/ForgetPasswordEmailSent";
 import SearchResults from "./components/SearchResults";
+import Movies from "./page/Movies";
 
 export default function App() {
   // Initialize userData to an empty object to avoid undefined errors
@@ -68,6 +69,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="/player/:videoId" element={<Player />} />
           <Route path="/search/:title" element={<SearchResults/>} />
+          <Route path="/Movies" element={<Movies/>} />
         </Route>
       </Routes>
     </Router>

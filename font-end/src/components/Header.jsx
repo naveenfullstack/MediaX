@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import Logo from "../assets/MediaX Logo.svg";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../App.css";
 
 export default function Header() {
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const logout = () => {
     localStorage.removeItem("_userData");
@@ -46,8 +48,6 @@ export default function Header() {
     },
   ];
 
-  const [isSearchVisible, setIsSearchVisible] = useState(false);
-
   const handleSearchIconClick = () => {
     setIsSearchVisible(!isSearchVisible);
   };
@@ -59,6 +59,10 @@ export default function Header() {
     }
   };
 
+  // Function to determine if the menu item is active
+  const isMenuItemActive = (path) => {
+    return location.pathname === path ? "text-white font-medium" : "text-white/[.60]";
+  };
 
   return (
     <div className="items-center px-4 sm:hidden lg:flex md:hidden text-white">
@@ -70,22 +74,36 @@ export default function Header() {
           className="w-logo cursor-pointer"
         />
         <div className="capitalize flex space-x-8">
-          <h1 className="text-white/[.60] hover:text-white hover:cursor-pointer">
+          <h1
+            className={`hover:text-white hover:cursor-pointer ${isMenuItemActive(
+              "/tv-shows"
+            )}`}
+            onClick={() => navigate("/tv-shows")}
+          >
             tv shows
           </h1>
-          <h1 className="text-white/[.60] hover:text-white hover:cursor-pointer">
+          <h1
+            className={`hover:text-white hover:cursor-pointer ${isMenuItemActive(
+              "/movies"
+            )}`}
+            onClick={() => navigate("/movies")}
+          >
             movies
           </h1>
-          <h1 className="text-white/[.60] hover:text-white hover:cursor-pointer">
-            videos
-          </h1>
-          <h1 className="text-white/[.60] hover:text-white hover:cursor-pointer">
+          <h1
+            className={`hover:text-white hover:cursor-pointer ${isMenuItemActive(
+              "/box-office"
+            )}`}
+            onClick={() => navigate("/box-office")}
+          >
             Box Office
           </h1>
-          <h1 className="text-white/[.60] hover:text-white hover:cursor-pointer">
-            music
-          </h1>
-          <h1 className="text-white/[.60] hover:text-white hover:cursor-pointer">
+          <h1
+            className={`hover:text-white hover:cursor-pointer ${isMenuItemActive(
+              "/my-list"
+            )}`}
+            onClick={() => navigate("/my-list")}
+          >
             my list
           </h1>
         </div>
