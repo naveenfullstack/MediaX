@@ -59,11 +59,11 @@ export default function SearchResults() {
   return (
     <div>
       <MyListIdProvider>
-        <Header />
+        <Header/>
         {loading ? (
-          <div className="w-full pr-20">
+          <div className="w-full md:pr-20">
             <div className="w-full space-y-default sm:hidden md:hidden lg:block">
-              <h1 className="capitalize font-semibold lg:text-[1.5rem] px-item_lg_left">
+              <h1 className="capitalize font-semibold lg:text-[1.5rem] md:px-item_lg_left">
                 popular on MediaX
               </h1>
               <div className="w-full lg:pl-item_lg_left md:pl-item_md_left sm:px-item_sm_left grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -89,13 +89,13 @@ export default function SearchResults() {
             </div>
           </div>
         ) : (
-          <div className="text-white px-20">
-            <div className="flex space-x-2 items-center text-title mt-4 mb-8">
-              <h1 className="capitalize">
+          <div className="text-white md:px-20 sm:px-4">
+            <div className="flex space-x-2 items-center text-title md:mt-4 sm:mt-2 sm:mb-4 md:mb-8">
+              <h1 className="capitalize sm:text-[1rem] md:text-[1.5rem]">
                 {shows.length} search results showing for
               </h1>
               <p>:</p>
-              <p>{title}</p>
+              <p className="sm:text-[1rem] md:text-[1.5rem]">{title}</p>
             </div>
 
             <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xxxl:grid-cols-5 xxl:grid-cols-5 xl:grid-cols-5 gap-4 ">

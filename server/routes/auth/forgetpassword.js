@@ -9,7 +9,7 @@ const path = require("path");
 
 const emailTemplatePath = path.join(
   __dirname,
-  "../../emails/soc.html"
+  "../../emails/PasswordReset.html"
 );
 const emailTemplate = fs.readFileSync(emailTemplatePath, "utf8");
 

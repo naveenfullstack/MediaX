@@ -69,8 +69,11 @@ export default function QuickView({ Popular, onClose }) {
     { id: "overview", label: "Overview" },
     { id: "trailers", label: "Trailers & More" },
     { id: "cast", label: "Cast" },
-    { id: "book", label: "Buy Tickets" },
   ];
+
+  if (Popular.status === "boxoffice") {
+    tabs.splice(1, 0, { id: "book", label: "Book Tickets" });
+  }
 
   if (Popular.is_movie === false) {
     tabs.splice(1, 0, { id: "episodes", label: "Episodes" });
@@ -196,7 +199,7 @@ export default function QuickView({ Popular, onClose }) {
                       </div>
                     ) : (
                       <div
-                        onClick={() => navigate(`/player/${Popular.id}`)}
+                        onClick={() => navigate(`/player/${videoId}`)}
                         className="flex items-center space-x-2 bg-white w-fit px-6 py-2 rounded-md text-black hover:bg-input_bg hover:text-white"
                       >
                         <FaPlay />

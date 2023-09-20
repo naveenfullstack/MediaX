@@ -12,7 +12,7 @@ import QuickView from "../popup/quickview/QuickView";
 import MyListIcon from "../popup/quickview/elements/MyListIcon";
 import { useNavigate } from "react-router-dom";
 
-export default function Popular() {
+export default function Action() {
   const { popularMovies, loading, randomNumbers } = usePopularMovies();
   const [popupVisible, setPopupVisible] = useState(false);
   const [popupData, setPopupData] = useState(null);
@@ -58,13 +58,18 @@ export default function Popular() {
     navigate(`/shows/${showId}`);
   };
 
+  // Filter movies with the "Action" tag
+  const actionMovies = popularMovies.filter((movie) =>
+    movie.tags.includes("Action")
+  );
+
   return (
     <div>
       {loading ? (
         <div className="w-full">
           <div className="w-full space-y-default sm:hidden md:hidden lg:block">
             <h1 className="capitalize font-semibold lg:text-[1.5rem] px-item_lg_left">
-              popular on MediaX
+              Action Movies
             </h1>
             <div className="w-full lg:pl-item_lg_left md:pl-item_md_left sm:px-item_sm_left grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
               {Array.from({ length: 5 }).map((_, index) => (
@@ -77,7 +82,7 @@ export default function Popular() {
 
           <div className="w-full space-y-default sm:block md:block lg:hidden">
             <h1 className="capitalize font-semibold md:text-[1.5rem] sm:text-[1.3rem] lg:px-item_lg_left sm:px-item_sm_left sm:pt-item_sm_left">
-              popular on MediaX
+              Action Movies
             </h1>
             <div className="w-full lg:pl-item_lg_left md:pl-item_md_left sm:pl-item_sm_left md:pl-item_lg_left sm:px-item_sm_left grid sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4">
               {Array.from({ length: 3 }).map((_, index) => (
@@ -92,7 +97,7 @@ export default function Popular() {
         <div>
           <div className="lg:pl-item_lg_left md:pl-item_md_left sm:pl-item_sm_left space-y-default sm:pt-2 sm:hidden md:hidden lg:hidden xl:block xxl:block xxxl:block">
             <h1 className="capitalize font-semibold lg:text-[1.5rem] md:text-[1.5rem] sm:text-[1.3rem]">
-              popular on MediaX
+              Action Movies
             </h1>
             <div className=" flex">
               <Swiper
@@ -116,7 +121,7 @@ export default function Popular() {
                   },
                 }}
               >
-                {popularMovies.map((index, slideIndex) => (
+                {actionMovies.map((index, slideIndex) => (
                   <SwiperSlide key={index.id}>
                     <div
                       className="xxxl:h-item_xxxl xxl:h-item_xxl xl:h-item_xl lg:h-item_lg md:h-item_md sm:h-item_sm w-full bg-cover bg-bottom"
@@ -215,6 +220,9 @@ export default function Popular() {
                 {popularMovies.map((index) => (
                   <SwiperSlide key={index.id}>
                     <div
+                      // onClick={() =>
+                      //   (window.location.href = `/show/${index.id}`)
+                      // }
                       onClick={() => handleShowClick(index.id)}
                       className="lg:h-item_lg md:h-item_md sm:h-item_sm w-full bg-cover bg-bottom"
                       style={{

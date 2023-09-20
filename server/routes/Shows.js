@@ -64,7 +64,7 @@ router.get("/get-all-shows", async (req, res) => {
 });
 
 // Search shows by title and return matched shows first
-router.get('/search', async (req, res) => {
+router.get('/search', async (req, res) => { 
   const { title } = req.query;
 
   try {

@@ -20,6 +20,9 @@ import Player from "./components/Player";
 import ForgetPasswordEmailSent from "./components/Auth/ForgetPasswordEmailSent";
 import SearchResults from "./components/SearchResults";
 import Movies from "./page/Movies";
+import MyListPage from "./page/MyListPage";
+import TvShows from "./page/TvShows";
+import SignUpSuccess from "./components/Auth/SignUpSuccess";
 
 export default function App() {
   // Initialize userData to an empty object to avoid undefined errors
@@ -62,6 +65,7 @@ export default function App() {
         <Route exact path="/signin" element={<Login />} />
         <Route exact path="/signup" element={<SignUp />} />
         <Route exact path="/forgot-password" element={<ForgotPassword/>} />
+        <Route exact path="/signup-success" element={<SignUpSuccess/>} />
         <Route exact path="/forgot-password/sent/:email" element={<ForgetPasswordEmailSent/>} />
         <Route exact path="/reset-password/:token" element={<ResetPassword/>} />
         <Route path="*" element={<PageNotFound />} />
@@ -70,6 +74,9 @@ export default function App() {
           <Route path="/player/:videoId" element={<Player />} />
           <Route path="/search/:title" element={<SearchResults/>} />
           <Route path="/Movies" element={<Movies/>} />
+          <Route path="/tv-shows" element={<TvShows/>} />
+          <Route path="/box-office" element={<Movies/>} />
+          <Route path="/my-list" element={<MyListPage/>} />
         </Route>
       </Routes>
     </Router>

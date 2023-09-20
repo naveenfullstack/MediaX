@@ -1,66 +1,56 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import api from "../Apis";
-import QuickView from "../components/popup/quickview/QuickView";
-import { MyListIdProvider } from "../context/MyListIdContext";
-import MyListIcon from "../components/popup/quickview/elements/MyListIcon";
-import { PopularMoviesProvider } from "../context/PopularMoviesContext";
-
-// Compornents
+import React, {useState, useEffect} from "react";
 import Header from "../components/Header";
-import FeaturedMovies from "../components/Home/FeaturedMovies";
+import { PopularMoviesProvider } from "../context/PopularMoviesContext";
+import { MyListIdProvider } from "../context/MyListIdContext";
+import FeaturedTvShows from "../components/Home/FeaturedTvShows";   
+import axios from "axios";
+import api from "../Apis"
+import QuickView from "../components/popup/quickview/QuickView";
+import MyListIcon from "../components/popup/quickview/elements/MyListIcon";
 
-export default function Movies() {
-  const [loading, setLoading] = useState(true);
-  const [shows, setShows] = useState([]);
-  const [popupVisible, setPopupVisible] = useState(false);
-  const [popupData, setPopupData] = useState(null);
-
-  useEffect(() => {
-    axios
-      .get(`${api.Domain}/shows/get-all-shows`, {
-        headers: {
-          api_key: api.key,
-          authantication: api.authantication,
-        },
-      })
-      .then((response) => {
-        setShows(response.data.shows); // Update to setShows with the shows data
-        setLoading(false);
-        console.log(response);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setLoading(true);
-      });
-  }, []);
-
-  const openPopup = (movie) => {
-    // Find the movie you want to display in the popup from shows array.
-    const selectedMovie = shows.find((item) => item.id === movie.id);
-    setPopupData(selectedMovie);
-    setPopupVisible(true);
-  };
-
-  const closePopup = () => {
-    setPopupData(null);
-    setPopupVisible(false);
-  };
-
-  //   const loadMoreCast = () => {
-  //     setIsLoadingMore(true);
-  //     setTimeout(() => {
-  //       setVisibleCastCount(visibleCastCount + 16);
-  //       setIsLoadingMore(false);
-  //     }, 1000);
-  //   };
-
+export default function TvShows() {
+    const [loading, setLoading] = useState(true);
+    const [shows, setShows] = useState([]);
+    const [popupVisible, setPopupVisible] = useState(false);
+    const [popupData, setPopupData] = useState(null);
+  
+    useEffect(() => {
+      axios
+        .get(`${api.Domain}/shows/get-all-shows`, {
+          headers: {
+            api_key: api.key,
+            authantication: api.authantication,
+          },
+        })
+        .then((response) => {
+          setShows(response.data.shows); // Update to setShows with the shows data
+          setLoading(false);
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+          setLoading(true);
+        });
+    }, []);
+  
+    const openPopup = (movie) => {
+      // Find the movie you want to display in the popup from shows array.
+      const selectedMovie = shows.find((item) => item.id === movie.id);
+      setPopupData(selectedMovie);
+      setPopupVisible(true);
+    };
+  
+    const closePopup = () => {
+      setPopupData(null);
+      setPopupVisible(false);
+    };
+    
   return (
     <div>
       <PopularMoviesProvider>
         <MyListIdProvider>
           <Header />
-          <FeaturedMovies />
+          <FeaturedTvShows />
           {loading ? (
             <div className="w-full pr-20">
               <div className="w-full space-y-default sm:hidden md:hidden lg:block">
