@@ -25,7 +25,7 @@ export default function ResetPassword() {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `${api.Domain}/auth/reset-password/${token}`,
+        `${api.Domain}/mediax/auth/reset-password/${token}`,
         {
           newPassword,
         },
@@ -107,7 +107,6 @@ export default function ResetPassword() {
                   value={newPassword}
                   //onChange={handlePasswordChange}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  onKeyUp={handleSubmit}
                 />
                 <button
                   type="button"

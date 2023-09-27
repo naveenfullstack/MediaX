@@ -16,7 +16,7 @@ export default function CastOverview({ Popular }) {
 
   useEffect(() => {
     axios
-      .get(`${api.Domain}/cast/${Popular.id}`, {
+      .get(`${api.Domain}/mediax/cast/${Popular.id}`, {
         headers: {
           api_key: api.key,
           authantication: api.authantication,

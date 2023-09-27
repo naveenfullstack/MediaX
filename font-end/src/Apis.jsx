@@ -7,15 +7,15 @@ const requests = {
 
   //API Urls
   Domain : process.env.REACT_APP_DOMAIN,
-  ForgetPassword : `${Domain}/auth/forgotpassword`,
-  Popular: `${Domain}/shows/get-all-shows`,
-  requestTopRated: `${Domain}/getmovies/toprated`,
-  requestNowPlaying: `${Domain}/getmovies/nowplaying`,
-  requestHorror: `${Domain}/getmovies/horror`,
-  requestUpcoming: `${Domain}/getmovies/Upcoming`,
-  login : `${Domain}/login`,
-  signup : `${Domain}/signup`,
-  mylist : `${Domain}/auth/getmylist`
+  ForgetPassword : `${Domain}/mediax/auth/forgotpassword`,
+  Popular: `${Domain}/mediax/shows/get-all-shows`,
+  requestTopRated: `${Domain}/mediax/getmovies/toprated`,
+  requestNowPlaying: `${Domain}/mediax/getmovies/nowplaying`,
+  requestHorror: `${Domain}/mediax/getmovies/horror`,
+  requestUpcoming: `${Domain}/mediax/getmovies/Upcoming`,
+  login : `${Domain}/mediax/auth/login`,
+  signup : `${Domain}/mediax/auth/signup`,
+  mylist : `${Domain}/mediax/auth/getmylist`
 };
 
 export default requests;

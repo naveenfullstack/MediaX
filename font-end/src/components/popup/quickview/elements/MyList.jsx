@@ -36,7 +36,7 @@ export default function MyList({ Popular }) {
     if (userEmail) {
       axios
         .post(
-          `${api.Domain}/auth/add-to-mylist`,
+          `${api.Domain}/mediax/auth/add-to-mylist`,
           {
             email: userEmail, // Use the userEmail from state
             idsToAdd: [Popular.id.toString()],
@@ -61,7 +61,7 @@ export default function MyList({ Popular }) {
   const handleDeleteMyListItem = () => {
     if (userEmail) {
       axios
-        .delete(`${api.Domain}/auth/delete-from-mylist`, {
+        .delete(`${api.Domain}/mediax/auth/delete-from-mylist`, {
           data: {
             email: userEmail,
             itemToDelete: [Popular.id.toString()],

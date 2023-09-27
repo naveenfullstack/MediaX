@@ -36,7 +36,7 @@ export default function QuickView({ Popular, onClose }) {
   useEffect(() => {
 
     axios
-      .get(`${api.Domain}/videos/${Popular.id}`, {
+      .get(`${api.Domain}/mediax/videos/${Popular.id}`, {
         headers: {
           api_key: api.key,
           authantication: api.authantication,

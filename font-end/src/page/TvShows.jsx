@@ -16,7 +16,7 @@ export default function TvShows() {
   
     useEffect(() => {
       axios
-        .get(`${api.Domain}/shows/get-all-shows`, {
+        .get(`${api.Domain}/mediax/shows/get-all-shows`, {
           headers: {
             api_key: api.key,
             authantication: api.authantication,

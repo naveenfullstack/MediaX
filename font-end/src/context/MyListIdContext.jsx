@@ -16,7 +16,7 @@ export const MyListIdProvider = ({ children }) => {
         const { email } = userData;
 
         axios
-          .get(`${api.Domain}/auth/userdetails/${email}`, {
+          .get(`${api.Domain}/mediax/auth/userdetails/${email}`, {
             headers: {
               api_key: api.key,
               authantication: api.authantication,

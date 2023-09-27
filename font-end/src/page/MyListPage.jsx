@@ -28,7 +28,7 @@ export default function MyListPage() {
         setUserEmail(email);
 
         axios
-          .get(`${api.Domain}/auth/userdetails/${email}`, {
+          .get(`${api.Domain}/mediax/auth/userdetails/${email}`, {
             headers,
           })
           .then((response) => {
@@ -41,7 +41,7 @@ export default function MyListPage() {
 
             // Send a POST request with the requestBody
             axios
-              .post(`${api.Domain}/auth/getmylist/`, requestBody, {
+              .post(`${api.Domain}/mediax/auth/getmylist/`, requestBody, {
                 headers,
               })
               .then((response) => {
@@ -68,7 +68,7 @@ export default function MyListPage() {
   const handleDeleteMyListItem = (index) => {
     if (userEmail) {
       axios
-        .delete(`${api.Domain}/auth/delete-from-mylist`, {
+        .delete(`${api.Domain}/mediax/auth/delete-from-mylist`, {
           data: {
             email: userEmail,
             itemToDelete: [index.id.toString()],

@@ -19,7 +19,7 @@ export default function SearchResults() {
 
   useEffect(() => {
     axios
-      .get(`${api.Domain}/shows/search?title=${title}`, {
+      .get(`${api.Domain}/mediax/shows/search?title=${title}`, {
         headers: {
           api_key: api.key,
           authantication: api.authantication,
